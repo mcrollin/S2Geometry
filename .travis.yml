@@ -25,6 +25,3 @@ script:
   - xcodebuild -project "$WORKSPACE" -scheme "$FRAMEWORK_SCHEME" test | xcpretty
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-addons:
-  code_climate:
-      repo_token: 804842d8e4a3933101a642c1df2ab3ec65124b985f583e6ead1fdcb330355b87

@@ -103,6 +103,15 @@ extension R2Rectangle {
         return R2Point(x: x.length, y: y.length)
     }
 
+    // Four vertices of the rectangle.
+    // Vertices are returned in CCW direction starting with the lower left corner.
+    var vertices: [R2Point] {
+        return [R2Point(x: x.low, y: y.low),
+                R2Point(x: x.high, y: y.low),
+                R2Point(x: x.high, y: y.high),
+                R2Point(x: x.low, y: y.high)]
+    }
+
     // Reports whether the rectangle is empty.
     func isEmpty() -> Bool {
         return x.isEmpty()
@@ -167,14 +176,14 @@ extension R2Rectangle {
     // The rectangle is expanded by the minimum amount possible.
     func add(point: R2Point) -> R2Rectangle {
         return R2Rectangle(x: x.add(point: point.x),
-                         y: y.add(point: point.y))
+                           y: y.add(point: point.y))
     }
 
     // Returns the closest point in the rectangle to the given point.
     // The rectangle must be non-empty.
     func clamp(to point: R2Point) -> R2Point {
         return R2Point(x: x.clamp(to: point.x),
-                     y: y.clamp(to: point.y))
+                       y: y.clamp(to: point.y))
     }
 
     // Returns a rectangle that has been expanded in the x-direction by margin.x,
@@ -201,7 +210,7 @@ extension R2Rectangle {
     // and the given rectangle.
     func union(with other: R2Rectangle) -> R2Rectangle {
         return R2Rectangle(x: x.union(with: other.x),
-                         y: y.union(with: other.y))
+                           y: y.union(with: other.y))
     }
 
     // Returns the smallest rectangle containing the intersection of this

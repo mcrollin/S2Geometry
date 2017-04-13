@@ -3,7 +3,7 @@
 //  S2Geometry
 //
 //  Created by Marc Rollin on 4/8/17.
-//  Copyright © 2017 Marc Rollin. All rights reserved.
+//  Copyright © 2017 Marc Rollin. All rights reserve
 //
 
 import XCTest
@@ -16,14 +16,10 @@ import XCTest
 
 class R1IntervalTests: XCTestCase {
 
-    struct TestIntervals {
-        let unit = R1Interval(low: 0, high: 1)
-        let negativeUnit = R1Interval(low: -1, high: 0)
-        let half = R1Interval(low: 0.5, high: 0.5)
-        let empty = R1Interval(low: 1, high: 0)
-    }
-
-    let i = TestIntervals()
+    let unit = R1Interval(low: 0, high: 1)
+    let negativeUnit = R1Interval(low: -1, high: 0)
+    let half = R1Interval(low: 0.5, high: 0.5)
+    let empty = R1Interval(low: 1, high: 0)
 
     func testStringConversion() {
         struct Test {
@@ -47,13 +43,13 @@ class R1IntervalTests: XCTestCase {
             let expected: Bool
         }
 
-        let tests = [Test(interval: i.empty, other: i.empty, expected: true),
-                     Test(interval: R1Interval(point: 0), other: i.empty, expected: true),
-                     Test(interval: i.empty, other: R1Interval(point: 0), expected: true),
-                     Test(interval: R1Interval(point: 1), other: i.empty, expected: true),
-                     Test(interval: i.empty, other: R1Interval(point: 1), expected: true),
-                     Test(interval: i.empty, other: R1Interval(low: 0, high: 1), expected: false),
-                     Test(interval: i.empty, other: R1Interval(low: 1, high: 1 + 2 * Double.epsilon), expected: true),
+        let tests = [Test(interval: empty, other: empty, expected: true),
+                     Test(interval: R1Interval(point: 0), other: empty, expected: true),
+                     Test(interval: empty, other: R1Interval(point: 0), expected: true),
+                     Test(interval: R1Interval(point: 1), other: empty, expected: true),
+                     Test(interval: empty, other: R1Interval(point: 1), expected: true),
+                     Test(interval: empty, other: R1Interval(low: 0, high: 1), expected: false),
+                     Test(interval: empty, other: R1Interval(low: 1, high: 1 + 2 * Double.epsilon), expected: true),
 
                      Test(interval: R1Interval(point: 1), other: R1Interval(point: 1), expected: true),
                      Test(interval: R1Interval(point: 1), other: R1Interval(low: 1 - Double.epsilon, high: 1 - Double.epsilon), expected: true),
@@ -78,10 +74,10 @@ class R1IntervalTests: XCTestCase {
     }
 
     func testIsEmpty() {
-        XCTAssertFalse(i.unit.isEmpty(), "\(i.unit) should not be empty")
-        XCTAssertFalse(i.negativeUnit.isEmpty(), "\(i.negativeUnit) should not be empty")
-        XCTAssertFalse(i.half.isEmpty(), "\(i.half) should not be empty")
-        XCTAssertTrue(i.empty.isEmpty(), "\(i.empty) should be empty")
+        XCTAssertFalse(unit.isEmpty(), "\(unit) should not be empty")
+        XCTAssertFalse(negativeUnit.isEmpty(), "\(negativeUnit) should not be empty")
+        XCTAssertFalse(half.isEmpty(), "\(half) should not be empty")
+        XCTAssertTrue(empty.isEmpty(), "\(empty) should be empty")
     }
 
     func testCenter() {
@@ -90,9 +86,9 @@ class R1IntervalTests: XCTestCase {
             let expects: Double
         }
 
-        let tests = [Test(interval: i.unit, expects: 0.5),
-                     Test(interval: i.negativeUnit, expects: -0.5),
-                     Test(interval: i.half, expects: 0.5)]
+        let tests = [Test(interval: unit, expects: 0.5),
+                     Test(interval: negativeUnit, expects: -0.5),
+                     Test(interval: half, expects: 0.5)]
 
         for test in tests {
             let got = test.interval.center
@@ -107,9 +103,9 @@ class R1IntervalTests: XCTestCase {
             let expects: Double
         }
 
-        let tests = [Test(interval: i.unit, expects: 1),
-                     Test(interval: i.negativeUnit, expects: 1),
-                     Test(interval: i.half, expects: 0)]
+        let tests = [Test(interval: unit, expects: 1),
+                     Test(interval: negativeUnit, expects: 1),
+                     Test(interval: half, expects: 0)]
 
         for test in tests {
             let got = test.interval.length
@@ -126,7 +122,7 @@ class R1IntervalTests: XCTestCase {
             let interiorContains: Bool
         }
 
-        let tests = [Test(interval: i.unit, point: 0.5, contains: true, interiorContains: true)]
+        let tests = [Test(interval: unit, point: 0.5, contains: true, interiorContains: true)]
 
         for test in tests {
             let contains = test.interval.contains(point: test.point)
@@ -147,28 +143,28 @@ class R1IntervalTests: XCTestCase {
             let interiorIntersects: Bool
         }
 
-        let tests = [Test(interval: i.empty, other: i.empty,
+        let tests = [Test(interval: empty, other: empty,
                           contains: true, interiorContains: true,
                           intersects: false, interiorIntersects: false),
-                     Test(interval: i.empty, other: i.unit,
+                     Test(interval: empty, other: unit,
                           contains: false, interiorContains: false,
                           intersects: false, interiorIntersects: false),
-                     Test(interval: i.unit, other: i.half,
+                     Test(interval: unit, other: half,
                           contains: true, interiorContains: true,
                           intersects: true, interiorIntersects: true),
-                     Test(interval: i.unit, other: i.unit,
+                     Test(interval: unit, other: unit,
                           contains: true, interiorContains: false,
                           intersects: true, interiorIntersects: true),
-                     Test(interval: i.unit, other: i.empty,
+                     Test(interval: unit, other: empty,
                           contains: true, interiorContains: true,
                           intersects: false, interiorIntersects: false),
-                     Test(interval: i.unit, other: i.negativeUnit,
+                     Test(interval: unit, other: negativeUnit,
                           contains: false, interiorContains: false,
                           intersects: true, interiorIntersects: false),
-                     Test(interval: i.unit, other: R1Interval(low: 0, high: 0.5),
+                     Test(interval: unit, other: R1Interval(low: 0, high: 0.5),
                           contains: true, interiorContains: false,
                           intersects: true, interiorIntersects: true),
-                     Test(interval: i.half, other: R1Interval(low: 0, high: 0.5),
+                     Test(interval: half, other: R1Interval(low: 0, high: 0.5),
                           contains: false, interiorContains: false,
                           intersects: true, interiorIntersects: false),
                      Test(interval: R1Interval(low: 1, high: 2.1),
@@ -196,11 +192,11 @@ class R1IntervalTests: XCTestCase {
             let expected: R1Interval
         }
 
-        let tests = [Test(x: i.unit, y: i.half, expected: i.half),
-                     Test(x: i.unit, y: i.negativeUnit, expected: R1Interval(low: 0, high: 0)),
-                     Test(x: i.negativeUnit, y: i.half, expected: i.empty),
-                     Test(x: i.unit, y: i.empty, expected: i.empty),
-                     Test(x: i.empty, y: i.unit, expected: i.empty)]
+        let tests = [Test(x: unit, y: half, expected: half),
+                     Test(x: unit, y: negativeUnit, expected: R1Interval(low: 0, high: 0)),
+                     Test(x: negativeUnit, y: half, expected: empty),
+                     Test(x: unit, y: empty, expected: empty),
+                     Test(x: empty, y: unit, expected: empty)]
 
         for test in tests {
             let got = test.x.intersection(with: test.y)
@@ -216,14 +212,14 @@ class R1IntervalTests: XCTestCase {
             let expected: R1Interval
         }
 
-        let tests = [Test(x: R1Interval(low: 99, high: 100), y: i.empty, expected: R1Interval(low: 99, high: 100)),
-                     Test(x: i.empty, y: R1Interval(low: 99, high: 100), expected: R1Interval(low: 99, high: 100)),
-                     Test(x: R1Interval(low: 5, high: 3), y: R1Interval(low: 0, high: -2), expected: i.empty),
-                     Test(x: R1Interval(low: 0, high: -2), y: R1Interval(low: 5, high: 3), expected: i.empty),
-                     Test(x: i.unit, y: i.unit, expected: i.unit),
-                     Test(x: i.unit, y: i.negativeUnit, expected: R1Interval(low: -1, high: 1)),
-                     Test(x: i.negativeUnit, y: i.unit, expected: R1Interval(low: -1, high: 1)),
-                     Test(x: i.half, y: i.unit, expected: i.unit)]
+        let tests = [Test(x: R1Interval(low: 99, high: 100), y: empty, expected: R1Interval(low: 99, high: 100)),
+                     Test(x: empty, y: R1Interval(low: 99, high: 100), expected: R1Interval(low: 99, high: 100)),
+                     Test(x: R1Interval(low: 5, high: 3), y: R1Interval(low: 0, high: -2), expected: empty),
+                     Test(x: R1Interval(low: 0, high: -2), y: R1Interval(low: 5, high: 3), expected: empty),
+                     Test(x: unit, y: unit, expected: unit),
+                     Test(x: unit, y: negativeUnit, expected: R1Interval(low: -1, high: 1)),
+                     Test(x: negativeUnit, y: unit, expected: R1Interval(low: -1, high: 1)),
+                     Test(x: half, y: unit, expected: unit)]
 
         for test in tests {
             let got = test.x.union(with: test.y)
@@ -282,10 +278,10 @@ class R1IntervalTests: XCTestCase {
             let expected: R1Interval
         }
 
-        let tests = [Test(interval: i.empty, margin: 0.45, expected: i.empty),
-                     Test(interval: i.unit, margin: 0.5, expected: R1Interval(low: -0.5, high: 1.5)),
-                     Test(interval: i.unit, margin: -0.5, expected: R1Interval(low: 0.5, high: 0.5)),
-                     Test(interval: i.unit, margin: -0.51, expected: i.empty)]
+        let tests = [Test(interval: empty, margin: 0.45, expected: empty),
+                     Test(interval: unit, margin: 0.5, expected: R1Interval(low: -0.5, high: 1.5)),
+                     Test(interval: unit, margin: -0.5, expected: R1Interval(low: 0.5, high: 0.5)),
+                     Test(interval: unit, margin: -0.51, expected: empty)]
 
         for test in tests {
             let got = test.interval.expanded(by: test.margin)
