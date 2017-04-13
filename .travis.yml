@@ -1,0 +1,30 @@
+# Travis CI build file for Package-Builder.
+# Runs on OS X and Linux (Ubuntu).
+# See the following URLs for further details on Travis CI
+# https://docs.travis-ci.com/user/customizing-the-build/
+# https://docs.travis-ci.com/user/docker/
+# https://docs.travis-ci.com/user/multi-os/
+
+language: objective-c
+osx_image: xcode8.3
+branches:
+  only:
+    - master
+
+notifications:
+  email: true
+
+env:
+  global:
+    - WORKSPACE="S2Geometry.xcodeproj"
+    - FRAMEWORK_SCHEME="S2Geometry"
+script:
+  - set -o pipefail
+  - xcodebuild -version
+  - xcodebuild -showsdks
+  - xcodebuild -project "$WORKSPACE" -scheme "$FRAMEWORK_SCHEME" test | xcpretty
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+addons:
+  code_climate:
+      repo_token: 804842d8e4a3933101a642c1df2ab3ec65124b985f583e6ead1fdcb330355b87
