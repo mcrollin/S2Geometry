@@ -9,10 +9,7 @@
 import XCTest
 @testable import S2Geometry
 
-// swiftlint:disable nesting
-// swiftlint:disable line_length
-// swiftlint:disable function_body_length
-// swiftlint:disable type_body_length
+// swiftlint:disable nesting line_length function_body_length type_body_length
 
 class R2RectangleTests: XCTestCase {
 
@@ -74,33 +71,33 @@ class R2RectangleTests: XCTestCase {
 
     func testCenter() {
         struct Test {
-            let rect: R2Rectangle
+            let rectangle: R2Rectangle
             let expected: R2Point
         }
 
-        let tests = [Test(rect: empty, expected: R2Point(x: 0.5, y: 0.5)),
-                     Test(rect: rect, expected: R2Point(x: 0.25, y: 0.5))]
+        let tests = [Test(rectangle: empty, expected: R2Point(x: 0.5, y: 0.5)),
+                     Test(rectangle: rect, expected: R2Point(x: 0.25, y: 0.5))]
 
         for test in tests {
-            let got = test.rect.center
+            let got = test.rectangle.center
 
-            XCTAssertEqual(got, test.expected, "with \(test.rect) and  \(test.expected)")
+            XCTAssertEqual(got, test.expected, "with \(test.rectangle) and  \(test.expected)")
         }
     }
 
     func testSize() {
         struct Test {
-            let rect: R2Rectangle
+            let rectangle: R2Rectangle
             let expected: R2Point
         }
 
-        let tests = [Test(rect: empty, expected: R2Point(x: -1.0, y: -1.0)),
-                     Test(rect: rect, expected: R2Point(x: 0.5, y: 0.5))]
+        let tests = [Test(rectangle: empty, expected: R2Point(x: -1.0, y: -1.0)),
+                     Test(rectangle: rect, expected: R2Point(x: 0.5, y: 0.5))]
 
         for test in tests {
-            let got = test.rect.size
+            let got = test.rectangle.size
 
-            XCTAssertEqual(got, test.expected, "with \(test.rect) and  \(test.expected)")
+            XCTAssertEqual(got, test.expected, "with \(test.rectangle) and  \(test.expected)")
         }
     }
 
@@ -113,59 +110,59 @@ class R2RectangleTests: XCTestCase {
 
     func testVertex() {
         struct Test {
-            let rect: R2Rectangle
+            let rectangle: R2Rectangle
             let expected: R2Point
         }
 
-        let tests = [Test(rect: empty, expected: R2Point(x: 1.0, y: 1.0)),
-                     Test(rect: rect, expected: R2Point(x: 0.0, y: 0.25))]
+        let tests = [Test(rectangle: empty, expected: R2Point(x: 1.0, y: 1.0)),
+                     Test(rectangle: rect, expected: R2Point(x: 0.0, y: 0.25))]
 
         for test in tests {
-            let got = test.rect.vertex(i: 12, j: -4)
+            let got = test.rectangle.vertex(i: 12, j: -4)
 
-            XCTAssertEqual(got, test.expected, "with \(test.rect) and  \(test.expected)")
+            XCTAssertEqual(got, test.expected, "with \(test.rectangle) and  \(test.expected)")
         }
     }
 
     func testContainsPoint() {
         struct Test {
-            let rect: R2Rectangle
+            let rectangle: R2Rectangle
             let point: R2Point
             let expected: Bool
         }
 
-        let tests = [Test(rect: rect, point: R2Point(x: 0.2, y: 0.4), expected: true),
-                     Test(rect: rect, point: R2Point(x: 0.2, y: 0.8), expected: false),
-                     Test(rect: rect, point: R2Point(x: -0.1, y: 0.4), expected: false),
-                     Test(rect: rect, point: R2Point(x: 0.6, y: 0.4), expected: false),
-                     Test(rect: rect, point: R2Point(x: rect.x.low, y: rect.y.low), expected: true),
-                     Test(rect: rect, point: R2Point(x: rect.x.high, y: rect.y.high), expected: true)]
+        let tests = [Test(rectangle: rect, point: R2Point(x: 0.2, y: 0.4), expected: true),
+                     Test(rectangle: rect, point: R2Point(x: 0.2, y: 0.8), expected: false),
+                     Test(rectangle: rect, point: R2Point(x: -0.1, y: 0.4), expected: false),
+                     Test(rectangle: rect, point: R2Point(x: 0.6, y: 0.4), expected: false),
+                     Test(rectangle: rect, point: R2Point(x: rect.x.low, y: rect.y.low), expected: true),
+                     Test(rectangle: rect, point: R2Point(x: rect.x.high, y: rect.y.high), expected: true)]
 
         for test in tests {
-            let got = test.rect.contains(point: test.point)
+            let got = test.rectangle.contains(point: test.point)
 
-            XCTAssertEqual(got, test.expected, "with \(test.rect) and  \(test.point)")
+            XCTAssertEqual(got, test.expected, "with \(test.rectangle) and  \(test.point)")
         }
     }
 
     func testInteriorContainsPoint() {
         struct Test {
-            let rect: R2Rectangle
+            let rectangle: R2Rectangle
             let point: R2Point
             let expected: Bool
         }
 
-        let tests = [Test(rect: rect, point: sw, expected: false), // Check corners are not contained.
-            Test(rect: rect, point: ne, expected: false),
-            Test(rect: rect, point: R2Point(x: 0, y: 0.5), expected: false), // Check a point on the border is not contained.
-            Test(rect: rect, point: R2Point(x: 0.25, y: 0.25), expected: false),
-            Test(rect: rect, point: R2Point(x: 0.5, y: 0.5), expected: false),
-            Test(rect: rect, point: R2Point(x: 0.125, y: 0.6), expected: true)] // Check points inside are contained.
+        let tests = [Test(rectangle: rect, point: sw, expected: false), // Check corners are not contained.
+            Test(rectangle: rect, point: ne, expected: false),
+            Test(rectangle: rect, point: R2Point(x: 0, y: 0.5), expected: false), // Check a point on the border is not contained.
+            Test(rectangle: rect, point: R2Point(x: 0.25, y: 0.25), expected: false),
+            Test(rectangle: rect, point: R2Point(x: 0.5, y: 0.5), expected: false),
+            Test(rectangle: rect, point: R2Point(x: 0.125, y: 0.6), expected: true)] // Check points inside are contained.
 
         for test in tests {
-            let got = test.rect.interiorContains(point: test.point)
+            let got = test.rectangle.interiorContains(point: test.point)
 
-            XCTAssertEqual(got, test.expected, "with \(test.rect) and  \(test.point)")
+            XCTAssertEqual(got, test.expected, "with \(test.rectangle) and  \(test.point)")
         }
     }
 
@@ -278,66 +275,66 @@ class R2RectangleTests: XCTestCase {
 
     func testExpandedEmpty() {
         struct Test {
-            let rect: R2Rectangle
+            let rectangle: R2Rectangle
             let point: R2Point
         }
 
-        let tests = [Test(rect: empty, point: R2Point(x: 0.1, y: 0.3)),
-                     Test(rect: empty, point: R2Point(x: -0.1, y: -0.3)),
-                     Test(rect: R2Rectangle(points: R2Point(x: 0.2, y: 0.4), R2Point(x: 0.3, y: 0.7)),
+        let tests = [Test(rectangle: empty, point: R2Point(x: 0.1, y: 0.3)),
+                     Test(rectangle: empty, point: R2Point(x: -0.1, y: -0.3)),
+                     Test(rectangle: R2Rectangle(points: R2Point(x: 0.2, y: 0.4), R2Point(x: 0.3, y: 0.7)),
                           point: R2Point(x: -0.1, y: 0.3)),
-                     Test(rect: R2Rectangle(points: R2Point(x: 0.2, y: 0.4), R2Point(x: 0.3, y: 0.7)),
+                     Test(rectangle: R2Rectangle(points: R2Point(x: 0.2, y: 0.4), R2Point(x: 0.3, y: 0.7)),
                           point: R2Point(x: 0.1, y: -0.2))]
 
         for test in tests {
-            let got = test.rect.expanded(margin: test.point)
+            let got = test.rectangle.expanded(margin: test.point)
 
-            XCTAssertTrue(got.isEmpty(), "with \(test.rect) and  \(test.point)")
+            XCTAssertTrue(got.isEmpty(), "with \(test.rectangle) and  \(test.point)")
         }
     }
 
     func testExpandedPoint() {
         struct Test {
-            let rect: R2Rectangle
+            let rectangle: R2Rectangle
             let point: R2Point
             let expected: R2Rectangle
         }
 
-        let tests = [Test(rect: R2Rectangle(points: R2Point(x: 0.2, y: 0.4), R2Point(x: 0.3, y: 0.7)),
+        let tests = [Test(rectangle: R2Rectangle(points: R2Point(x: 0.2, y: 0.4), R2Point(x: 0.3, y: 0.7)),
                           point: R2Point(x: 0.1, y: 0.3),
                           expected: R2Rectangle(points: R2Point(x: 0.1, y: 0.1), R2Point(x: 0.4, y: 1))),
-                     Test(rect: R2Rectangle(points: R2Point(x: 0.2, y: 0.4), R2Point(x: 0.3, y: 0.7)),
+                     Test(rectangle: R2Rectangle(points: R2Point(x: 0.2, y: 0.4), R2Point(x: 0.3, y: 0.7)),
                           point: R2Point(x: 0.1, y: -0.1),
                           expected: R2Rectangle(points: R2Point(x: 0.1, y: 0.5), R2Point(x: 0.4, y: 0.6))),
-                     Test(rect: R2Rectangle(points: R2Point(x: 0.2, y: 0.4), R2Point(x: 0.3, y: 0.7)),
+                     Test(rectangle: R2Rectangle(points: R2Point(x: 0.2, y: 0.4), R2Point(x: 0.3, y: 0.7)),
                           point: R2Point(x: 0.1, y: 0.1),
                           expected: R2Rectangle(points: R2Point(x: 0.1, y: 0.3), R2Point(x: 0.4, y: 0.8)))]
 
         for test in tests {
-            let got = test.rect.expanded(margin: test.point)
+            let got = test.rectangle.expanded(margin: test.point)
 
-            XCTAssertEqual(got, test.expected, "with \(test.rect) and  \(test.point)")
+            XCTAssertEqual(got, test.expected, "with \(test.rectangle) and  \(test.point)")
         }
     }
 
     func testExpandedMargin() {
         struct Test {
-            let rect: R2Rectangle
+            let rectangle: R2Rectangle
             let margin: Double
             let expected: R2Rectangle
         }
 
-        let tests = [Test(rect: R2Rectangle(points: R2Point(x: 0.2, y: 0.4), R2Point(x: 0.3, y: 0.7)),
+        let tests = [Test(rectangle: R2Rectangle(points: R2Point(x: 0.2, y: 0.4), R2Point(x: 0.3, y: 0.7)),
                           margin: 0.1,
                           expected: R2Rectangle(points: R2Point(x: 0.1, y: 0.3), R2Point(x: 0.4, y: 0.8))),
-                     Test(rect: R2Rectangle(points: R2Point(x: 0.2, y: 0.4), R2Point(x: 0.3, y: 0.7)),
+                     Test(rectangle: R2Rectangle(points: R2Point(x: 0.2, y: 0.4), R2Point(x: 0.3, y: 0.7)),
                           margin: -0.1,
                           expected: empty)]
 
         for test in tests {
-            let got = test.rect.expanded(margin: test.margin)
+            let got = test.rectangle.expanded(margin: test.margin)
 
-            XCTAssertEqual(got, test.expected, "with \(test.rect) and  \(test.margin)")
+            XCTAssertEqual(got, test.expected, "with \(test.rectangle) and  \(test.margin)")
         }
     }
 }

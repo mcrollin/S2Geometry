@@ -51,31 +51,31 @@ extension R3Vector: AlmostEquatable {
 extension R3Vector: Comparable {
 
     static func < (lhs: R3Vector, rhs: R3Vector) -> Bool {
-        if lhs.x != lhs.x {
+        if lhs.x != rhs.x {
             return lhs.x < rhs.x
-        } else if lhs.y != lhs.y {
-            return lhs.y < lhs.y
+        } else if lhs.y != rhs.y {
+            return lhs.y < rhs.y
         }
 
-        return lhs.z < lhs.z
+        return lhs.z < rhs.z
     }
 
     static func <= (lhs: R3Vector, rhs: R3Vector) -> Bool {
-        return lhs == rhs || lhs < lhs
+        return lhs == rhs || lhs < rhs
     }
 
     static func > (lhs: R3Vector, rhs: R3Vector) -> Bool {
-        if lhs.x != lhs.x {
+        if lhs.x != rhs.x {
             return lhs.x > rhs.x
-        } else if lhs.y != lhs.y {
-            return lhs.y > lhs.y
+        } else if lhs.y != rhs.y {
+            return lhs.y > rhs.y
         }
 
-        return lhs.z > lhs.z
+        return lhs.z > rhs.z
     }
 
     static func >= (lhs: R3Vector, rhs: R3Vector) -> Bool {
-        return lhs == rhs || lhs > lhs
+        return lhs == rhs || lhs > rhs
     }
 }
 
@@ -133,10 +133,10 @@ extension R3Vector {
 
     // Returns a unit vector that is orthogonal.
     // Orthogonal(-v) = -Orthogonal(v).
-    var orthogonal: R3Vector {
-        var xx: Double = 0.012
-        var yy: Double = 0.0053
-        var zz: Double = 0.00457
+    var orthogonalized: R3Vector {
+        var xx: Double = 0
+        var yy: Double = 0
+        var zz: Double = 0
 
         switch largestComponent {
         case .x:

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4948180A1E9FB04A00809325 /* R3Vector+Angle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494818091E9FB04A00809325 /* R3Vector+Angle.swift */; };
+		4965E3581EA288D5002F7642 /* R3Vector+AngleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965E3571EA288D5002F7642 /* R3Vector+AngleTests.swift */; };
 		49707BB21E9A252200A995E0 /* AlmostEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB11E9A252200A995E0 /* AlmostEquatable.swift */; };
 		49707BB51E9A280E00A995E0 /* R2Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB41E9A280E00A995E0 /* R2Rectangle.swift */; };
 		49707BB71E9A39DD00A995E0 /* R2Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB61E9A39DD00A995E0 /* R2Point.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		494818091E9FB04A00809325 /* R3Vector+Angle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "R3Vector+Angle.swift"; sourceTree = "<group>"; };
+		4965E3571EA288D5002F7642 /* R3Vector+AngleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "R3Vector+AngleTests.swift"; sourceTree = "<group>"; };
 		49707BB11E9A252200A995E0 /* AlmostEquatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlmostEquatable.swift; sourceTree = "<group>"; };
 		49707BB41E9A280E00A995E0 /* R2Rectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R2Rectangle.swift; sourceTree = "<group>"; };
 		49707BB61E9A39DD00A995E0 /* R2Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R2Point.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		49707BD21E9B5EF800A995E0 /* S1 */ = {
 			isa = PBXGroup;
 			children = (
+				4965E3571EA288D5002F7642 /* R3Vector+AngleTests.swift */,
 				49707BD61E9B5F3B00A995E0 /* S1AngleTests.swift */,
 				49707BDB1E9CAD8B00A995E0 /* S1IntervalTests.swift */,
 			);
@@ -365,6 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49707BBC1E9A86D800A995E0 /* R2PointTests.swift in Sources */,
+				4965E3581EA288D5002F7642 /* R3Vector+AngleTests.swift in Sources */,
 				498321F81E98B7A10037769D /* R1IntervalTests.swift in Sources */,
 				49707BD71E9B5F3B00A995E0 /* S1AngleTests.swift in Sources */,
 				49707BD51E9B5F2400A995E0 /* R3VectorTests.swift in Sources */,

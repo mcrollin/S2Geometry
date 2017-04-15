@@ -9,10 +9,7 @@
 import XCTest
 @testable import S2Geometry
 
-// swiftlint:disable nesting
-// swiftlint:disable line_length
-// swiftlint:disable function_body_length
-// swiftlint:disable type_body_length
+// swiftlint:disable nesting line_length function_body_length type_body_length
 
 class R1IntervalTests: XCTestCase {
 

@@ -9,8 +9,7 @@
 import XCTest
 @testable import S2Geometry
 
-// swiftlint:disable nesting
-// swiftlint:disable line_length
+// swiftlint:disable nesting line_length
 
 class R2PointTests: XCTestCase {
 
