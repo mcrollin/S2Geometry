@@ -85,9 +85,9 @@ class R3VectorTests: XCTestCase {
                 .filter { $0 != 0 }.count == 0
 
             if !isEmpty {
-                XCTAssertTrue(normalized.normal ==~ 1.0, "invalid normal with \(vector)")
+                XCTAssertTrue(normalized.normal ==~ 1, "invalid normal with \(vector)")
             } else {
-                XCTAssertEqual(normalized.normal, 0.0, "invalid normal with \(vector)")
+                XCTAssertEqual(normalized.normal, 0, "invalid normal with \(vector)")
             }
         }
     }
@@ -270,7 +270,10 @@ class R3VectorTests: XCTestCase {
             let cross2 = test.vector2.crossProduct(with: test.vector1)
             let dot1 = test.vector1.dotProduct(with: test.vector2)
             let dot2 = test.vector2.dotProduct(with: test.vector1)
+            let angle1 = test.vector1.angle(with: test.vector2).radians
+            let angle2 = test.vector2.angle(with: test.vector1).radians
 
+            XCTAssertTrue(angle1 ==~ angle2, "with \(test.vector1) and \(test.vector2)")
             XCTAssertTrue(dot1 ==~ dot2, "with \(test.vector1) and \(test.vector2)")
             XCTAssertTrue((cross2 * -1) ==~ cross1, "with \(test.vector1) and \(test.vector2)")
         }

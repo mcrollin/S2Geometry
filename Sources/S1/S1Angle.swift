@@ -9,6 +9,10 @@
 import Foundation
 
 // S1Angle represents a 1D angle.
+// The major differences from the C++ version are:
+//   - no unsigned E5/E6/E7 methods
+//   - no S2Point or S2LatLng constructors
+//   - no comparison or arithmetic operators
 struct S1Angle {
     enum Unit: CustomStringConvertible {
         case degrees, radians
@@ -23,6 +27,13 @@ struct S1Angle {
         }
     }
 
+    enum Epsilon: Double {
+        case e5 = 1e-5
+        case e6 = 1e-6
+        case e7 = 1e-7
+        case none = 1
+    }
+
     let value: Double
     let unit: Unit
 
@@ -33,19 +44,31 @@ struct S1Angle {
 extension S1Angle: CustomStringConvertible {
 
     var description: String {
-        return "\(value)\(unit))"
+        return "(\(value) \(unit))"
+    }
+}
+
+extension S1Angle: Equatable {
+
+    // Returns true iff both angles have similar value for the same unit.
+    static func == (lhs: S1Angle, rhs: S1Angle) -> Bool {
+        if lhs.unit == rhs.unit {
+            return lhs.value == rhs.value
+        }
+
+        return lhs.radians == rhs.radians
     }
 }
 
 extension S1Angle {
 
     // Returns an angle larger than any finite angle.
-    static var intinite: S1Angle {
-        return S1Angle(radians: .infinity)
+    static var infinite: S1Angle {
+        return S1Angle(degrees: .infinity)
     }
 
-    init(degrees: Double) {
-        value = degrees
+    init(degrees: Double, epsilon: Epsilon = .none) {
+        value = degrees * epsilon.rawValue
         unit = .degrees
     }
 

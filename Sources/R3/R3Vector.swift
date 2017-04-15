@@ -211,4 +211,10 @@ extension R3Vector {
     func distance(to other: R3Vector) -> Double {
         return (self - other).normal
     }
+
+    // Returns the angle with the other vector.
+    func angle(with other: R3Vector) -> S1Angle {
+        return S1Angle(radians: atan2(crossProduct(with: other).normal,
+                                      dotProduct(with: other)))
+    }
 }
