@@ -16,59 +16,7 @@ struct R1Interval {
     let high: Double
 }
 
-extension R1Interval: CustomStringConvertible {
-
-    var description: String {
-        return "[\(low),\(high)]"
-    }
-}
-
-extension R1Interval: Equatable {
-
-    // Returns true iff the interval lhs contains the same points as rhs.
-    static func == (lhs: R1Interval, rhs: R1Interval) -> Bool {
-        return (lhs.low == rhs.low && lhs.high == rhs.high)
-            || (lhs.isEmpty() && rhs.isEmpty())
-    }
-}
-
-extension R1Interval: AlmostEquatable {
-
-    // Reports whether the interval can be transformed into the
-    // given interval by moving each endpoint a small distance.
-    // The empty interval is considered to be positioned arbitrarily on the
-    // real line, so any interval with a small enough length will match
-    // the empty interval.
-    static func ==~ (lhs: R1Interval, rhs: R1Interval) -> Bool {
-        if lhs.isEmpty() {
-            return rhs.length <= 2 * Double.epsilon
-        } else if rhs.isEmpty() {
-            return lhs.length <= 2 * Double.epsilon
-        }
-
-        return lhs.low ==~ rhs.low && lhs.high ==~ rhs.high
-    }
-}
-
-extension R1Interval {
-
-    // Expands the interval to include the other interval.
-    // This is the same as replacing the interval by the union of the two interval.
-    static func + (lhs: R1Interval, rhs: R1Interval) -> R1Interval {
-        return lhs.union(with: rhs)
-    }
-
-    // Empty interval.
-    static var empty: R1Interval {
-        return R1Interval(low: 1, high: 0)
-    }
-
-    // Interval representing a single point.
-    init(point: Double) {
-        low = point
-        high = point
-    }
-
+extension R1Interval: Interval {
     // Midpoint of the interval.
     var center: Double {
         return 0.5 * (low + high)
@@ -78,6 +26,12 @@ extension R1Interval {
     // The length of an empty interval is negative.
     var length: Double {
         return high - low
+    }
+
+    // Interval representing a single point.
+    init(point: Double) {
+        low = point
+        high = point
     }
 
     // Reports whether the interval is empty.
@@ -138,12 +92,6 @@ extension R1Interval {
         return self
     }
 
-    // Returns the closest point in the interval to the given point.
-    // The interval must be non-empty.
-    func clamp(to point: Double) -> Double {
-        return max(low, min(high, point))
-    }
-
     // Returns an interval that has been expanded on each side by margin.
     // If margin is negative, then the function shrinks the interval on
     // each side by margin instead. The resulting interval may be empty. Any
@@ -172,5 +120,25 @@ extension R1Interval {
 
         return R1Interval(low: min(low, other.low),
                           high: max(high, other.high))
+    }
+}
+
+extension R1Interval {
+
+    // Expands the interval to include the other interval.
+    // This is the same as replacing the interval by the union of the two interval.
+    static func + (lhs: R1Interval, rhs: R1Interval) -> R1Interval {
+        return lhs.union(with: rhs)
+    }
+
+    // Empty interval.
+    static var empty: R1Interval {
+        return R1Interval(low: 1, high: 0)
+    }
+
+    // Returns the closest point in the interval to the given point.
+    // The interval must be non-empty.
+    func clamp(to point: Double) -> Double {
+        return max(low, min(high, point))
     }
 }

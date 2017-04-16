@@ -290,6 +290,7 @@ class R3VectorTests: XCTestCase {
                      Test(vector: R3Vector(x: 1, y: 0, z: 0), largest: .x, smallest: .z),
                      Test(vector: R3Vector(x: 1, y: -1, z: 0), largest: .y, smallest: .z),
                      Test(vector: R3Vector(x: -1, y: -1.1, z: -1.1), largest: .z, smallest: .x),
+                     Test(vector: R3Vector(x: 1, y: 2, z: 0), largest: .y, smallest: .z),
                      Test(vector: R3Vector(x: 0.5, y: -0.4, z: -0.5), largest: .z, smallest: .y),
                      Test(vector: R3Vector(x: 1e-15, y: 1e-14, z: 1e-13), largest: .z, smallest: .x)]
 

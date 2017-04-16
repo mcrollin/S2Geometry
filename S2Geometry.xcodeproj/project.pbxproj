@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4965E35A1EA35E34002F7642 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965E3591EA35E34002F7642 /* Interval.swift */; };
 		49707BB21E9A252200A995E0 /* AlmostEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB11E9A252200A995E0 /* AlmostEquatable.swift */; };
 		49707BB51E9A280E00A995E0 /* R2Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB41E9A280E00A995E0 /* R2Rectangle.swift */; };
 		49707BB71E9A39DD00A995E0 /* R2Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB61E9A39DD00A995E0 /* R2Point.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4965E3591EA35E34002F7642 /* Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
 		49707BB11E9A252200A995E0 /* AlmostEquatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlmostEquatable.swift; sourceTree = "<group>"; };
 		49707BB41E9A280E00A995E0 /* R2Rectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R2Rectangle.swift; sourceTree = "<group>"; };
 		49707BB61E9A39DD00A995E0 /* R2Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R2Point.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				49707BB11E9A252200A995E0 /* AlmostEquatable.swift */,
+				4965E3591EA35E34002F7642 /* Interval.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				49707BD01E9AE17800A995E0 /* S1Angle.swift in Sources */,
 				49707BC01E9AAD2600A995E0 /* R3Vector.swift in Sources */,
 				49707BDA1E9C41BA00A995E0 /* S1Interval.swift in Sources */,
+				4965E35A1EA35E34002F7642 /* Interval.swift in Sources */,
 				49707BB21E9A252200A995E0 /* AlmostEquatable.swift in Sources */,
 				49707BC21E9AC52200A995E0 /* R3Axis.swift in Sources */,
 				498321F21E98B7330037769D /* R1Interval.swift in Sources */,
@@ -493,6 +497,7 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=200";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mcrollin.S2Geometry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -516,6 +521,7 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=200";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mcrollin.S2Geometry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

@@ -16,12 +16,12 @@ notifications:
 
 env:
   global:
-    - WORKSPACE="S2Geometry.xcodeproj"
+    - PROJECT="S2Geometry.xcodeproj"
     - FRAMEWORK_SCHEME="S2Geometry"
 script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
-  - xcodebuild -project "$WORKSPACE" -scheme "$FRAMEWORK_SCHEME" test | xcpretty
+  - xcodebuild -project "$PROJECT" -scheme "$FRAMEWORK_SCHEME" clean build test | xcpretty
 after_success:
   - bash <(curl -s https://codecov.io/bash)

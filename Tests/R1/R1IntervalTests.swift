@@ -16,7 +16,7 @@ class R1IntervalTests: XCTestCase {
     let unit = R1Interval(low: 0, high: 1)
     let negativeUnit = R1Interval(low: -1, high: 0)
     let half = R1Interval(low: 0.5, high: 0.5)
-    let empty = R1Interval(low: 1, high: 0)
+    let empty: R1Interval = .empty
 
     func testStringConversion() {
         struct Test {
