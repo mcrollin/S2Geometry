@@ -50,9 +50,7 @@ extension R2Rectangle {
     // Constructs the canonical empty rectangle. Use IsEmpty() to test
     // for empty rectangles, since they have more than one representation.
     // A Rect() is not the same as the empty.
-    static var empty: R2Rectangle {
-        return R2Rectangle(x: .empty, y: .empty)
-    }
+    static let empty = R2Rectangle(x: .empty, y: .empty)
 
     // Constructs a rectangle that contains the given points.
     init(points: R2Point...) {

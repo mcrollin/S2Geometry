@@ -25,21 +25,8 @@ extension S1Angle {
         case none = 1
     }
 
-    var radians: Double {
-        return self
-    }
-
-    var degrees: Double {
-        return self * toDegrees
-    }
-}
-
-extension S1Angle {
-
     // Returns an angle larger than any finite angle.
-    static var infinite: S1Angle {
-        return .infinity
-    }
+    static let infinite: S1Angle = .infinity
 
     static func degrees(_ degrees: Double, epsilon: Epsilon = .none) -> S1Angle {
         return degrees * epsilon.rawValue * toRadians
@@ -47,6 +34,14 @@ extension S1Angle {
 
     static func radians(_ radians: Double) -> S1Angle {
         return radians
+    }
+
+    var radians: Double {
+        return self
+    }
+
+    var degrees: Double {
+        return self * toDegrees
     }
 
     // In hundred thousandths of degrees.
@@ -81,7 +76,7 @@ extension S1Angle {
     }
 
     // Reports whether this Angle is infinite.
-    func isInifinite() -> Bool {
-        return self == .infinity
+    func isInfinite() -> Bool {
+        return isInfinite
     }
 }

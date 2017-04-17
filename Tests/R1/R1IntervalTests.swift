@@ -46,22 +46,22 @@ class R1IntervalTests: XCTestCase {
                      Test(interval: R1Interval(point: 1), other: empty, expected: true),
                      Test(interval: empty, other: R1Interval(point: 1), expected: true),
                      Test(interval: empty, other: R1Interval(low: 0, high: 1), expected: false),
-                     Test(interval: empty, other: R1Interval(low: 1, high: 1 + 2 * Double.epsilon), expected: true),
+                     Test(interval: empty, other: R1Interval(low: 1, high: 1 + 2 * .epsilon), expected: true),
 
                      Test(interval: R1Interval(point: 1), other: R1Interval(point: 1), expected: true),
-                     Test(interval: R1Interval(point: 1), other: R1Interval(low: 1 - Double.epsilon, high: 1 - Double.epsilon), expected: true),
-                     Test(interval: R1Interval(point: 1), other: R1Interval(low: 1 + Double.epsilon, high: 1 + Double.epsilon), expected: true),
-                     Test(interval: R1Interval(point: 1), other: R1Interval(low: 1 - 3 * Double.epsilon, high: 1), expected: false),
-                     Test(interval: R1Interval(point: 1), other: R1Interval(low: 1, high: 1 + 3 * Double.epsilon), expected: false),
-                     Test(interval: R1Interval(point: 1), other: R1Interval(low: 1 - Double.epsilon, high: 1 + Double.epsilon), expected: true),
+                     Test(interval: R1Interval(point: 1), other: R1Interval(low: 1 - .epsilon, high: 1 - .epsilon), expected: true),
+                     Test(interval: R1Interval(point: 1), other: R1Interval(low: 1 + .epsilon, high: 1 + .epsilon), expected: true),
+                     Test(interval: R1Interval(point: 1), other: R1Interval(low: 1 - 3 * .epsilon, high: 1), expected: false),
+                     Test(interval: R1Interval(point: 1), other: R1Interval(low: 1, high: 1 + 3 * .epsilon), expected: false),
+                     Test(interval: R1Interval(point: 1), other: R1Interval(low: 1 - .epsilon, high: 1 + .epsilon), expected: true),
                      Test(interval: R1Interval(point: 0), other: R1Interval(point: 1), expected: false),
 
-                     Test(interval: R1Interval(low: 1 - Double.epsilon, high: 2 + Double.epsilon), other: R1Interval(low: 1, high: 2), expected: true),
-                     Test(interval: R1Interval(low: 1 + Double.epsilon, high: 2 - Double.epsilon), other: R1Interval(low: 1, high: 2), expected: true),
-                     Test(interval: R1Interval(low: 1 - 3 * Double.epsilon, high: 2 + Double.epsilon), other: R1Interval(low: 1, high: 2), expected: false),
-                     Test(interval: R1Interval(low: 1 + 3 * Double.epsilon, high: 2 - Double.epsilon), other: R1Interval(low: 1, high: 2), expected: false),
-                     Test(interval: R1Interval(low: 1 - Double.epsilon, high: 2 + 3 * Double.epsilon), other: R1Interval(low: 1, high: 2), expected: false),
-                     Test(interval: R1Interval(low: 1 + Double.epsilon, high: 2 - 3 * Double.epsilon), other: R1Interval(low: 1, high: 2), expected: false)]
+                     Test(interval: R1Interval(low: 1 - .epsilon, high: 2 + .epsilon), other: R1Interval(low: 1, high: 2), expected: true),
+                     Test(interval: R1Interval(low: 1 + .epsilon, high: 2 - .epsilon), other: R1Interval(low: 1, high: 2), expected: true),
+                     Test(interval: R1Interval(low: 1 - 3 * .epsilon, high: 2 + .epsilon), other: R1Interval(low: 1, high: 2), expected: false),
+                     Test(interval: R1Interval(low: 1 + 3 * .epsilon, high: 2 - .epsilon), other: R1Interval(low: 1, high: 2), expected: false),
+                     Test(interval: R1Interval(low: 1 - .epsilon, high: 2 + 3 * .epsilon), other: R1Interval(low: 1, high: 2), expected: false),
+                     Test(interval: R1Interval(low: 1 + .epsilon, high: 2 - 3 * .epsilon), other: R1Interval(low: 1, high: 2), expected: false)]
 
         for test in tests {
             let got = test.interval ==~ test.other

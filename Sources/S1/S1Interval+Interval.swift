@@ -245,7 +245,7 @@ extension S1Interval: Interval {
 
             // Check whether this interval will be full after expansion,
             // allowing for a rounding error when computing each endpoint.
-            if length + 2 * margin + 2 * Double.epsilon >= 2 * .pi {
+            if length + 2 * margin + 2 * .epsilon >= 2 * .pi {
                 return .full
             }
         } else {
@@ -255,7 +255,7 @@ extension S1Interval: Interval {
 
             // Check whether this interval will be empty after expansion,
             // allowing for a rounding error when computing each endpoint.
-            if length + 2 * margin - 2 * Double.epsilon <= 0 {
+            if length + 2 * margin - 2 * .epsilon <= 0 {
                 return .empty
             }
         }

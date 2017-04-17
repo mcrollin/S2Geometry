@@ -51,22 +51,6 @@ fileprivate extension S1Interval {
 
 extension S1Interval {
 
-    var complementCenter: Double {
-        if low != high {
-            return complement.center
-        }
-
-        return high <= 0 ? high + .pi : high - .pi
-    }
-
-    var complement: S1Interval {
-        if low == high {
-            return .full
-        }
-
-        return inverted
-    }
-
     // Computes distance from a to b in [0,2π], in a numerically stable way.
     static func positiveDistance(from pointA: Double, to pointB: Double) -> Double {
         let distance = pointB - pointA
@@ -84,6 +68,28 @@ extension S1Interval {
     // This is the same as replacing the interval by the union of the two interval.
     static func + (lhs: S1Interval, rhs: S1Interval) -> S1Interval {
         return lhs.union(with: rhs)
+    }
+
+    // Empty interval.
+    static let empty = S1Interval(unboundedLow: .pi, unboundedHigh: -.pi)
+
+    // Full interval.
+    static var full = S1Interval(unboundedLow: -.pi, unboundedHigh: .pi)
+
+    var complementCenter: Double {
+        if low != high {
+            return complement.center
+        }
+
+        return high <= 0 ? high + .pi : high - .pi
+    }
+
+    var complement: S1Interval {
+        if low == high {
+            return .full
+        }
+
+        return inverted
     }
 
     // Constructs the minimal interval containing the two given points.
@@ -107,16 +113,6 @@ extension S1Interval {
             self.low = b
             self.high = a
         }
-    }
-
-    // Empty interval.
-    static var empty: S1Interval {
-        return S1Interval(unboundedLow: .pi, unboundedHigh: -.pi)
-    }
-
-    // Full interval.
-    static var full: S1Interval {
-        return S1Interval(unboundedLow: -.pi, unboundedHigh: .pi)
     }
 
     // Interval with endpoints swapped.

@@ -39,9 +39,9 @@ extension R3Vector: AlmostEquatable {
     // Returns true if the x, y and z of the two vectors are
     // the same up to the given tolerance.
     static func ==~ (lhs: R3Vector, rhs: R3Vector) -> Bool {
-        return abs(lhs.x - rhs.x) < Double.epsilon
-            && abs(lhs.y - rhs.y) < Double.epsilon
-            && abs(lhs.z - rhs.z) < Double.epsilon
+        return abs(lhs.x - rhs.x) < .epsilon
+            && abs(lhs.y - rhs.y) < .epsilon
+            && abs(lhs.z - rhs.z) < .epsilon
     }
 }
 

@@ -108,8 +108,8 @@ class S1AngleTests: XCTestCase {
     }
 
     func testIsInfinite() {
-        XCTAssertTrue(S1Angle.degrees(.infinity).isInifinite())
-        XCTAssertTrue(S1Angle.infinite.isInifinite())
+        XCTAssertTrue(S1Angle.degrees(.infinity).isInfinite())
+        XCTAssertTrue(S1Angle.infinite.isInfinite())
     }
 
     func testAbsolute() {

@@ -100,8 +100,8 @@ class R3VectorTests: XCTestCase {
 
         let tests = [Test(vector: R3Vector(x: 0, y: 0, z: 0), expected: false),
                      Test(vector: R3Vector(x: 0, y: 1, z: 0), expected: true),
-                     Test(vector: R3Vector(x: 1 + 2 * Double.epsilon, y: 0, z: 0), expected: true),
-                     Test(vector: R3Vector(x: 1 + Double.epsilon, y: 0, z: 0), expected: true),
+                     Test(vector: R3Vector(x: 1 + 2 * .epsilon, y: 0, z: 0), expected: true),
+                     Test(vector: R3Vector(x: 1 + .epsilon, y: 0, z: 0), expected: true),
                      Test(vector: R3Vector(x: 1, y: 1, z: 1), expected: false),
                      Test(vector: R3Vector(x: 1, y: 1e-16, z: 1e-32), expected: true)]
 

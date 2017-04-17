@@ -25,9 +25,7 @@ extension R1Interval {
     }
 
     // Empty interval.
-    static var empty: R1Interval {
-        return R1Interval(low: 1, high: 0)
-    }
+    static let empty = R1Interval(low: 1, high: 0)
 
     // Returns the closest point in the interval to the given point.
     // The interval must be non-empty.

@@ -102,7 +102,7 @@ class S1IntervalTests: XCTestCase {
         // Test that rounding errors don't cause intervals that are almost empty
         // or full to be considered empty or full.
         // The following value is the greatest representable value less than Pi.
-        let almostPi = .pi - 2 * Double.epsilon
+        let almostPi = .pi - 2 * .epsilon
 
         XCTAssertFalse(S1Interval(low: -almostPi, high: .pi).isFull(), "should not be full")
         XCTAssertFalse(S1Interval(low: -.pi, high: almostPi).isFull(), "should not be full")
