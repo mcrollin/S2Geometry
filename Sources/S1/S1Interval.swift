@@ -41,278 +41,22 @@ struct S1Interval {
     }
 }
 
-extension S1Interval: Interval {
-
-    // Midpoint of the interval.
-    // It is undefined for full and empty intervals.
-    var center: Double {
-        let center = 0.5 * (low + high)
-
-        if !isInverted() {
-            return center
-        } else if center <= 0 {
-            return center + .pi
-        }
-
-        return center - .pi
-    }
-
-    // Length of the interval.
-    // The length of an empty interval is negative.
-    var length: Double {
-        var length = high - low
-
-        if length >= 0 {
-            return length
-        }
-
-        length += 2 * .pi
-
-        if length > 0 {
-            return length
-        }
-
-        return -1
-    }
-
-    // Interval representing a single point.
-    init(point: Double) {
-        self.init(low: point, high: point)
-    }
-
-    // Reports whether the interval is empty.
-    func isEmpty() -> Bool {
-        return low == .pi && high == -.pi
-    }
-
-    // Returns true iff the interval contains the point.
-    // Assumes p ∈ [-π,π].
-    func contains(point: Double) -> Bool {
-        if point == -.pi {
-            return fastContains(point: .pi)
-        }
-
-        return fastContains(point: point)
-    }
-
-    // Returns true iff the interval contains the other intervel.
-    func contains(interval other: S1Interval) -> Bool {
-        if isInverted() {
-            if other.isInverted() {
-                return other.low >= low && other.high <= high
-            }
-
-            return (other.low >= low || other.high < high) && !isEmpty()
-        } else if other.isInverted() {
-            return isFull() || other.isEmpty()
-        }
-
-        return other.low >= low && other.high <= high
-    }
-
-    // Returns true iff the interior of the interval contains p.
-    // Assumes p ∈ [-π,π].
-    func interiorContains(point: Double) -> Bool {
-        var pp = point
-
-        if point == -.pi {
-            pp = .pi
-        }
-
-        if isInverted() {
-            return pp > low || pp < high
-        }
-
-        return (pp > low && pp < high) || isFull()
-    }
-
-    // Returns true iff the interior of the interval contains the other interval.
-    func interiorContains(interval other: S1Interval) -> Bool {
-        if isInverted() {
-            if other.isInverted() {
-                return (other.low > low && other.high < high) || other.isEmpty()
-            }
-
-            return other.low > low || other.high < high
-        } else if other.isInverted() {
-            return isFull() || other.isEmpty()
-        }
-
-        return (other.low > low && other.high < high) || isFull()
-    }
-
-    // Returns true iff the interval contains any points in common with the other interval.
-    func intersects(with other: S1Interval) -> Bool {
-        if isEmpty() || other.isEmpty() {
-            return false
-        } else if isInverted() {
-            return other.isInverted()
-                || other.low <= high
-                || other.high >= low
-        } else if other.isInverted() {
-            return other.low <= high
-                || other.high >= low
-        }
-
-        return other.low <= high && other.high >= low
-    }
-
-    // Returns true iff the interior of the interval contains any points in common with other,
-    // including the latter's boundary.
-    func interiorIntersects(with other: S1Interval) -> Bool {
-        if isEmpty() || other.isEmpty() || low == high {
-            return false
-        } else if isInverted() {
-            return other.isInverted()
-                || other.low < high
-                || other.high > low
-        } else if other.isInverted() {
-            return other.low < high
-                || other.high > low
-        }
-
-        return (other.low < high && other.high > low) || isFull()
-    }
-
-    // Returns the smallest interval that contains both intervals.
-    func union(with other: S1Interval) -> S1Interval {
-        guard !other.isEmpty() else {
-            return self
-        }
-
-        if fastContains(point: other.low) {
-            if fastContains(point: other.high) {
-                // Either oi ⊂ i, or i ∪ oi is the full interval.
-                if contains(interval: other) {
-                    return self
-                }
-
-                return .full
-            }
-
-            return S1Interval(low: low, high: other.high)
-        } else if fastContains(point: other.high) {
-            return S1Interval(low: other.low, high: high)
-        }
-
-        // Neither endpoint of other is in self.
-        // Either self ⊂ other, or self and other are disjoint.
-        if isEmpty() || other.fastContains(point: low) {
-            return other
-        }
-
-        // This is the only hard case where we need to find the closest pair of endpoints.
-        if S1Interval.positiveDistance(from: other.high, to: low)
-            < S1Interval.positiveDistance(from: high, to: other.low) {
-            return S1Interval(low: other.low, high: high)
-        }
-
-        return S1Interval(low: low, high: other.high)
-    }
-
-    // Returns the smallest interval that contains the intersection of the interval and other.
-    func intersection(with other: S1Interval) -> S1Interval {
-        guard !other.isEmpty() else {
-            return .empty
-        }
-
-        if fastContains(point: other.low) {
-            if fastContains(point: other.high) {
-                // Either other ⊂ self, or self and other intersect twice. Neither are empty.
-                // In the first case we want to return self (which is shorter than other).
-                // In the second case one of them is inverted, and the smallest interval
-                // that covers the two disjoint pieces is the shorter of self and other.
-                // We thus want to pick the shorter of self and other in both cases.
-                if other.length < length {
-                    return other
-                }
-
-                return self
-            }
-
-            return S1Interval(low: other.low, high: high)
-        } else if fastContains(point: other.high) {
-            return S1Interval(low: low, high: other.high)
-        }
-
-        // Neither endpoint of other is in self.
-        // Either self ⊂ other, or self and other are disjoint.
-        if other.fastContains(point: low) {
-            return self
-        }
-
-        return .empty
-    }
-
-    // Returns the interval expanded by the minimum amount necessary such
-    // that it contains the given point (an angle in the range [-π, π]).
-    func add(point: Double) -> S1Interval {
-        if abs(point) > .pi {
-            return self
-        }
-
-        let point = point == -.pi ? .pi : point
-
-        if fastContains(point: point) {
-            return self
-        } else if isEmpty() {
-            return S1Interval(point: point)
-        } else if S1Interval.positiveDistance(from: point, to: low)
-            < S1Interval.positiveDistance(from: high, to: point) {
-            return S1Interval(low: point, high: high)
-        }
-
-        return S1Interval(low: low, high: point)
-    }
-
-    // Returns an interval that has been expanded on each side by margin.
-    // If margin is negative, then the function shrinks the interval on
-    // each side by margin instead. The resulting interval may be empty or
-    // full. Any expansion (positive or negative) of a full interval remains
-    // full, and any expansion of an empty interval remains empty.
-    func expanded(by margin: Double) -> S1Interval {
-        if margin >= 0 {
-            if isEmpty() {
-                return self
-            }
-
-            // Check whether this interval will be full after expansion,
-            // allowing for a rounding error when computing each endpoint.
-            if length + 2 * margin + 2 * Double.epsilon >= 2 * .pi {
-                return .full
-            }
-        } else {
-            if isFull() {
-                return self
-            }
-
-            // Check whether this interval will be empty after expansion,
-            // allowing for a rounding error when computing each endpoint.
-            if length + 2 * margin - 2 * Double.epsilon <= 0 {
-                return .empty
-            }
-        }
-
-        let twoPi = 2.0 * .pi
-
-        let ll = (low - margin).remainder(dividingBy: twoPi)
-        let hh = (high + margin).remainder(dividingBy: twoPi)
-
-        return S1Interval(low: ll <= -.pi ? .pi : ll, high: hh)
-    }
-}
-
 fileprivate extension S1Interval {
 
-    // Computes distance from a to b in [0,2π], in a numerically stable way.
-    static func positiveDistance(from pointA: Double, to pointB: Double) -> Double {
-        let distance = pointB - pointA
-
-        if distance >= 0 {
-            return distance
+    var complement: S1Interval {
+        if low == high {
+            return .full
         }
 
-        return (pointB + .pi) - (pointA - .pi)
+        return inverted
+    }
+
+    var complementCenter: Double {
+        if low != high {
+            return complement.center
+        }
+
+        return high <= 0 ? high + .pi : high - .pi
     }
 
     init(unboundedLow: Double, unboundedHigh: Double) {
@@ -322,6 +66,19 @@ fileprivate extension S1Interval {
 }
 
 extension S1Interval {
+
+    // Computes distance from a to b in [0,2π], in a numerically stable way.
+    static func positiveDistance(from pointA: Double, to pointB: Double) -> Double {
+        let distance = pointB - pointA
+
+        if distance >= 0 {
+            return distance
+        }
+
+        // We want to ensure that if b == pi and a == (-pi + eps),
+        // the return result is approximately 2 * pi and not zero.
+        return (pointB + .pi) - (pointA - .pi)
+    }
 
     // Expands the interval to include the other interval.
     // This is the same as replacing the interval by the union of the two interval.
@@ -364,7 +121,7 @@ extension S1Interval {
 
     // Interval with endpoints swapped.
     var inverted: S1Interval {
-        return S1Interval(low: high, high: low)
+        return S1Interval(unboundedLow: high, unboundedHigh: low)
     }
 
     // Reports whether the interval is valid.
@@ -391,5 +148,28 @@ extension S1Interval {
         }
 
         return point >= low && point <= high
+    }
+
+    // Distance realized by either two high endpoints or two low endpoints, whichever is farther apart.
+    func directedHausdorffDistance(with other: S1Interval) -> Double {
+        // Also includes the case is interval is empty
+        if other.contains(interval: self) {
+            return 0
+        } else if other.isEmpty() {
+            return .pi // Maximum possible distance on S1
+        }
+
+        let otherComplementCenter = other.complementCenter
+
+        if contains(point: otherComplementCenter) {
+            return S1Interval.positiveDistance(from: other.high, to: otherComplementCenter)
+        } else {
+            let hh = S1Interval(low: other.high, high: otherComplementCenter).contains(point: high)
+                ? S1Interval.positiveDistance(from: other.high, to: high) : 0
+            let ll = S1Interval(low: otherComplementCenter, high: other.low).contains(point: low)
+                ? S1Interval.positiveDistance(from: low, to: other.low) : 0
+
+            return max(hh, ll)
+        }
     }
 }

@@ -501,4 +501,17 @@ class S1IntervalTests: XCTestCase {
             XCTAssertEqual(test.interval.inverted, test.expected, "with \(test.interval)")
         }
     }
+
+    func testDirectedHaudorfDistance() {
+        XCTAssertEqual(empty.directedHausdorffDistance(with: empty), 0)
+        XCTAssertEqual(empty.directedHausdorffDistance(with: mid12), 0)
+        XCTAssertEqual(mid12.directedHausdorffDistance(with: empty), .pi)
+        XCTAssertEqual(quad12.directedHausdorffDistance(with: quad123), 0)
+
+        let interval = S1Interval(low: 3.0, high: -3.0)
+
+        XCTAssertEqual(S1Interval(low: -0.1, high: 0.2).directedHausdorffDistance(with: interval), 3.0)
+        XCTAssertEqual(S1Interval(low: 0.1, high: 0.2).directedHausdorffDistance(with: interval), 2.9)
+        XCTAssertEqual(S1Interval(low: -0.2, high: -0.1).directedHausdorffDistance(with: interval), 2.9)
+    }
 }
