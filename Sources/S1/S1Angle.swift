@@ -14,19 +14,6 @@ import Foundation
 //   - no S2Point or S2LatLng constructors
 //   - no comparison or arithmetic operators
 struct S1Angle {
-    enum Unit: CustomStringConvertible {
-        case degrees, radians
-
-        var description: String {
-            switch self {
-            case .degrees:
-                return "deg"
-            case .radians:
-                return "rad"
-            }
-        }
-    }
-
     enum Epsilon: Double {
         case e5 = 1e-5
         case e6 = 1e-6
@@ -34,17 +21,19 @@ struct S1Angle {
         case none = 1
     }
 
-    let value: Double
-    let unit: Unit
-
     fileprivate static let degrees: Double = 180 / .pi
     fileprivate static let radians: Double = 1 / degrees
+
+    let radians: Double
+    var degrees: Double {
+        return radians * S1Angle.degrees
+    }
 }
 
 extension S1Angle: CustomStringConvertible {
 
     var description: String {
-        return "(\(value) \(unit))"
+        return "(\(radians))"
     }
 }
 
@@ -52,15 +41,53 @@ extension S1Angle: Equatable {
 
     // Returns true iff both angles have similar value for the same unit.
     static func == (lhs: S1Angle, rhs: S1Angle) -> Bool {
-        if lhs.unit == rhs.unit {
-            return lhs.value == rhs.value
-        }
-
         return lhs.radians == rhs.radians
     }
 }
 
+// Two entities are compared element by element with the given operator.
+// The first mismatch defines which is less (or greater) than the other.
+// If both have equivalent values they are lexicographically equal.
+extension S1Angle: Comparable {
+
+    static func < (lhs: S1Angle, rhs: S1Angle) -> Bool {
+        return lhs.radians < rhs.radians
+    }
+
+    static func <= (lhs: S1Angle, rhs: S1Angle) -> Bool {
+        return lhs == rhs || lhs < rhs
+    }
+
+    static func > (lhs: S1Angle, rhs: S1Angle) -> Bool {
+        return lhs.radians > rhs.radians
+    }
+
+    static func >= (lhs: S1Angle, rhs: S1Angle) -> Bool {
+        return lhs == rhs || lhs > rhs
+    }
+}
+
 extension S1Angle {
+
+    static func + (lhs: S1Angle, rhs: S1Angle) -> S1Angle {
+        return S1Angle(radians: lhs.radians + rhs.radians)
+    }
+
+    static func - (lhs: S1Angle, rhs: S1Angle) -> S1Angle {
+        return S1Angle(radians: lhs.radians - rhs.radians)
+    }
+
+    static func * (lhs: S1Angle, rhs: Double) -> S1Angle {
+        return S1Angle(radians: lhs.radians * rhs)
+    }
+
+    static func * (lhs: Double, rhs: S1Angle) -> S1Angle {
+        return rhs * lhs
+    }
+
+    static func / (lhs: S1Angle, rhs: Double) -> S1Angle {
+        return lhs * (1 / rhs)
+    }
 
     // Returns an angle larger than any finite angle.
     static var infinite: S1Angle {
@@ -68,13 +95,7 @@ extension S1Angle {
     }
 
     init(degrees: Double, epsilon: Epsilon = .none) {
-        value = degrees * epsilon.rawValue
-        unit = .degrees
-    }
-
-    init(radians: Double) {
-        value = radians
-        unit = .radians
+        radians = degrees * epsilon.rawValue * S1Angle.radians
     }
 
     // In hundred thousandths of degrees.
@@ -94,42 +115,22 @@ extension S1Angle {
 
     // Absolute value of the angle.
     var absolute: S1Angle {
-        return S1Angle(value: abs(value), unit: unit)
+        return S1Angle(radians: abs(radians))
     }
 
     // Equivalent angle in [0, 2π).
     var normalized: S1Angle {
-        var r = radians.truncatingRemainder(dividingBy: 2 * .pi)
+        var value = radians.truncatingRemainder(dividingBy: 2 * .pi)
 
-        if r < 0 {
-            r += 2 * .pi
+        if value < 0 {
+            value += 2 * .pi
         }
 
-        return S1Angle(value: r, unit: .radians)
-    }
-
-    // In degrees.
-    var degrees: Double {
-        return unit == .degrees ? value : (value * S1Angle.degrees)
-    }
-
-    // In radians.
-    var radians: Double {
-        return unit == .radians ? value : (value * S1Angle.radians)
-    }
-
-    // Angle converted to given unit.
-    func converted(to unit: Unit) -> S1Angle {
-        switch unit {
-        case .degrees:
-            return S1Angle(degrees: degrees)
-        case .radians:
-            return S1Angle(radians: radians)
-        }
+        return S1Angle(radians: value)
     }
 
     // Reports whether this Angle is infinite.
     func isInifinite() -> Bool {
-        return value == .infinity
+        return radians == .infinity
     }
 }

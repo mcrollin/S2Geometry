@@ -19,8 +19,7 @@ class S1AngleTests: XCTestCase {
             let expected: String
         }
 
-        let tests = [Test(angle: S1Angle(degrees: 180), expected: "(180.0 deg)"),
-                     Test(angle: S1Angle(radians: 2), expected: "(2.0 rad)")]
+        let tests = [Test(angle: S1Angle(radians: 2), expected: "(2.0)")]
 
         for test in tests {
             let got = test.angle.description
@@ -109,6 +108,7 @@ class S1AngleTests: XCTestCase {
             let n = Double(1 << k)
 
             for test in tests {
+                XCTAssertEqual(S1Angle(degrees: test.degrees / n).radians, S1Angle(radians: .pi / (test.radians * n)).radians, "with \(n)")
                 XCTAssertEqual(S1Angle(degrees: test.degrees / n), S1Angle(radians: .pi / (test.radians * n)), "with \(n)")
             }
         }
@@ -123,8 +123,8 @@ class S1AngleTests: XCTestCase {
         let radian = S1Angle(radians: .pi)
         let degress = S1Angle(degrees: 180)
 
-        XCTAssertEqual(radian.degrees, radian.converted(to: .degrees).value)
-        XCTAssertEqual(degress.radians, degress.converted(to: .radians).value)
+        XCTAssertEqual(degress.degrees, radian.degrees)
+        XCTAssertEqual(degress.radians, radian.radians)
     }
 
     func testIsInfinite() {
@@ -138,14 +138,12 @@ class S1AngleTests: XCTestCase {
             let expected: Double
         }
 
-        let tests = [Test(angle: S1Angle(degrees: -180), expected: 180),
-                     Test(angle: S1Angle(degrees: -180), expected: 180),
-                     Test(angle: S1Angle(radians: 0), expected: 0),
+        let tests = [Test(angle: S1Angle(radians: 0), expected: 0),
                      Test(angle: S1Angle(radians: .pi / 2), expected: .pi / 2),
                      Test(angle: S1Angle(radians: -.pi / 2), expected: .pi / 2)]
 
         for test in tests {
-            XCTAssertEqual(test.angle.absolute.value, test.expected, "with \(test.angle)")
+            XCTAssertEqual(test.angle.absolute.radians, test.expected, "with \(test.angle)")
         }
     }
 }
