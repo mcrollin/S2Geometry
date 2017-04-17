@@ -27,6 +27,7 @@
 		49F67B8A1EA508050063FB98 /* S1ChordAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B891EA508050063FB98 /* S1ChordAngle.swift */; };
 		49F67B8C1EA50C230063FB98 /* S1Interval+Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B8B1EA50C230063FB98 /* S1Interval+Interval.swift */; };
 		49F67B8E1EA50C900063FB98 /* R1Interval+Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B8D1EA50C900063FB98 /* R1Interval+Interval.swift */; };
+		49F67B921EA53AE00063FB98 /* S1ChordAngleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B911EA53AE00063FB98 /* S1ChordAngleTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		49F67B891EA508050063FB98 /* S1ChordAngle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S1ChordAngle.swift; sourceTree = "<group>"; };
 		49F67B8B1EA50C230063FB98 /* S1Interval+Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "S1Interval+Interval.swift"; sourceTree = "<group>"; };
 		49F67B8D1EA50C900063FB98 /* R1Interval+Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "R1Interval+Interval.swift"; sourceTree = "<group>"; };
+		49F67B911EA53AE00063FB98 /* S1ChordAngleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S1ChordAngleTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				49707BD61E9B5F3B00A995E0 /* S1AngleTests.swift */,
+				49F67B911EA53AE00063FB98 /* S1ChordAngleTests.swift */,
 				49707BDB1E9CAD8B00A995E0 /* S1IntervalTests.swift */,
 			);
 			path = S1;
@@ -380,6 +383,7 @@
 				498321F81E98B7A10037769D /* R1IntervalTests.swift in Sources */,
 				49707BD71E9B5F3B00A995E0 /* S1AngleTests.swift in Sources */,
 				49707BD51E9B5F2400A995E0 /* R3VectorTests.swift in Sources */,
+				49F67B921EA53AE00063FB98 /* S1ChordAngleTests.swift in Sources */,
 				49707BDC1E9CAD8B00A995E0 /* S1IntervalTests.swift in Sources */,
 				49707BBE1E9A86E600A995E0 /* R2RectangleTests.swift in Sources */,
 			);

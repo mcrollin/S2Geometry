@@ -48,7 +48,7 @@ extension S1ChordAngle {
             return infinite
         }
 
-        return pow(sin(0.5 * min(.pi, angle)), 2)
+        return pow(2 * sin(0.5 * min(.pi, angle.radians)), 2)
     }
 
     // Returns a ChordAngle from the squared chord length.
@@ -84,7 +84,6 @@ extension S1ChordAngle {
         } else if isInfinite() {
             return .infinite
         }
-
         return 2 * asin(0.5 * sqrt(self))
     }
 
@@ -144,7 +143,7 @@ extension S1ChordAngle {
 
     // Adds the other S1ChordAngle to this one and returns the resulting value.
     // This method assumes the S1ChordAngles are not special.
-    func add(chordAngle other: S1ChordAngle) -> S1ChordAngle {
+    func add(_ other: S1ChordAngle) -> S1ChordAngle {
         // Note that this method (and sub) is much more efficient than converting
         // the ChordAngle to a S1Angle and adding those and converting back.
         // It requires only one square root plus a few additions and multiplications.
@@ -173,7 +172,7 @@ extension S1ChordAngle {
 
     // Subtracts the other S1ChordAngle from this one and returns the resulting value.
     // This method assumes the S1ChordAngles are not special.
-    func substract(chordAngle other: S1ChordAngle) -> S1ChordAngle {
+    func substract(_ other: S1ChordAngle) -> S1ChordAngle {
         if other == 0 {
             return self
         } else if self <= other {
