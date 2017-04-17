@@ -5,7 +5,7 @@ S2Geometry Library in Swift
 
 ## Status of the Library
 
-This library is a swift port of the [C++ S2 library](https://code.google.com/archive/p/s2-geometry-library). It is largelly inspired analogous [Go](https://raw.githubusercontent.com/golang/geo) and [java](https://github.com/google/s2-geometry-library-java) libraries.
+This library is a swift port of the [C++ S2 library](https://code.google.com/archive/p/s2-geometry-library). It is greatly inspired analogous [Go](https://raw.githubusercontent.com/golang/geo) and [java](https://github.com/google/s2-geometry-library-java) libraries.
 
 ### ℝ¹: One-dimensional Cartesian coordinates
 

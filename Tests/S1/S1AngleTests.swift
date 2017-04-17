@@ -13,58 +13,25 @@ import XCTest
 
 class S1AngleTests: XCTestCase {
 
-    func testStringConversion() {
-        struct Test {
-            let angle: S1Angle
-            let expected: String
-        }
-
-        let tests = [Test(angle: S1Angle(radians: 2), expected: "(2.0)")]
-
-        for test in tests {
-            let got = test.angle.description
-
-            XCTAssertEqual(got, test.expected, "with \(test.angle)")
-        }
-    }
-
     func testPiRadiansExactlyDegrees() {
-        XCTAssertEqual(S1Angle(radians: .pi).radians, .pi, "invalid pi from radians to radians")
-        XCTAssertEqual(S1Angle(radians: .pi).degrees, 180, "invalid pi from radians to degrees")
-        XCTAssertEqual(S1Angle(degrees: 180).radians, .pi, "invalid pi from degrees to radians")
-        XCTAssertEqual(S1Angle(degrees: 180).degrees, 180, "invalid pi from degrees to degrees")
-        XCTAssertEqual(S1Angle(radians: .pi / 2).degrees, 90, "invalid pi / 2 from radians to degrees")
-        XCTAssertEqual(S1Angle(radians: -.pi / 2).degrees, -90, "invalid -pi / 2 from radians to degrees")
-        XCTAssertEqual(S1Angle(degrees: -45).radians, -.pi / 4, "invalid -45 from degrees to radians")
-    }
-
-    func testOperators() {
-        XCTAssertEqual(S1Angle(radians: .pi) + S1Angle(radians: .pi), S1Angle(radians: 2 * .pi))
-        XCTAssertEqual(S1Angle(radians: .pi) - S1Angle(radians: .pi), S1Angle(radians: 0))
-        XCTAssertEqual(S1Angle(radians: -.pi) + S1Angle(radians: .pi), S1Angle(radians: 0))
-        XCTAssertEqual(S1Angle(radians: .pi) * 2, S1Angle(radians: 2 * .pi))
-        XCTAssertEqual(S1Angle(radians: 3 * .pi) / 3, S1Angle(radians: .pi))
-        XCTAssertEqual(S1Angle(radians: .pi) * 2, 2 * S1Angle(radians: .pi))
-    }
-
-    func testComparision() {
-        XCTAssertGreaterThan(S1Angle(radians: 2 * .pi), S1Angle(radians: .pi))
-        XCTAssertGreaterThanOrEqual(S1Angle(radians: -2), S1Angle(radians: -3))
-        XCTAssertGreaterThanOrEqual(S1Angle(radians: -3), S1Angle(radians: -3))
-        XCTAssertLessThan(S1Angle(radians: .pi - 0.01), S1Angle(radians: .pi))
-        XCTAssertLessThanOrEqual(S1Angle(radians: -3), S1Angle(radians: -3))
-        XCTAssertLessThanOrEqual(S1Angle(radians: 0), S1Angle(radians: 3))
+        XCTAssertEqual(S1Angle.radians(.pi), .pi, "invalid pi from radians to radians")
+        XCTAssertEqual(S1Angle.radians(.pi).degrees, 180, "invalid pi from radians to degrees")
+        XCTAssertEqual(S1Angle.degrees(180), .pi, "invalid pi from degrees to radians")
+        XCTAssertEqual(S1Angle.degrees(180).degrees, 180, "invalid pi from degrees to degrees")
+        XCTAssertEqual(S1Angle.radians(.pi / 2).degrees, 90, "invalid pi / 2 from radians to degrees")
+        XCTAssertEqual(S1Angle.radians(-.pi / 2).degrees, -90, "invalid -pi / 2 from radians to degrees")
+        XCTAssertEqual(S1Angle.degrees(-45), -.pi / 4, "invalid -45 from degrees to radians")
     }
 
     func testEpsilon() {
         // For unknown reasons the first test gives a variance in the 16th decimal place.
-        XCTAssertTrue(S1Angle(degrees: -45).radians ==~ S1Angle(degrees: -4500000, epsilon: .e5).radians, "-4500000 e6")
-        XCTAssertEqual(S1Angle(degrees: -60).radians, S1Angle(degrees: -60000000, epsilon: .e6).radians, "-60000000 e6")
-        XCTAssertEqual(S1Angle(degrees: 75).radians, S1Angle(degrees: 750000000, epsilon: .e7).radians, "750000000 e7")
+        XCTAssertTrue(S1Angle.degrees(-45) ==~ S1Angle.degrees(-4500000, epsilon: .e5), "-4500000 e6")
+        XCTAssertEqual(S1Angle.degrees(-60), S1Angle.degrees(-60000000, epsilon: .e6), "-60000000 e6")
+        XCTAssertEqual(S1Angle.degrees(75), S1Angle.degrees(750000000, epsilon: .e7), "750000000 e7")
 
-        XCTAssertEqual(S1Angle(degrees: -172.56123).epsilon5, -17256123, "-172.56123 epsilon5")
-        XCTAssertEqual(S1Angle(degrees: 12.345678).epsilon6, 12345678, "-172.56123 epsilon6")
-        XCTAssertEqual(S1Angle(degrees: -12.3456789).epsilon7, -123456789, "-12.3456789 epsilon7")
+        XCTAssertEqual(S1Angle.degrees(-172.56123).epsilon5, -17256123, "-172.56123 epsilon5")
+        XCTAssertEqual(S1Angle.degrees(12.345678).epsilon6, 12345678, "-172.56123 epsilon6")
+        XCTAssertEqual(S1Angle.degrees(-12.3456789).epsilon7, -123456789, "-12.3456789 epsilon7")
 
         // Rounding tests
         struct Test {
@@ -78,9 +45,9 @@ class S1AngleTests: XCTestCase {
                      Test(degrees: -0.499999999, expected: 0)]
 
         for test in tests {
-            XCTAssertEqual(S1Angle(degrees: test.degrees, epsilon: .e5).epsilon5, test.expected, "with \(test.degrees) in e5")
-            XCTAssertEqual(S1Angle(degrees: test.degrees, epsilon: .e6).epsilon6, test.expected, "with \(test.degrees) in e6")
-            XCTAssertEqual(S1Angle(degrees: test.degrees, epsilon: .e7).epsilon7, test.expected, "with \(test.degrees) in e7")
+            XCTAssertEqual(S1Angle.degrees(test.degrees, epsilon: .e5).epsilon5, test.expected, "with \(test.degrees) in e5")
+            XCTAssertEqual(S1Angle.degrees(test.degrees, epsilon: .e6).epsilon6, test.expected, "with \(test.degrees) in e6")
+            XCTAssertEqual(S1Angle.degrees(test.degrees, epsilon: .e7).epsilon7, test.expected, "with \(test.degrees) in e7")
         }
     }
 
@@ -97,7 +64,7 @@ class S1AngleTests: XCTestCase {
                      Test(degrees: -270, expects: 90)]
 
         for test in tests {
-            XCTAssertEqual(S1Angle(degrees: test.degrees).normalized.degrees, test.expects, "with \(test.degrees)")
+            XCTAssertEqual(S1Angle.degrees(test.degrees).normalized.degrees, test.expects, "with \(test.degrees)")
         }
     }
 
@@ -107,8 +74,8 @@ class S1AngleTests: XCTestCase {
             let k = Double(k)
             let k45 = k * 45
 
-            XCTAssertEqual(S1Angle(degrees: k45), S1Angle(radians: k * .pi / 4), "with \(k)")
-            XCTAssertEqual(S1Angle(degrees: k45).degrees, k45, "with \(k)")
+            XCTAssertEqual(S1Angle.degrees(k45), S1Angle.radians(k * .pi / 4), "with \(k)")
+            XCTAssertEqual(S1Angle.degrees(k45).degrees, k45, "with \(k)")
         }
 
         struct Test {
@@ -126,27 +93,22 @@ class S1AngleTests: XCTestCase {
             let n = Double(1 << k)
 
             for test in tests {
-                XCTAssertEqual(S1Angle(degrees: test.degrees / n).radians, S1Angle(radians: .pi / (test.radians * n)).radians, "with \(n)")
-                XCTAssertEqual(S1Angle(degrees: test.degrees / n), S1Angle(radians: .pi / (test.radians * n)), "with \(n)")
+                XCTAssertEqual(S1Angle.degrees(test.degrees / n).radians, S1Angle.radians(.pi / (test.radians * n)), "with \(n)")
+                XCTAssertEqual(S1Angle.degrees(test.degrees / n), S1Angle.radians(.pi / (test.radians * n)), "with \(n)")
             }
         }
     }
 
-    func testEquality() {
-        XCTAssertEqual(S1Angle(radians: 12), S1Angle(radians: 12))
-        XCTAssertEqual(S1Angle(degrees: 260), S1Angle(degrees: 260))
-    }
-
     func testConversion() {
-        let radian = S1Angle(radians: .pi)
-        let degress = S1Angle(degrees: 180)
+        let radian = S1Angle.radians(.pi)
+        let degress = S1Angle.degrees(180)
 
         XCTAssertEqual(degress.degrees, radian.degrees)
         XCTAssertEqual(degress.radians, radian.radians)
     }
 
     func testIsInfinite() {
-        XCTAssertTrue(S1Angle(degrees: .infinity).isInifinite())
+        XCTAssertTrue(S1Angle.degrees(.infinity).isInifinite())
         XCTAssertTrue(S1Angle.infinite.isInifinite())
     }
 
@@ -156,12 +118,12 @@ class S1AngleTests: XCTestCase {
             let expected: Double
         }
 
-        let tests = [Test(angle: S1Angle(radians: 0), expected: 0),
-                     Test(angle: S1Angle(radians: .pi / 2), expected: .pi / 2),
-                     Test(angle: S1Angle(radians: -.pi / 2), expected: .pi / 2)]
+        let tests = [Test(angle: S1Angle.radians(0), expected: 0),
+                     Test(angle: S1Angle.radians(.pi / 2), expected: .pi / 2),
+                     Test(angle: S1Angle.radians(-.pi / 2), expected: .pi / 2)]
 
         for test in tests {
-            XCTAssertEqual(test.angle.absolute.radians, test.expected, "with \(test.angle)")
+            XCTAssertEqual(test.angle.absolute, test.expected, "with \(test.angle)")
         }
     }
 }

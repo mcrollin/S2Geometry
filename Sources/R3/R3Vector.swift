@@ -214,7 +214,6 @@ extension R3Vector {
 
     // Returns the angle with the other vector.
     func angle(with other: R3Vector) -> S1Angle {
-        return S1Angle(radians: atan2(crossProduct(with: other).normal,
-                                      dotProduct(with: other)))
+        return atan2(crossProduct(with: other).normal, dotProduct(with: other))
     }
 }
