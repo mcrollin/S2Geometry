@@ -43,13 +43,13 @@ struct S1Interval {
 
 fileprivate extension S1Interval {
 
-    var complement: S1Interval {
-        if low == high {
-            return .full
-        }
-
-        return inverted
+    init(unboundedLow: Double, unboundedHigh: Double) {
+        low = unboundedLow
+        high = unboundedHigh
     }
+}
+
+extension S1Interval {
 
     var complementCenter: Double {
         if low != high {
@@ -59,13 +59,13 @@ fileprivate extension S1Interval {
         return high <= 0 ? high + .pi : high - .pi
     }
 
-    init(unboundedLow: Double, unboundedHigh: Double) {
-        low = unboundedLow
-        high = unboundedHigh
-    }
-}
+    var complement: S1Interval {
+        if low == high {
+            return .full
+        }
 
-extension S1Interval {
+        return inverted
+    }
 
     // Computes distance from a to b in [0,2π], in a numerically stable way.
     static func positiveDistance(from pointA: Double, to pointB: Double) -> Double {

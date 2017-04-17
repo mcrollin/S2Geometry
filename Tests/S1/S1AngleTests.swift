@@ -38,6 +38,24 @@ class S1AngleTests: XCTestCase {
         XCTAssertEqual(S1Angle(degrees: -45).radians, -.pi / 4, "invalid -45 from degrees to radians")
     }
 
+    func testOperators() {
+        XCTAssertEqual(S1Angle(radians: .pi) + S1Angle(radians: .pi), S1Angle(radians: 2 * .pi))
+        XCTAssertEqual(S1Angle(radians: .pi) - S1Angle(radians: .pi), S1Angle(radians: 0))
+        XCTAssertEqual(S1Angle(radians: -.pi) + S1Angle(radians: .pi), S1Angle(radians: 0))
+        XCTAssertEqual(S1Angle(radians: .pi) * 2, S1Angle(radians: 2 * .pi))
+        XCTAssertEqual(S1Angle(radians: 3 * .pi) / 3, S1Angle(radians: .pi))
+        XCTAssertEqual(S1Angle(radians: .pi) * 2, 2 * S1Angle(radians: .pi))
+    }
+
+    func testComparision() {
+        XCTAssertGreaterThan(S1Angle(radians: 2 * .pi), S1Angle(radians: .pi))
+        XCTAssertGreaterThanOrEqual(S1Angle(radians: -2), S1Angle(radians: -3))
+        XCTAssertGreaterThanOrEqual(S1Angle(radians: -3), S1Angle(radians: -3))
+        XCTAssertLessThan(S1Angle(radians: .pi - 0.01), S1Angle(radians: .pi))
+        XCTAssertLessThanOrEqual(S1Angle(radians: -3), S1Angle(radians: -3))
+        XCTAssertLessThanOrEqual(S1Angle(radians: 0), S1Angle(radians: 3))
+    }
+
     func testEpsilon() {
         // For unknown reasons the first test gives a variance in the 16th decimal place.
         XCTAssertTrue(S1Angle(degrees: -45).radians ==~ S1Angle(degrees: -4500000, epsilon: .e5).radians, "-4500000 e6")

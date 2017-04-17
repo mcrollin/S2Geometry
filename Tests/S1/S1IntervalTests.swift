@@ -502,6 +502,23 @@ class S1IntervalTests: XCTestCase {
         }
     }
 
+    func testComplement() {
+        XCTAssertTrue(empty.complement.isFull())
+        XCTAssertTrue(full.complement.isEmpty())
+        XCTAssertTrue(pi.complement.isFull())
+        XCTAssertTrue(miPi.complement.isFull())
+        XCTAssertTrue(zero.complement.isFull())
+        XCTAssertTrue(quad12.complement ==~ quad34)
+        XCTAssertTrue(quad34.complement ==~ quad12)
+        XCTAssertTrue(quad123.complement ==~ quad4)
+    }
+
+    func testComplementCenter() {
+        XCTAssertEqual(empty.complementCenter, full.center)
+        XCTAssertEqual(full.complementCenter, empty.center)
+        XCTAssertEqual(zero.complementCenter, .pi)
+    }
+
     func testDirectedHaudorfDistance() {
         XCTAssertEqual(empty.directedHausdorffDistance(with: empty), 0)
         XCTAssertEqual(empty.directedHausdorffDistance(with: mid12), 0)
