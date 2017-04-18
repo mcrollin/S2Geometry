@@ -9,17 +9,14 @@
 import XCTest
 @testable import S2Geometry
 
-// swiftlint:disable nesting line_length type_body_length
+// swiftlint:disable line_length type_body_length
 
 class R3VectorTests: XCTestCase {
 
     func testStringConversion() {
-        struct Test {
-            let vector: R3Vector
-            let expected: String
-        }
+        typealias Test = (vector: R3Vector, expected: String)
 
-        let tests = [Test(vector: R3Vector(x: 2, y: 4.5, z: -3), expected: "(2.0,4.5,-3.0)")]
+        let tests = [Test(vector: R3Vector(x: 2, y: 4.5, z: -3), expected: "(2.0, 4.5, -3.0)")]
 
         for test in tests {
             let got = test.vector.description
@@ -29,10 +26,7 @@ class R3VectorTests: XCTestCase {
     }
 
     func testVectorNormal() {
-        struct Test {
-            let vector: R3Vector
-            let expected: Double
-        }
+        typealias Test = (vector: R3Vector, expected: Double)
 
         let tests = [Test(vector: R3Vector(x: 0, y: 0, z: 0), expected: 0),
                      Test(vector: R3Vector(x: 0, y: 1, z: 0), expected: 1),
@@ -42,15 +36,12 @@ class R3VectorTests: XCTestCase {
         for test in tests {
             let got = test.vector.normal
 
-            XCTAssertTrue(got ==~ test.expected, "with \(test.vector)")
+            XCTAssert(got ==~ test.expected, "with \(test.vector)")
         }
     }
 
     func testVectorNormal2() {
-        struct Test {
-            let vector: R3Vector
-            let expected: Double
-        }
+        typealias Test = (vector: R3Vector, expected: Double)
 
         let tests = [Test(vector: R3Vector(x: 0, y: 0, z: 0), expected: 0),
                      Test(vector: R3Vector(x: 0, y: 1, z: 0), expected: 1),
@@ -62,7 +53,7 @@ class R3VectorTests: XCTestCase {
         for test in tests {
             let got = test.vector.normal2
 
-            XCTAssertTrue(got ==~ test.expected, "with \(test.vector)")
+            XCTAssert(got ==~ test.expected, "with \(test.vector)")
         }
     }
 
@@ -78,14 +69,13 @@ class R3VectorTests: XCTestCase {
         for vector in vectors {
             let normalized = vector.normalized
 
-            XCTAssertTrue((vector.x *  normalized.y) ==~ (vector.y *  normalized.x), "did not preserve direction with \(vector)")
-            XCTAssertTrue((vector.x *  normalized.z) ==~ (vector.z *  normalized.x), "did not preserve direction with \(vector)")
+            XCTAssert((vector.x *  normalized.y) ==~ (vector.y *  normalized.x), "did not preserve direction with \(vector)")
+            XCTAssert((vector.x *  normalized.z) ==~ (vector.z *  normalized.x), "did not preserve direction with \(vector)")
 
-            let isEmpty = [vector.x, vector.y, vector.z]
-                .filter { $0 != 0 }.count == 0
+            let isEmpty: Bool = ([Double](arrayLiteral: vector.x, vector.y, vector.z).filter { $0 != 0 }.count == 0)
 
             if !isEmpty {
-                XCTAssertTrue(normalized.normal ==~ 1, "invalid normal with \(vector)")
+                XCTAssert(normalized.normal ==~ 1, "invalid normal with \(vector)")
             } else {
                 XCTAssertEqual(normalized.normal, 0, "invalid normal with \(vector)")
             }
@@ -93,10 +83,7 @@ class R3VectorTests: XCTestCase {
     }
 
     func testVectorIsUnit() {
-        struct Test {
-            let vector: R3Vector
-            let expected: Bool
-        }
+        typealias Test = (vector: R3Vector, expected: Bool)
 
         let tests = [Test(vector: R3Vector(x: 0, y: 0, z: 0), expected: false),
                      Test(vector: R3Vector(x: 0, y: 1, z: 0), expected: true),
@@ -106,18 +93,14 @@ class R3VectorTests: XCTestCase {
                      Test(vector: R3Vector(x: 1, y: 1e-16, z: 1e-32), expected: true)]
 
         for test in tests {
-            let got = test.vector.isUnit()
+            let got = test.vector.isUnit
 
             XCTAssertEqual(got, test.expected, "with \(test.vector)")
         }
     }
 
     func testDotProduct() {
-        struct Test {
-            let vector1: R3Vector
-            let vector2: R3Vector
-            let expected: Double
-        }
+        typealias Test = (vector1: R3Vector, vector2: R3Vector, expected: Double)
 
         let tests = [Test(vector1: R3Vector(x: 1, y:0, z:0), vector2: R3Vector(x: 1, y:0, z:0), expected: 1),
                      Test(vector1: R3Vector(x: 1, y:0, z:0), vector2: R3Vector(x: 0, y:1, z:0), expected: 0),
@@ -135,11 +118,7 @@ class R3VectorTests: XCTestCase {
     }
 
     func testCrossProduct() {
-        struct Test {
-            let vector1: R3Vector
-            let vector2: R3Vector
-            let expected: R3Vector
-        }
+        typealias Test = (vector1: R3Vector, vector2: R3Vector, expected: R3Vector)
 
         let tests = [Test(vector1: R3Vector(x: 1, y:0, z:0), vector2: R3Vector(x: 1, y:0, z:0), expected: R3Vector(x: 0, y:0, z:0)),
                      Test(vector1: R3Vector(x: 1, y:0, z:0), vector2: R3Vector(x: 0, y:1, z:0), expected: R3Vector(x: 0, y:0, z:1)),
@@ -154,11 +133,7 @@ class R3VectorTests: XCTestCase {
     }
 
     func testAdd() {
-        struct Test {
-            let vector1: R3Vector
-            let vector2: R3Vector
-            let expected: R3Vector
-        }
+        typealias Test = (vector1: R3Vector, vector2: R3Vector, expected: R3Vector)
 
         let tests = [Test(vector1: R3Vector(x: 0, y: 0, z: 0), vector2: R3Vector(x: 0, y: 0, z: 0), expected: R3Vector(x: 0, y: 0, z: 0)),
                      Test(vector1: R3Vector(x: 1, y: 0, z: 0), vector2: R3Vector(x: 0, y: 0, z: 0), expected: R3Vector(x: 1, y: 0, z: 0)),
@@ -173,11 +148,7 @@ class R3VectorTests: XCTestCase {
     }
 
     func testSubstract() {
-        struct Test {
-            let vector1: R3Vector
-            let vector2: R3Vector
-            let expected: R3Vector
-        }
+        typealias Test = (vector1: R3Vector, vector2: R3Vector, expected: R3Vector)
 
         let tests = [Test(vector1: R3Vector(x: 0, y: 0, z: 0), vector2: R3Vector(x: 0, y: 0, z: 0), expected: R3Vector(x: 0, y: 0, z: 0)),
                      Test(vector1: R3Vector(x: 1, y: 0, z: 0), vector2: R3Vector(x: 0, y: 0, z: 0), expected: R3Vector(x: 1, y: 0, z: 0)),
@@ -192,11 +163,7 @@ class R3VectorTests: XCTestCase {
     }
 
     func testMultiply() {
-        struct Test {
-            let vector: R3Vector
-            let multiplier: Double
-            let expected: R3Vector
-        }
+        typealias Test = (vector: R3Vector, multiplier: Double, expected: R3Vector)
 
         let tests = [Test(vector: R3Vector(x: 0, y: 0, z: 0), multiplier: 3, expected: R3Vector(x: 0, y: 0, z: 0)),
                      Test(vector: R3Vector(x: 1, y: 0, z: 0), multiplier: 1, expected: R3Vector(x: 1, y: 0, z: 0)),
@@ -209,17 +176,13 @@ class R3VectorTests: XCTestCase {
             let got1 = test.vector * test.multiplier
             let got2 = test.multiplier * test.vector
 
-            XCTAssertTrue(got1 ==~ test.expected, "with \(test.vector) and  \(test.multiplier)")
-            XCTAssertTrue(got1 ==~ got2, "with \(test.vector) and  \(test.multiplier)")
+            XCTAssert(got1 ==~ test.expected, "with \(test.vector) and  \(test.multiplier)")
+            XCTAssert(got1 ==~ got2, "with \(test.vector) and  \(test.multiplier)")
         }
     }
 
     func testDistance() {
-        struct Test {
-            let vector1: R3Vector
-            let vector2: R3Vector
-            let expected: Double
-        }
+        typealias Test = (vector1: R3Vector, vector2: R3Vector, expected: Double)
 
         let tests = [Test(vector1: R3Vector(x: 1, y: 0, z: 0), vector2: R3Vector(x: 1, y: 0, z: 0), expected: 0),
                      Test(vector1: R3Vector(x: 1, y: 0, z: 0), vector2: R3Vector(x: 0, y: 1, z: 0), expected: 1.4142135623730953),
@@ -232,7 +195,7 @@ class R3VectorTests: XCTestCase {
 
             let d = got - test.expected
 
-            XCTAssertTrue(got ==~ test.expected, "with \(d): \(test.vector1) and  \(test.vector2)")
+            XCTAssert(got ==~ test.expected, "with \(d): \(test.vector1) and  \(test.vector2)")
         }
     }
 
@@ -247,16 +210,13 @@ class R3VectorTests: XCTestCase {
         for vector in vectors {
             let orthogonal = vector.orthogonalized
 
-            XCTAssertTrue(vector.dotProduct(with: orthogonal) ==~ 0.0, "\(vector) is not orthogonal to \(orthogonal)")
-            XCTAssertTrue(orthogonal.normal ==~ 1.0, "\(vector) is not orthogonal to \(orthogonal.normal)")
+            XCTAssert(vector.dotProduct(with: orthogonal) ==~ 0.0, "\(vector) is not orthogonal to \(orthogonal)")
+            XCTAssert(orthogonal.normal ==~ 1.0, "\(vector) is not orthogonal to \(orthogonal.normal)")
         }
     }
 
     func testIdentities() {
-        struct Test {
-            let vector1: R3Vector
-            let vector2: R3Vector
-        }
+        typealias Test = (vector1: R3Vector, vector2: R3Vector)
 
         let tests = [Test(vector1: R3Vector(x: 0, y: 0, z: 0), vector2: R3Vector(x: 0, y: 0, z: 0)),
                      Test(vector1: R3Vector(x: 0, y: 0, z: 0), vector2: R3Vector(x: 0, y: 1, z: 2)),
@@ -273,18 +233,14 @@ class R3VectorTests: XCTestCase {
             let angle1 = test.vector1.angle(with: test.vector2).radians
             let angle2 = test.vector2.angle(with: test.vector1).radians
 
-            XCTAssertTrue(angle1 ==~ angle2, "with \(test.vector1) and \(test.vector2)")
-            XCTAssertTrue(dot1 ==~ dot2, "with \(test.vector1) and \(test.vector2)")
-            XCTAssertTrue((cross2 * -1) ==~ cross1, "with \(test.vector1) and \(test.vector2)")
+            XCTAssert(angle1 ==~ angle2, "with \(test.vector1) and \(test.vector2)")
+            XCTAssert(dot1 ==~ dot2, "with \(test.vector1) and \(test.vector2)")
+            XCTAssert((cross2 * -1) ==~ cross1, "with \(test.vector1) and \(test.vector2)")
         }
     }
 
     func testLargestAndSmallestComponents() {
-        struct Test {
-            let vector: R3Vector
-            let largest: R3Axis
-            let smallest: R3Axis
-        }
+        typealias Test = (vector: R3Vector, largest: R3Axis, smallest: R3Axis)
 
         let tests = [Test(vector: R3Vector(x: 0, y: 0, z: 0), largest: .z, smallest: .z),
                      Test(vector: R3Vector(x: 1, y: 0, z: 0), largest: .x, smallest: .z),
@@ -301,12 +257,7 @@ class R3VectorTests: XCTestCase {
     }
 
     func testComparisions() {
-        struct Test {
-            let vector1: R3Vector
-            let vector2: R3Vector
-            let bigger: Bool
-            let equal: Bool
-        }
+        typealias Test = (vector1: R3Vector, vector2: R3Vector, bigger: Bool, equal: Bool)
 
         let tests = [Test(vector1: R3Vector(x: 0, y: 0, z: 0),
                           vector2: R3Vector(x: 0, y: 0, z: 0),

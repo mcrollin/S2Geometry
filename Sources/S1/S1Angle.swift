@@ -12,21 +12,14 @@ typealias S1Angle = Double
 private let toDegrees: Double = 180 / .pi
 private let toRadians: Double = 1 / toDegrees
 
-// S1Angle represents a 1D angle.
-// The major differences from the C++ version are:
-//   - no unsigned E5/E6/E7 methods
-//   - no S2Point or S2LatLng constructors
-//   - no comparison or arithmetic operators
-extension S1Angle {
-    enum Epsilon: Double {
-        case e5 = 1e-5
-        case e6 = 1e-6
-        case e7 = 1e-7
-        case none = 1
-    }
+/// S1Angle represents a 1D angle.
+/// The major differences from the C++ version are:
+///   - no unsigned E5/E6/E7 methods
+///   - no S2Point or S2LatLng constructors
+///   - no comparison or arithmetic operators
 
-    // Returns an angle larger than any finite angle.
-    static let infinite: S1Angle = .infinity
+// MARK: Static factories
+extension S1Angle {
 
     static func degrees(_ degrees: Double, epsilon: Epsilon = .none) -> S1Angle {
         return degrees * epsilon.rawValue * toRadians
@@ -34,6 +27,17 @@ extension S1Angle {
 
     static func radians(_ radians: Double) -> S1Angle {
         return radians
+    }
+}
+
+// MARK: Instance methods and computed properties
+extension S1Angle {
+
+    enum Epsilon: Double {
+        case e5 = 1e-5
+        case e6 = 1e-6
+        case e7 = 1e-7
+        case none = 1
     }
 
     var radians: Double {
@@ -73,10 +77,5 @@ extension S1Angle {
         }
 
         return value
-    }
-
-    // Reports whether this Angle is infinite.
-    func isInfinite() -> Bool {
-        return isInfinite
     }
 }

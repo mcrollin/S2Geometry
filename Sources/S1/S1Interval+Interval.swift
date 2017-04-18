@@ -8,14 +8,15 @@
 
 import Foundation
 
+// MARK: Interval compliance
 extension S1Interval: Interval {
 
-    // Midpoint of the interval.
-    // It is undefined for full and empty intervals.
+    /// Midpoint of the interval.
+    /// It is undefined for full and empty intervals.
     var center: Double {
         let center = 0.5 * (low + high)
 
-        if !isInverted() {
+        if !isInverted {
             return center
         } else if center <= 0 {
             return center + .pi
@@ -24,8 +25,8 @@ extension S1Interval: Interval {
         return center - .pi
     }
 
-    // Length of the interval.
-    // The length of an empty interval is negative.
+    /// Length of the interval.
+    /// The length of an empty interval is negative.
     var length: Double {
         var length = high - low
 
@@ -42,18 +43,19 @@ extension S1Interval: Interval {
         return -1
     }
 
-    // Interval representing a single point.
+    /// Whether the interval is empty.
+    var isEmpty: Bool {
+        return low == .pi && high == -.pi
+    }
+
+    /// Interval representing a single point.
     init(point: Double) {
         self.init(low: point, high: point)
     }
 
-    // Reports whether the interval is empty.
-    func isEmpty() -> Bool {
-        return low == .pi && high == -.pi
-    }
-
-    // Returns true iff the interval contains the point.
-    // Assumes p ∈ [-π,π].
+    /// Assumes p ∈ [-π,π].
+    ///
+    /// - returns: true iff the interval contains the point.
     func contains(point: Double) -> Bool {
         if point == -.pi {
             return fastContains(point: .pi)
@@ -62,23 +64,24 @@ extension S1Interval: Interval {
         return fastContains(point: point)
     }
 
-    // Returns true iff the interval contains the other intervel.
+    /// - returns: true iff the interval contains the other interval.
     func contains(interval other: S1Interval) -> Bool {
-        if isInverted() {
-            if other.isInverted() {
+        if isInverted {
+            if other.isInverted {
                 return other.low >= low && other.high <= high
             }
 
-            return (other.low >= low || other.high < high) && !isEmpty()
-        } else if other.isInverted() {
-            return isFull() || other.isEmpty()
+            return (other.low >= low || other.high < high) && !isEmpty
+        } else if other.isInverted {
+            return isFull || other.isEmpty
         }
 
         return other.low >= low && other.high <= high
     }
 
-    // Returns true iff the interior of the interval contains p.
-    // Assumes p ∈ [-π,π].
+    /// Assumes p ∈ [-π,π].
+    ///
+    /// - returns: true iff the interior of the interval contains p.
     func interiorContains(point: Double) -> Bool {
         var pp = point
 
@@ -86,37 +89,37 @@ extension S1Interval: Interval {
             pp = .pi
         }
 
-        if isInverted() {
+        if isInverted {
             return pp > low || pp < high
         }
 
-        return (pp > low && pp < high) || isFull()
+        return (pp > low && pp < high) || isFull
     }
 
-    // Returns true iff the interior of the interval contains the other interval.
+    /// - returns: true iff the interior of the interval contains the other interval.
     func interiorContains(interval other: S1Interval) -> Bool {
-        if isInverted() {
-            if other.isInverted() {
-                return (other.low > low && other.high < high) || other.isEmpty()
+        if isInverted {
+            if other.isInverted {
+                return (other.low > low && other.high < high) || other.isEmpty
             }
 
             return other.low > low || other.high < high
-        } else if other.isInverted() {
-            return isFull() || other.isEmpty()
+        } else if other.isInverted {
+            return isFull || other.isEmpty
         }
 
-        return (other.low > low && other.high < high) || isFull()
+        return (other.low > low && other.high < high) || isFull
     }
 
-    // Returns true iff the interval contains any points in common with the other interval.
+    /// - returns: true iff the interval contains any points in common with the other interval.
     func intersects(with other: S1Interval) -> Bool {
-        if isEmpty() || other.isEmpty() {
+        if isEmpty || other.isEmpty {
             return false
-        } else if isInverted() {
-            return other.isInverted()
+        } else if isInverted {
+            return other.isInverted
                 || other.low <= high
                 || other.high >= low
-        } else if other.isInverted() {
+        } else if other.isInverted {
             return other.low <= high
                 || other.high >= low
         }
@@ -124,26 +127,27 @@ extension S1Interval: Interval {
         return other.low <= high && other.high >= low
     }
 
-    // Returns true iff the interior of the interval contains any points in common with other,
-    // including the latter's boundary.
+    /// Including the latter's boundary.
+    ///
+    /// - returns: true iff the interior of the interval contains any points in common with other.
     func interiorIntersects(with other: S1Interval) -> Bool {
-        if isEmpty() || other.isEmpty() || low == high {
+        if isEmpty || other.isEmpty || low == high {
             return false
-        } else if isInverted() {
-            return other.isInverted()
+        } else if isInverted {
+            return other.isInverted
                 || other.low < high
                 || other.high > low
-        } else if other.isInverted() {
+        } else if other.isInverted {
             return other.low < high
                 || other.high > low
         }
 
-        return (other.low < high && other.high > low) || isFull()
+        return (other.low < high && other.high > low) || isFull
     }
 
-    // Returns the smallest interval that contains both intervals.
+    /// - returns: the smallest interval that contains both intervals.
     func union(with other: S1Interval) -> S1Interval {
-        guard !other.isEmpty() else {
+        guard !other.isEmpty else {
             return self
         }
 
@@ -164,7 +168,7 @@ extension S1Interval: Interval {
 
         // Neither endpoint of other is in self.
         // Either self ⊂ other, or self and other are disjoint.
-        if isEmpty() || other.fastContains(point: low) {
+        if isEmpty || other.fastContains(point: low) {
             return other
         }
 
@@ -177,9 +181,9 @@ extension S1Interval: Interval {
         return S1Interval(low: low, high: other.high)
     }
 
-    // Returns the smallest interval that contains the intersection of the interval and other.
+    /// - returns: the smallest interval that contains the intersection of the interval and other.
     func intersection(with other: S1Interval) -> S1Interval {
-        guard !other.isEmpty() else {
+        guard !other.isEmpty else {
             return .empty
         }
 
@@ -211,8 +215,9 @@ extension S1Interval: Interval {
         return .empty
     }
 
-    // Returns the interval expanded by the minimum amount necessary such
-    // that it contains the given point (an angle in the range [-π, π]).
+    /// Expandeds the interval by the minimum amount necessary such that it contains the given point.
+    ///
+    /// - returns: the interval (an angle in the range [-π, π]).
     func add(point: Double) -> S1Interval {
         if abs(point) > .pi {
             return self
@@ -222,7 +227,7 @@ extension S1Interval: Interval {
 
         if fastContains(point: point) {
             return self
-        } else if isEmpty() {
+        } else if isEmpty {
             return S1Interval(point: point)
         } else if S1Interval.positiveDistance(from: point, to: low)
             < S1Interval.positiveDistance(from: high, to: point) {
@@ -232,14 +237,15 @@ extension S1Interval: Interval {
         return S1Interval(low: low, high: point)
     }
 
-    // Returns an interval that has been expanded on each side by margin.
-    // If margin is negative, then the function shrinks the interval on
-    // each side by margin instead. The resulting interval may be empty or
-    // full. Any expansion (positive or negative) of a full interval remains
-    // full, and any expansion of an empty interval remains empty.
+    /// If margin is negative, then the function shrinks the interval on
+    /// each side by margin instead. The resulting interval may be empty or
+    /// full. Any expansion (positive or negative) of a full interval remains
+    /// full, and any expansion of an empty interval remains empty.
+    ///
+    /// - returns: an interval that has been expanded on each side by margin.
     func expanded(by margin: Double) -> S1Interval {
         if margin >= 0 {
-            if isEmpty() {
+            if isEmpty {
                 return self
             }
 
@@ -249,7 +255,7 @@ extension S1Interval: Interval {
                 return .full
             }
         } else {
-            if isFull() {
+            if isFull {
                 return self
             }
 

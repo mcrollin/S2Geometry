@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// R3Axis represents an R3Vector component.
 enum R3Axis: Int8 {
     case x, y, z
 }

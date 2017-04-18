@@ -8,50 +8,52 @@
 
 import Foundation
 
+// MARK: Interval compliance
 extension R1Interval: Interval {
-    // Midpoint of the interval.
+
+    /// Midpoint of the interval.
     var center: Double {
         return 0.5 * (low + high)
     }
 
-    // Length of the interval.
-    // The length of an empty interval is negative.
+    /// Length of the interval.
+    /// The length of an empty interval is negative.
     var length: Double {
         return high - low
     }
 
-    // Interval representing a single point.
+    /// Whether the interval is empty.
+    var isEmpty: Bool {
+        return low > high
+    }
+
+    /// Interval representing a single point.
     init(point: Double) {
         low = point
         high = point
     }
 
-    // Reports whether the interval is empty.
-    func isEmpty() -> Bool {
-        return low > high
-    }
-
-    // Returns true iff the interval contains the point.
+    /// - returns: true iff the interval contains the point.
     func contains(point: Double) -> Bool {
         return low <= point && point <= high
     }
 
-    // Returns true iff the interval contains the other interval.
+    /// - returns: true iff the interval contains the other interval.
     func contains(interval other: R1Interval) -> Bool {
-        return other.isEmpty() ? true : low <= other.low && other.high <= high
+        return other.isEmpty ? true : low <= other.low && other.high <= high
     }
 
-    // Returns true iff the interval strictly contains the point.
+    /// - returns: true iff the interval strictly contains the point.
     func interiorContains(point: Double) -> Bool {
         return low < point && point < high
     }
 
-    // Returns true iff the interval strictly contains the other interval.
+    /// - returns: true iff the interval strictly contains the other interval.
     func interiorContains(interval other: R1Interval) -> Bool {
-        return other.isEmpty() ? true : low < other.low && other.high < high
+        return other.isEmpty ? true : low < other.low && other.high < high
     }
 
-    // Returns true iff the interval contains any points in common with the other interval.
+    /// - returns: true iff the interval contains any points in common with the other interval.
     func intersects(with other: R1Interval) -> Bool {
         if low <= other.low {
             // interval.low ∈ self and interval is not empty
@@ -62,8 +64,9 @@ extension R1Interval: Interval {
         return low <= other.high && low <= high
     }
 
-    // Returns true iff the interval's interior contains any points in common,
-    // including the the other interval's boundary.
+    /// Including the the other interval's boundary.
+    ///
+    /// - returns: true iff the interval's interior contains any points in common.
     func interiorIntersects(with other: R1Interval) -> Bool {
         return other.low < high
             && low < other.high
@@ -71,9 +74,9 @@ extension R1Interval: Interval {
             && other.low <= other.high
     }
 
-    // Returns the interval expanded so that it contains the given point.
+    /// - returns: the interval expanded so that it contains the given point.
     func add(point: Double) -> R1Interval {
-        if isEmpty() {
+        if isEmpty {
             return R1Interval(low: point, high: point)
         } else if point < low {
             return R1Interval(low: point, high: high)
@@ -84,29 +87,30 @@ extension R1Interval: Interval {
         return self
     }
 
-    // Returns an interval that has been expanded on each side by margin.
-    // If margin is negative, then the function shrinks the interval on
-    // each side by margin instead. The resulting interval may be empty. Any
-    // expansion of an empty interval remains empty.
+    /// If margin is negative, then the function shrinks the interval on
+    /// each side by margin instead. The resulting interval may be empty. Any
+    /// expansion of an empty interval remains empty.
+    ///
+    /// - returns: an interval that has been expanded on each side by margin.
     func expanded(by margin: Double) -> R1Interval {
-        if isEmpty() {
+        if isEmpty {
             return self
         }
 
         return R1Interval(low: low - margin, high: high + margin)
     }
 
-    // Returns the interval containing all points common with the given interval.
+    /// - returns: the interval containing all points common with the given interval.
     func intersection(with other: R1Interval) -> R1Interval {
         return R1Interval(low: max(low, other.low),
                           high: min(high, other.high))
     }
 
-    // Returns the smallest interval that contains this interval and the given interval.
+    /// - returns: the smallest interval that contains this interval and the given interval.
     func union(with other: R1Interval) -> R1Interval {
-        if isEmpty() {
+        if isEmpty {
             return other
-        } else if other.isEmpty() {
+        } else if other.isEmpty {
             return self
         }
 

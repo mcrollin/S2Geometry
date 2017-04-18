@@ -9,17 +9,12 @@
 import XCTest
 @testable import S2Geometry
 
-// swiftlint:disable nesting line_length
-
 class R2PointTests: XCTestCase {
 
     func testStringConversion() {
-        struct Test {
-            let interval: R2Point
-            let expected: String
-        }
+        typealias Test = (interval: R2Point, expected: String)
 
-        let tests = [Test(interval: R2Point(x: 2, y: 4.5), expected: "(2.0,4.5)")]
+        let tests = [Test(interval: R2Point(x: 2/3, y: 4.5), expected: "(0.66666666666666663, 4.5)")]
 
         for test in tests {
             let got = test.interval.description
@@ -29,11 +24,7 @@ class R2PointTests: XCTestCase {
     }
 
     func testAdd() {
-        struct Test {
-            let point: R2Point
-            let other: R2Point
-            let expected: R2Point
-        }
+        typealias Test = (point: R2Point, other: R2Point, expected: R2Point)
 
         let tests = [Test(point: R2Point(x: 2, y: -1), other: R2Point(x: -2, y: 1), expected: R2Point(x: 0, y: 0))]
 
@@ -45,11 +36,7 @@ class R2PointTests: XCTestCase {
     }
 
     func testSubstract() {
-        struct Test {
-            let point: R2Point
-            let other: R2Point
-            let expected: R2Point
-        }
+        typealias Test = (point: R2Point, other: R2Point, expected: R2Point)
 
         let tests = [Test(point: R2Point(x: 2, y: -1), other: R2Point(x: -2, y: 1), expected: R2Point(x: 4, y: -2))]
 
@@ -61,11 +48,7 @@ class R2PointTests: XCTestCase {
     }
 
     func testMultiply() {
-        struct Test {
-            let point: R2Point
-            let by: Double
-            let expected: R2Point
-        }
+        typealias Test = (point: R2Point, by: Double, expected: R2Point)
 
         let tests = [Test(point: R2Point(x: 2, y: -1), by: 2.0, expected: R2Point(x: 4, y: -2))]
 
@@ -79,11 +62,7 @@ class R2PointTests: XCTestCase {
     }
 
     func testDivide() {
-        struct Test {
-            let point: R2Point
-            let by: Double
-            let expected: R2Point
-        }
+        typealias Test = (point: R2Point, by: Double, expected: R2Point)
 
         let tests = [Test(point: R2Point(x: 2, y: -1), by: 2.0, expected: R2Point(x: 1, y: -0.5))]
 
@@ -95,10 +74,7 @@ class R2PointTests: XCTestCase {
     }
 
     func testNormal() {
-        struct Test {
-            let point: R2Point
-            let expected: Double
-        }
+        typealias Test = (point: R2Point, expected: Double)
 
         let tests = [Test(point: R2Point(x: 0, y: 0), expected: 0),
                      Test(point: R2Point(x: 0, y: 1), expected: 1),
@@ -118,10 +94,7 @@ class R2PointTests: XCTestCase {
     }
 
     func testNormalized() {
-        struct Test {
-            let point: R2Point
-            let expected: R2Point
-        }
+        typealias Test = (point: R2Point, expected: R2Point)
 
         let tests = [Test(point: R2Point(x: 0, y: 0), expected: R2Point(x: 0, y: 0)),
                      Test(point: R2Point(x: 0, y: 1), expected: R2Point(x: 0, y: 1)),
@@ -141,10 +114,7 @@ class R2PointTests: XCTestCase {
     }
 
     func testOrthogonal() {
-        struct Test {
-            let point: R2Point
-            let expected: R2Point
-        }
+        typealias Test = (point: R2Point, expected: R2Point)
 
         let tests = [Test(point: R2Point(x: 0, y: 0), expected: R2Point(x: 0, y: 0)),
                      Test(point: R2Point(x: 0, y: 1), expected: R2Point(x: -1, y: 0)),
@@ -160,11 +130,7 @@ class R2PointTests: XCTestCase {
     }
 
     func testDotProduct() {
-        struct Test {
-            let point: R2Point
-            let other: R2Point
-            let expected: Double
-        }
+        typealias Test = (point: R2Point, other: R2Point, expected: Double)
 
         let tests = [Test(point: R2Point(x: 0, y: 0), other: R2Point(x: 0, y: 0), expected: 0),
                      Test(point: R2Point(x: 0, y: 1), other: R2Point(x: 0, y: 0), expected: 0),
@@ -179,11 +145,7 @@ class R2PointTests: XCTestCase {
     }
 
     func testCrossProduct() {
-        struct Test {
-            let point: R2Point
-            let other: R2Point
-            let expected: Double
-        }
+        typealias Test = (point: R2Point, other: R2Point, expected: Double)
 
         let tests = [Test(point: R2Point(x: 0, y: 0), other: R2Point(x: 0, y: 0), expected: 0),
                      Test(point: R2Point(x: 0, y: 1), other: R2Point(x: 0, y: 0), expected: 0),

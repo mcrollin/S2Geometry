@@ -13,10 +13,9 @@ protocol Interval: CustomStringConvertible, Equatable, AlmostEquatable {
     var high: Double { get }
     var length: Double { get }
     var center: Double { get }
+    var isEmpty: Bool { get }
 
     init(point: Double)
-
-    func isEmpty() -> Bool
 
     func contains(point: Double) -> Bool
     func contains(interval other: Self) -> Bool
@@ -34,7 +33,7 @@ protocol Interval: CustomStringConvertible, Equatable, AlmostEquatable {
 extension CustomStringConvertible where Self: Interval {
 
     var description: String {
-        return "[\(low),\(high)]"
+        return "[low:\(low.debugDescription), high:\(high.debugDescription)]"
     }
 }
 
@@ -43,21 +42,20 @@ extension Equatable where Self: Interval {
     // Returns true iff the interval lhs contains the same points as rhs.
     static func == (lhs: Self, rhs: Self) -> Bool {
         return (lhs.low == rhs.low && lhs.high == rhs.high)
-            || (lhs.isEmpty() && rhs.isEmpty())
+            || (lhs.isEmpty && rhs.isEmpty)
     }
 }
 
 extension AlmostEquatable where Self: Interval {
 
-    // Reports whether the interval can be transformed into the
-    // given interval by moving each endpoint a small distance.
-    // The empty interval is considered to be positioned arbitrarily on the
-    // real line, so any interval with a small enough length will match
-    // the empty interval.
+    /// The empty interval is considered to be positioned arbitrarily on the real line,
+    /// so any interval with a small enough length will match the empty interval.
+    ///
+    /// - returns: true iff the interval can be transformed into the other one by moving each endpoint a small distance.
     static func ==~ (lhs: Self, rhs: Self) -> Bool {
-        if lhs.isEmpty() {
+        if lhs.isEmpty {
             return rhs.length <= 2 * Double.epsilon
-        } else if rhs.isEmpty() {
+        } else if rhs.isEmpty {
             return lhs.length <= 2 * Double.epsilon
         }
 

@@ -7,36 +7,76 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4965E35A1EA35E34002F7642 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965E3591EA35E34002F7642 /* Interval.swift */; };
-		49707BB21E9A252200A995E0 /* AlmostEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB11E9A252200A995E0 /* AlmostEquatable.swift */; };
-		49707BB51E9A280E00A995E0 /* R2Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB41E9A280E00A995E0 /* R2Rectangle.swift */; };
-		49707BB71E9A39DD00A995E0 /* R2Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB61E9A39DD00A995E0 /* R2Point.swift */; };
-		49707BBC1E9A86D800A995E0 /* R2PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BBB1E9A86D800A995E0 /* R2PointTests.swift */; };
-		49707BBE1E9A86E600A995E0 /* R2RectangleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BBD1E9A86E600A995E0 /* R2RectangleTests.swift */; };
-		49707BC01E9AAD2600A995E0 /* R3Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BBF1E9AAD2600A995E0 /* R3Vector.swift */; };
-		49707BC21E9AC52200A995E0 /* R3Axis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BC11E9AC52200A995E0 /* R3Axis.swift */; };
-		49707BD01E9AE17800A995E0 /* S1Angle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BCF1E9AE17800A995E0 /* S1Angle.swift */; };
-		49707BD51E9B5F2400A995E0 /* R3VectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BD41E9B5F2400A995E0 /* R3VectorTests.swift */; };
-		49707BD71E9B5F3B00A995E0 /* S1AngleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BD61E9B5F3B00A995E0 /* S1AngleTests.swift */; };
-		49707BDA1E9C41BA00A995E0 /* S1Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BD91E9C41BA00A995E0 /* S1Interval.swift */; };
-		49707BDC1E9CAD8B00A995E0 /* S1IntervalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BDB1E9CAD8B00A995E0 /* S1IntervalTests.swift */; };
-		498321DE1E98B6E60037769D /* S2Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498321D41E98B6E60037769D /* S2Geometry.framework */; };
-		498321E51E98B6E60037769D /* S2Geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 498321D71E98B6E60037769D /* S2Geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		498321F21E98B7330037769D /* R1Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498321F11E98B7330037769D /* R1Interval.swift */; };
-		498321F81E98B7A10037769D /* R1IntervalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498321F71E98B7A10037769D /* R1IntervalTests.swift */; };
-		49F67B8A1EA508050063FB98 /* S1ChordAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B891EA508050063FB98 /* S1ChordAngle.swift */; };
-		49F67B8C1EA50C230063FB98 /* S1Interval+Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B8B1EA50C230063FB98 /* S1Interval+Interval.swift */; };
-		49F67B8E1EA50C900063FB98 /* R1Interval+Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B8D1EA50C900063FB98 /* R1Interval+Interval.swift */; };
-		49F67B921EA53AE00063FB98 /* S1ChordAngleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B911EA53AE00063FB98 /* S1ChordAngleTests.swift */; };
+		49803A191EAB605B0066B884 /* S2Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49803A101EAB605A0066B884 /* S2Geometry.framework */; };
+		49803A351EAB60720066B884 /* S2Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49803A2C1EAB60720066B884 /* S2Geometry.framework */; };
+		49803A431EAB61760066B884 /* RandomHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498039511EA890880066B884 /* RandomHelper.swift */; };
+		49803A441EAB61770066B884 /* RandomHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498039511EA890880066B884 /* RandomHelper.swift */; };
+		49803A451EAB61860066B884 /* R1IntervalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498321F71E98B7A10037769D /* R1IntervalTests.swift */; };
+		49803A461EAB61860066B884 /* R1IntervalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498321F71E98B7A10037769D /* R1IntervalTests.swift */; };
+		49803A471EAB618A0066B884 /* R2PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BBB1E9A86D800A995E0 /* R2PointTests.swift */; };
+		49803A481EAB618A0066B884 /* R2RectangleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BBD1E9A86E600A995E0 /* R2RectangleTests.swift */; };
+		49803A491EAB618B0066B884 /* R2PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BBB1E9A86D800A995E0 /* R2PointTests.swift */; };
+		49803A4A1EAB618B0066B884 /* R2RectangleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BBD1E9A86E600A995E0 /* R2RectangleTests.swift */; };
+		49803A4B1EAB61960066B884 /* R3VectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BD41E9B5F2400A995E0 /* R3VectorTests.swift */; };
+		49803A4C1EAB61960066B884 /* S1AngleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BD61E9B5F3B00A995E0 /* S1AngleTests.swift */; };
+		49803A4D1EAB61960066B884 /* S1ChordAngleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B911EA53AE00063FB98 /* S1ChordAngleTests.swift */; };
+		49803A4E1EAB61960066B884 /* S1IntervalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BDB1E9CAD8B00A995E0 /* S1IntervalTests.swift */; };
+		49803A4F1EAB61960066B884 /* S2Matrix3x3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B971EA650A20063FB98 /* S2Matrix3x3Tests.swift */; };
+		49803A501EAB61960066B884 /* S2PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C192471EA6C1A1004BD3FE /* S2PointTests.swift */; };
+		49803A511EAB61960066B884 /* S2ProjectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C1924B1EA80664004BD3FE /* S2ProjectionTests.swift */; };
+		49803A521EAB61960066B884 /* R3VectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BD41E9B5F2400A995E0 /* R3VectorTests.swift */; };
+		49803A531EAB61960066B884 /* S1AngleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BD61E9B5F3B00A995E0 /* S1AngleTests.swift */; };
+		49803A541EAB61960066B884 /* S1ChordAngleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B911EA53AE00063FB98 /* S1ChordAngleTests.swift */; };
+		49803A551EAB61960066B884 /* S1IntervalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BDB1E9CAD8B00A995E0 /* S1IntervalTests.swift */; };
+		49803A561EAB61960066B884 /* S2Matrix3x3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B971EA650A20063FB98 /* S2Matrix3x3Tests.swift */; };
+		49803A571EAB61960066B884 /* S2PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C192471EA6C1A1004BD3FE /* S2PointTests.swift */; };
+		49803A581EAB61960066B884 /* S2ProjectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C1924B1EA80664004BD3FE /* S2ProjectionTests.swift */; };
+		49803A591EAB61AE0066B884 /* AlmostEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB11E9A252200A995E0 /* AlmostEquatable.swift */; };
+		49803A5A1EAB61AE0066B884 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965E3591EA35E34002F7642 /* Interval.swift */; };
+		49803A5B1EAB61AE0066B884 /* R1Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498321F11E98B7330037769D /* R1Interval.swift */; };
+		49803A5C1EAB61AE0066B884 /* R1Interval+Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B8D1EA50C900063FB98 /* R1Interval+Interval.swift */; };
+		49803A5D1EAB61AE0066B884 /* R2Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB61E9A39DD00A995E0 /* R2Point.swift */; };
+		49803A5E1EAB61AE0066B884 /* R2Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB41E9A280E00A995E0 /* R2Rectangle.swift */; };
+		49803A5F1EAB61AE0066B884 /* R3Axis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BC11E9AC52200A995E0 /* R3Axis.swift */; };
+		49803A601EAB61AE0066B884 /* R3Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BBF1E9AAD2600A995E0 /* R3Vector.swift */; };
+		49803A611EAB61AE0066B884 /* S1Angle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BCF1E9AE17800A995E0 /* S1Angle.swift */; };
+		49803A621EAB61AE0066B884 /* S1ChordAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B891EA508050063FB98 /* S1ChordAngle.swift */; };
+		49803A631EAB61AE0066B884 /* S1Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BD91E9C41BA00A995E0 /* S1Interval.swift */; };
+		49803A641EAB61AE0066B884 /* S1Interval+Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B8B1EA50C230063FB98 /* S1Interval+Interval.swift */; };
+		49803A651EAB61AE0066B884 /* S2Matrix3x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B931EA5F6670063FB98 /* S2Matrix3x3.swift */; };
+		49803A661EAB61AE0066B884 /* S2Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B951EA5FC4E0063FB98 /* S2Point.swift */; };
+		49803A671EAB61AE0066B884 /* S2Projections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C192491EA73857004BD3FE /* S2Projections.swift */; };
+		49803A681EAB61AF0066B884 /* AlmostEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB11E9A252200A995E0 /* AlmostEquatable.swift */; };
+		49803A691EAB61AF0066B884 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965E3591EA35E34002F7642 /* Interval.swift */; };
+		49803A6A1EAB61AF0066B884 /* R1Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498321F11E98B7330037769D /* R1Interval.swift */; };
+		49803A6B1EAB61AF0066B884 /* R1Interval+Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B8D1EA50C900063FB98 /* R1Interval+Interval.swift */; };
+		49803A6C1EAB61AF0066B884 /* R2Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB61E9A39DD00A995E0 /* R2Point.swift */; };
+		49803A6D1EAB61AF0066B884 /* R2Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB41E9A280E00A995E0 /* R2Rectangle.swift */; };
+		49803A6E1EAB61AF0066B884 /* R3Axis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BC11E9AC52200A995E0 /* R3Axis.swift */; };
+		49803A6F1EAB61AF0066B884 /* R3Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BBF1E9AAD2600A995E0 /* R3Vector.swift */; };
+		49803A701EAB61AF0066B884 /* S1Angle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BCF1E9AE17800A995E0 /* S1Angle.swift */; };
+		49803A711EAB61AF0066B884 /* S1ChordAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B891EA508050063FB98 /* S1ChordAngle.swift */; };
+		49803A721EAB61AF0066B884 /* S1Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BD91E9C41BA00A995E0 /* S1Interval.swift */; };
+		49803A731EAB61AF0066B884 /* S1Interval+Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B8B1EA50C230063FB98 /* S1Interval+Interval.swift */; };
+		49803A741EAB61AF0066B884 /* S2Matrix3x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B931EA5F6670063FB98 /* S2Matrix3x3.swift */; };
+		49803A751EAB61AF0066B884 /* S2Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B951EA5FC4E0063FB98 /* S2Point.swift */; };
+		49803A761EAB61AF0066B884 /* S2Projections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C192491EA73857004BD3FE /* S2Projections.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		498321DF1E98B6E60037769D /* PBXContainerItemProxy */ = {
+		49803A1A1EAB605B0066B884 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 498321CB1E98B6E60037769D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 498321D31E98B6E60037769D;
-			remoteInfo = S2Geometry;
+			remoteGlobalIDString = 49803A0F1EAB605A0066B884;
+			remoteInfo = "S2Geometry macOS";
+		};
+		49803A361EAB60720066B884 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 498321CB1E98B6E60037769D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49803A2B1EAB60720066B884;
+			remoteInfo = "S2Geometry iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -54,32 +94,54 @@
 		49707BD61E9B5F3B00A995E0 /* S1AngleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S1AngleTests.swift; sourceTree = "<group>"; };
 		49707BD91E9C41BA00A995E0 /* S1Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S1Interval.swift; sourceTree = "<group>"; };
 		49707BDB1E9CAD8B00A995E0 /* S1IntervalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S1IntervalTests.swift; sourceTree = "<group>"; };
-		498321D41E98B6E60037769D /* S2Geometry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = S2Geometry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		498039511EA890880066B884 /* RandomHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomHelper.swift; sourceTree = "<group>"; };
+		49803A101EAB605A0066B884 /* S2Geometry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = S2Geometry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49803A181EAB605A0066B884 /* S2Geometry macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "S2Geometry macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49803A2C1EAB60720066B884 /* S2Geometry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = S2Geometry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49803A341EAB60720066B884 /* S2Geometry iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "S2Geometry iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		498321D71E98B6E60037769D /* S2Geometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = S2Geometry.h; sourceTree = "<group>"; };
-		498321D81E98B6E60037769D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		498321DD1E98B6E60037769D /* S2GeometryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = S2GeometryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		498321E41E98B6E60037769D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		498321F11E98B7330037769D /* R1Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R1Interval.swift; sourceTree = "<group>"; };
 		498321F71E98B7A10037769D /* R1IntervalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R1IntervalTests.swift; sourceTree = "<group>"; };
+		49C192471EA6C1A1004BD3FE /* S2PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2PointTests.swift; sourceTree = "<group>"; };
+		49C192491EA73857004BD3FE /* S2Projections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2Projections.swift; sourceTree = "<group>"; };
+		49C1924B1EA80664004BD3FE /* S2ProjectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2ProjectionTests.swift; sourceTree = "<group>"; };
 		49F67B891EA508050063FB98 /* S1ChordAngle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S1ChordAngle.swift; sourceTree = "<group>"; };
 		49F67B8B1EA50C230063FB98 /* S1Interval+Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "S1Interval+Interval.swift"; sourceTree = "<group>"; };
 		49F67B8D1EA50C900063FB98 /* R1Interval+Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "R1Interval+Interval.swift"; sourceTree = "<group>"; };
 		49F67B911EA53AE00063FB98 /* S1ChordAngleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S1ChordAngleTests.swift; sourceTree = "<group>"; };
+		49F67B931EA5F6670063FB98 /* S2Matrix3x3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = S2Matrix3x3.swift; path = Sources/S2/S2Matrix3x3.swift; sourceTree = SOURCE_ROOT; };
+		49F67B951EA5FC4E0063FB98 /* S2Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = S2Point.swift; path = Sources/S2/S2Point.swift; sourceTree = SOURCE_ROOT; };
+		49F67B971EA650A20063FB98 /* S2Matrix3x3Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2Matrix3x3Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		498321D01E98B6E60037769D /* Frameworks */ = {
+		49803A0C1EAB605A0066B884 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		498321DA1E98B6E60037769D /* Frameworks */ = {
+		49803A151EAB605A0066B884 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				498321DE1E98B6E60037769D /* S2Geometry.framework in Frameworks */,
+				49803A191EAB605B0066B884 /* S2Geometry.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49803A281EAB60720066B884 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49803A311EAB60720066B884 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49803A351EAB60720066B884 /* S2Geometry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +206,9 @@
 		49707BD11E9B5EE700A995E0 /* S2 */ = {
 			isa = PBXGroup;
 			children = (
+				49F67B931EA5F6670063FB98 /* S2Matrix3x3.swift */,
+				49F67B951EA5FC4E0063FB98 /* S2Point.swift */,
+				49C192491EA73857004BD3FE /* S2Projections.swift */,
 			);
 			path = S2;
 			sourceTree = "<group>";
@@ -161,24 +226,37 @@
 		49707BD31E9B5EF800A995E0 /* S2 */ = {
 			isa = PBXGroup;
 			children = (
+				49F67B971EA650A20063FB98 /* S2Matrix3x3Tests.swift */,
+				49C192471EA6C1A1004BD3FE /* S2PointTests.swift */,
+				49C1924B1EA80664004BD3FE /* S2ProjectionTests.swift */,
 			);
 			path = S2;
+			sourceTree = "<group>";
+		};
+		498039501EA8905C0066B884 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				498039511EA890880066B884 /* RandomHelper.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		498321CA1E98B6E60037769D = {
 			isa = PBXGroup;
 			children = (
+				498321D51E98B6E60037769D /* Products */,
 				498321D61E98B6E60037769D /* Sources */,
 				498321E11E98B6E60037769D /* Test */,
-				498321D51E98B6E60037769D /* Products */,
 			);
 			sourceTree = "<group>";
 		};
 		498321D51E98B6E60037769D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				498321D41E98B6E60037769D /* S2Geometry.framework */,
-				498321DD1E98B6E60037769D /* S2GeometryTests.xctest */,
+				49803A101EAB605A0066B884 /* S2Geometry.framework */,
+				49803A181EAB605A0066B884 /* S2Geometry macOS Tests.xctest */,
+				49803A2C1EAB60720066B884 /* S2Geometry.framework */,
+				49803A341EAB60720066B884 /* S2Geometry iOS Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -187,7 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				498321D71E98B6E60037769D /* S2Geometry.h */,
-				498321D81E98B6E60037769D /* Info.plist */,
 				49707BB01E9A251600A995E0 /* Protocols */,
 				498321F01E98B7180037769D /* R1 */,
 				49707BB31E9A27F100A995E0 /* R2 */,
@@ -201,7 +278,7 @@
 		498321E11E98B6E60037769D /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				498321E41E98B6E60037769D /* Info.plist */,
+				498039501EA8905C0066B884 /* Common */,
 				498321F61E98B7830037769D /* R1 */,
 				49707BB91E9A86B000A995E0 /* R2 */,
 				49707BBA1E9A86B000A995E0 /* R3 */,
@@ -232,52 +309,95 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		498321D11E98B6E60037769D /* Headers */ = {
+		49803A0D1EAB605A0066B884 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				498321E51E98B6E60037769D /* S2Geometry.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49803A291EAB60720066B884 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		498321D31E98B6E60037769D /* S2Geometry */ = {
+		49803A0F1EAB605A0066B884 /* S2Geometry macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 498321E81E98B6E60037769D /* Build configuration list for PBXNativeTarget "S2Geometry" */;
+			buildConfigurationList = 49803A211EAB605B0066B884 /* Build configuration list for PBXNativeTarget "S2Geometry macOS" */;
 			buildPhases = (
-				498321CF1E98B6E60037769D /* Sources */,
-				498321D01E98B6E60037769D /* Frameworks */,
-				498321D11E98B6E60037769D /* Headers */,
-				498321D21E98B6E60037769D /* Resources */,
-				49707BD81E9B63E300A995E0 /* Swift Lint */,
+				49803A781EAB62D80066B884 /* Swiftlint */,
+				49803A0B1EAB605A0066B884 /* Sources */,
+				49803A0C1EAB605A0066B884 /* Frameworks */,
+				49803A0D1EAB605A0066B884 /* Headers */,
+				49803A0E1EAB605A0066B884 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = S2Geometry;
-			productName = S2Geometry;
-			productReference = 498321D41E98B6E60037769D /* S2Geometry.framework */;
+			name = "S2Geometry macOS";
+			productName = "S2Geometry macOS";
+			productReference = 49803A101EAB605A0066B884 /* S2Geometry.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		498321DC1E98B6E60037769D /* S2GeometryTests */ = {
+		49803A171EAB605A0066B884 /* S2Geometry macOS Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 498321EB1E98B6E60037769D /* Build configuration list for PBXNativeTarget "S2GeometryTests" */;
+			buildConfigurationList = 49803A241EAB605B0066B884 /* Build configuration list for PBXNativeTarget "S2Geometry macOS Tests" */;
 			buildPhases = (
-				498321D91E98B6E60037769D /* Sources */,
-				498321DA1E98B6E60037769D /* Frameworks */,
-				498321DB1E98B6E60037769D /* Resources */,
+				49803A141EAB605A0066B884 /* Sources */,
+				49803A151EAB605A0066B884 /* Frameworks */,
+				49803A161EAB605A0066B884 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				498321E01E98B6E60037769D /* PBXTargetDependency */,
+				49803A1B1EAB605B0066B884 /* PBXTargetDependency */,
 			);
-			name = S2GeometryTests;
-			productName = S2GeometryTests;
-			productReference = 498321DD1E98B6E60037769D /* S2GeometryTests.xctest */;
+			name = "S2Geometry macOS Tests";
+			productName = "S2Geometry macOSTests";
+			productReference = 49803A181EAB605A0066B884 /* S2Geometry macOS Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		49803A2B1EAB60720066B884 /* S2Geometry iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49803A3D1EAB60730066B884 /* Build configuration list for PBXNativeTarget "S2Geometry iOS" */;
+			buildPhases = (
+				49803A771EAB62A10066B884 /* Swiftlint */,
+				49803A271EAB60720066B884 /* Sources */,
+				49803A281EAB60720066B884 /* Frameworks */,
+				49803A291EAB60720066B884 /* Headers */,
+				49803A2A1EAB60720066B884 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "S2Geometry iOS";
+			productName = "S2Geometry iOS";
+			productReference = 49803A2C1EAB60720066B884 /* S2Geometry.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		49803A331EAB60720066B884 /* S2Geometry iOS Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49803A401EAB60730066B884 /* Build configuration list for PBXNativeTarget "S2Geometry iOS Tests" */;
+			buildPhases = (
+				49803A301EAB60720066B884 /* Sources */,
+				49803A311EAB60720066B884 /* Frameworks */,
+				49803A321EAB60720066B884 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49803A371EAB60720066B884 /* PBXTargetDependency */,
+			);
+			name = "S2Geometry iOS Tests";
+			productName = "S2Geometry iOSTests";
+			productReference = 49803A341EAB60720066B884 /* S2Geometry iOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -290,13 +410,22 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Marc Rollin";
 				TargetAttributes = {
-					498321D31E98B6E60037769D = {
+					49803A0F1EAB605A0066B884 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = D87ZC5H69L;
-						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
-					498321DC1E98B6E60037769D = {
+					49803A171EAB605A0066B884 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = D87ZC5H69L;
+						ProvisioningStyle = Automatic;
+					};
+					49803A2B1EAB60720066B884 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = D87ZC5H69L;
+						ProvisioningStyle = Automatic;
+					};
+					49803A331EAB60720066B884 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = D87ZC5H69L;
 						ProvisioningStyle = Automatic;
@@ -315,21 +444,37 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				498321D31E98B6E60037769D /* S2Geometry */,
-				498321DC1E98B6E60037769D /* S2GeometryTests */,
+				49803A0F1EAB605A0066B884 /* S2Geometry macOS */,
+				49803A2B1EAB60720066B884 /* S2Geometry iOS */,
+				49803A171EAB605A0066B884 /* S2Geometry macOS Tests */,
+				49803A331EAB60720066B884 /* S2Geometry iOS Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		498321D21E98B6E60037769D /* Resources */ = {
+		49803A0E1EAB605A0066B884 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		498321DB1E98B6E60037769D /* Resources */ = {
+		49803A161EAB605A0066B884 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49803A2A1EAB60720066B884 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49803A321EAB60720066B884 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -339,67 +484,289 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		49707BD81E9B63E300A995E0 /* Swift Lint */ = {
+		49803A771EAB62A10066B884 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Swift Lint";
+			name = Swiftlint;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "make lint";
+		};
+		49803A781EAB62D80066B884 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make lint";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		498321CF1E98B6E60037769D /* Sources */ = {
+		49803A0B1EAB605A0066B884 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49707BB71E9A39DD00A995E0 /* R2Point.swift in Sources */,
-				49707BB51E9A280E00A995E0 /* R2Rectangle.swift in Sources */,
-				49F67B8C1EA50C230063FB98 /* S1Interval+Interval.swift in Sources */,
-				49707BD01E9AE17800A995E0 /* S1Angle.swift in Sources */,
-				49F67B8E1EA50C900063FB98 /* R1Interval+Interval.swift in Sources */,
-				49707BC01E9AAD2600A995E0 /* R3Vector.swift in Sources */,
-				49707BDA1E9C41BA00A995E0 /* S1Interval.swift in Sources */,
-				4965E35A1EA35E34002F7642 /* Interval.swift in Sources */,
-				49F67B8A1EA508050063FB98 /* S1ChordAngle.swift in Sources */,
-				49707BB21E9A252200A995E0 /* AlmostEquatable.swift in Sources */,
-				49707BC21E9AC52200A995E0 /* R3Axis.swift in Sources */,
-				498321F21E98B7330037769D /* R1Interval.swift in Sources */,
+				49803A701EAB61AF0066B884 /* S1Angle.swift in Sources */,
+				49803A741EAB61AF0066B884 /* S2Matrix3x3.swift in Sources */,
+				49803A6E1EAB61AF0066B884 /* R3Axis.swift in Sources */,
+				49803A751EAB61AF0066B884 /* S2Point.swift in Sources */,
+				49803A6F1EAB61AF0066B884 /* R3Vector.swift in Sources */,
+				49803A6B1EAB61AF0066B884 /* R1Interval+Interval.swift in Sources */,
+				49803A6D1EAB61AF0066B884 /* R2Rectangle.swift in Sources */,
+				49803A691EAB61AF0066B884 /* Interval.swift in Sources */,
+				49803A761EAB61AF0066B884 /* S2Projections.swift in Sources */,
+				49803A711EAB61AF0066B884 /* S1ChordAngle.swift in Sources */,
+				49803A721EAB61AF0066B884 /* S1Interval.swift in Sources */,
+				49803A681EAB61AF0066B884 /* AlmostEquatable.swift in Sources */,
+				49803A731EAB61AF0066B884 /* S1Interval+Interval.swift in Sources */,
+				49803A6A1EAB61AF0066B884 /* R1Interval.swift in Sources */,
+				49803A6C1EAB61AF0066B884 /* R2Point.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		498321D91E98B6E60037769D /* Sources */ = {
+		49803A141EAB605A0066B884 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49707BBC1E9A86D800A995E0 /* R2PointTests.swift in Sources */,
-				498321F81E98B7A10037769D /* R1IntervalTests.swift in Sources */,
-				49707BD71E9B5F3B00A995E0 /* S1AngleTests.swift in Sources */,
-				49707BD51E9B5F2400A995E0 /* R3VectorTests.swift in Sources */,
-				49F67B921EA53AE00063FB98 /* S1ChordAngleTests.swift in Sources */,
-				49707BDC1E9CAD8B00A995E0 /* S1IntervalTests.swift in Sources */,
-				49707BBE1E9A86E600A995E0 /* R2RectangleTests.swift in Sources */,
+				49803A431EAB61760066B884 /* RandomHelper.swift in Sources */,
+				49803A4A1EAB618B0066B884 /* R2RectangleTests.swift in Sources */,
+				49803A521EAB61960066B884 /* R3VectorTests.swift in Sources */,
+				49803A561EAB61960066B884 /* S2Matrix3x3Tests.swift in Sources */,
+				49803A531EAB61960066B884 /* S1AngleTests.swift in Sources */,
+				49803A551EAB61960066B884 /* S1IntervalTests.swift in Sources */,
+				49803A541EAB61960066B884 /* S1ChordAngleTests.swift in Sources */,
+				49803A571EAB61960066B884 /* S2PointTests.swift in Sources */,
+				49803A491EAB618B0066B884 /* R2PointTests.swift in Sources */,
+				49803A461EAB61860066B884 /* R1IntervalTests.swift in Sources */,
+				49803A581EAB61960066B884 /* S2ProjectionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49803A271EAB60720066B884 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49803A611EAB61AE0066B884 /* S1Angle.swift in Sources */,
+				49803A651EAB61AE0066B884 /* S2Matrix3x3.swift in Sources */,
+				49803A5F1EAB61AE0066B884 /* R3Axis.swift in Sources */,
+				49803A661EAB61AE0066B884 /* S2Point.swift in Sources */,
+				49803A601EAB61AE0066B884 /* R3Vector.swift in Sources */,
+				49803A5C1EAB61AE0066B884 /* R1Interval+Interval.swift in Sources */,
+				49803A5E1EAB61AE0066B884 /* R2Rectangle.swift in Sources */,
+				49803A5A1EAB61AE0066B884 /* Interval.swift in Sources */,
+				49803A671EAB61AE0066B884 /* S2Projections.swift in Sources */,
+				49803A621EAB61AE0066B884 /* S1ChordAngle.swift in Sources */,
+				49803A631EAB61AE0066B884 /* S1Interval.swift in Sources */,
+				49803A591EAB61AE0066B884 /* AlmostEquatable.swift in Sources */,
+				49803A641EAB61AE0066B884 /* S1Interval+Interval.swift in Sources */,
+				49803A5B1EAB61AE0066B884 /* R1Interval.swift in Sources */,
+				49803A5D1EAB61AE0066B884 /* R2Point.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49803A301EAB60720066B884 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49803A441EAB61770066B884 /* RandomHelper.swift in Sources */,
+				49803A481EAB618A0066B884 /* R2RectangleTests.swift in Sources */,
+				49803A4B1EAB61960066B884 /* R3VectorTests.swift in Sources */,
+				49803A4F1EAB61960066B884 /* S2Matrix3x3Tests.swift in Sources */,
+				49803A4C1EAB61960066B884 /* S1AngleTests.swift in Sources */,
+				49803A4E1EAB61960066B884 /* S1IntervalTests.swift in Sources */,
+				49803A4D1EAB61960066B884 /* S1ChordAngleTests.swift in Sources */,
+				49803A501EAB61960066B884 /* S2PointTests.swift in Sources */,
+				49803A471EAB618A0066B884 /* R2PointTests.swift in Sources */,
+				49803A451EAB61860066B884 /* R1IntervalTests.swift in Sources */,
+				49803A511EAB61960066B884 /* S2ProjectionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		498321E01E98B6E60037769D /* PBXTargetDependency */ = {
+		49803A1B1EAB605B0066B884 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 498321D31E98B6E60037769D /* S2Geometry */;
-			targetProxy = 498321DF1E98B6E60037769D /* PBXContainerItemProxy */;
+			target = 49803A0F1EAB605A0066B884 /* S2Geometry macOS */;
+			targetProxy = 49803A1A1EAB605B0066B884 /* PBXContainerItemProxy */;
+		};
+		49803A371EAB60720066B884 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49803A2B1EAB60720066B884 /* S2Geometry iOS */;
+			targetProxy = 49803A361EAB60720066B884 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		49803A221EAB605B0066B884 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = D87ZC5H69L;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Support/FrameworkInfo.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mcrollin.S2Geometry-macOS";
+				PRODUCT_NAME = S2Geometry;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		49803A231EAB605B0066B884 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = D87ZC5H69L;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Support/FrameworkInfo.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mcrollin.S2Geometry-macOS";
+				PRODUCT_NAME = S2Geometry;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		49803A251EAB605B0066B884 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = D87ZC5H69L;
+				INFOPLIST_FILE = Support/TestsInfo.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mcrollin.S2Geometry-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		49803A261EAB605B0066B884 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = D87ZC5H69L;
+				INFOPLIST_FILE = Support/TestsInfo.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mcrollin.S2Geometry-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		49803A3E1EAB60730066B884 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = D87ZC5H69L;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Support/FrameworkInfo.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mcrollin.S2Geometry-iOS";
+				PRODUCT_NAME = S2Geometry;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		49803A3F1EAB60730066B884 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = D87ZC5H69L;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Support/FrameworkInfo.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mcrollin.S2Geometry-iOS";
+				PRODUCT_NAME = S2Geometry;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		49803A411EAB60730066B884 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = D87ZC5H69L;
+				INFOPLIST_FILE = Support/TestsInfo.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mcrollin.S2Geometry-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		49803A421EAB60730066B884 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = D87ZC5H69L;
+				INFOPLIST_FILE = Support/TestsInfo.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mcrollin.S2Geometry-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		498321E61E98B6E60037769D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -442,9 +809,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=300";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -489,8 +858,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=300";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -498,107 +869,46 @@
 			};
 			name = Release;
 		};
-		498321E91E98B6E60037769D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = D87ZC5H69L;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Sources/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=200";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mcrollin.S2Geometry;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		498321EA1E98B6E60037769D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = D87ZC5H69L;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Sources/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=200";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mcrollin.S2Geometry;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		498321EC1E98B6E60037769D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = D87ZC5H69L;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mcrollin.S2GeometryTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		498321ED1E98B6E60037769D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = D87ZC5H69L;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mcrollin.S2GeometryTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		49803A211EAB605B0066B884 /* Build configuration list for PBXNativeTarget "S2Geometry macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49803A221EAB605B0066B884 /* Debug */,
+				49803A231EAB605B0066B884 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		49803A241EAB605B0066B884 /* Build configuration list for PBXNativeTarget "S2Geometry macOS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49803A251EAB605B0066B884 /* Debug */,
+				49803A261EAB605B0066B884 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		49803A3D1EAB60730066B884 /* Build configuration list for PBXNativeTarget "S2Geometry iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49803A3E1EAB60730066B884 /* Debug */,
+				49803A3F1EAB60730066B884 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		49803A401EAB60730066B884 /* Build configuration list for PBXNativeTarget "S2Geometry iOS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49803A411EAB60730066B884 /* Debug */,
+				49803A421EAB60730066B884 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		498321CE1E98B6E60037769D /* Build configuration list for PBXProject "S2Geometry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				498321E61E98B6E60037769D /* Debug */,
 				498321E71E98B6E60037769D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		498321E81E98B6E60037769D /* Build configuration list for PBXNativeTarget "S2Geometry" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				498321E91E98B6E60037769D /* Debug */,
-				498321EA1E98B6E60037769D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		498321EB1E98B6E60037769D /* Build configuration list for PBXNativeTarget "S2GeometryTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				498321EC1E98B6E60037769D /* Debug */,
-				498321ED1E98B6E60037769D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

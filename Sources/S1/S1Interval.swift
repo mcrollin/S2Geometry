@@ -8,22 +8,22 @@
 
 import Foundation
 
-// S1Interval represents a closed interval on a unit circle.
-// Zero-length intervals (where low == high) represent single points.
-// If low > high then the interval is "inverted".
-// The point at (-1, 0) on the unit circle has two valid representations,
-// [π,π] and [-π,-π]. We normalize the latter to the former in IntervalFromEndpoints.
-// There are two special intervals that take advantage of that:
-//   - the full interval, [-π,π], and
-//   - the empty interval, [π,-π].
-// Treat the exported fields as read-only.
+/// S1Interval represents a closed interval on a unit circle.
+/// Zero-length intervals (where low == high) represent single points.
+/// If low > high then the interval is "inverted".
+/// The point at (-1, 0) on the unit circle has two valid representations,
+/// [π,π] and [-π,-π]. We normalize the latter to the former in IntervalFromEndpoints.
+/// There are two special intervals that take advantage of that:
+///   - the full interval, [-π,π], and
+///   - the empty interval, [π,-π].
+/// Treat the exported fields as read-only.
 struct S1Interval {
     let low: Double
     let high: Double
 
-    // Constructs a new interval from endpoints.
-    // Both arguments must be in the range [-π,π].
-    // This function allows inverted intervals to be created.
+    /// Constructs a new interval from endpoints.
+    /// Both arguments must be in the range [-π,π].
+    /// This function allows inverted intervals to be created.
     init(low: Double, high: Double) {
         var ll = low
         var hh = high
@@ -41,17 +41,24 @@ struct S1Interval {
     }
 }
 
-fileprivate extension S1Interval {
-
-    init(unboundedLow: Double, unboundedHigh: Double) {
-        low = unboundedLow
-        high = unboundedHigh
-    }
-}
-
+// MARK: Static factories and Arithmetic operators
 extension S1Interval {
 
-    // Computes distance from a to b in [0,2π], in a numerically stable way.
+    /// Empty interval.
+    static let empty = S1Interval(unboundedLow: .pi, unboundedHigh: -.pi)
+
+    /// Full interval.
+    static var full = S1Interval(unboundedLow: -.pi, unboundedHigh: .pi)
+
+    /// Expands the interval to include the other interval.
+    /// This is the same as replacing the interval by the union of the two interval.
+    static func + (lhs: S1Interval, rhs: S1Interval) -> S1Interval {
+        return lhs.union(with: rhs)
+    }
+
+    /// Computes distance from a to b in [0,2π], in a numerically stable way.
+    ///
+    /// - returns: the distance between both points.
     static func positiveDistance(from pointA: Double, to pointB: Double) -> Double {
         let distance = pointB - pointA
 
@@ -63,18 +70,19 @@ extension S1Interval {
         // the return result is approximately 2 * pi and not zero.
         return (pointB + .pi) - (pointA - .pi)
     }
+}
 
-    // Expands the interval to include the other interval.
-    // This is the same as replacing the interval by the union of the two interval.
-    static func + (lhs: S1Interval, rhs: S1Interval) -> S1Interval {
-        return lhs.union(with: rhs)
+// MARK: Private instance methods
+fileprivate extension S1Interval {
+
+    init(unboundedLow: Double, unboundedHigh: Double) {
+        low = unboundedLow
+        high = unboundedHigh
     }
+}
 
-    // Empty interval.
-    static let empty = S1Interval(unboundedLow: .pi, unboundedHigh: -.pi)
-
-    // Full interval.
-    static var full = S1Interval(unboundedLow: -.pi, unboundedHigh: .pi)
+// MARK: Instance methods and computed properties
+extension S1Interval {
 
     var complementCenter: Double {
         if low != high {
@@ -92,8 +100,30 @@ extension S1Interval {
         return inverted
     }
 
-    // Constructs the minimal interval containing the two given points.
-    // Both arguments must be in [-π,π].
+    /// Interval with endpoints swapped.
+    var inverted: S1Interval {
+        return S1Interval(unboundedLow: high, unboundedHigh: low)
+    }
+
+    /// Whether the interval is valid.
+    var isValid: Bool {
+        return abs(low) <= .pi && abs(high) <= .pi
+            && !(low == -.pi && high != .pi)
+            && !(high == -.pi && low != .pi)
+    }
+
+    /// Whether the interval is full.
+    var isFull: Bool {
+        return low == -.pi && high == .pi
+    }
+
+    /// Whether the interval is inverted; that is, whether low > high.
+    var isInverted: Bool {
+        return low > high
+    }
+
+    /// Constructs the minimal interval containing the two given points.
+    /// Both arguments must be in [-π,π].
     init(pointA: Double, pointB: Double) {
         var a = pointA
         var b = pointB
@@ -115,43 +145,23 @@ extension S1Interval {
         }
     }
 
-    // Interval with endpoints swapped.
-    var inverted: S1Interval {
-        return S1Interval(unboundedLow: high, unboundedHigh: low)
-    }
-
-    // Reports whether the interval is valid.
-    func isValid() -> Bool {
-        return abs(low) <= .pi && abs(high) <= .pi
-            && !(low == -.pi && high != .pi)
-            && !(high == -.pi && low != .pi)
-    }
-
-    // Reports whether the interval is full.
-    func isFull() -> Bool {
-        return low == -.pi && high == .pi
-    }
-
-    // Reports whether the interval is inverted; that is, whether low > high.
-    func isInverted() -> Bool {
-        return low > high
-    }
-
-    // Assumes that the point ∈ (-π,π].
+    /// Assumes that the point ∈ (-π,π].
+    ///
+    /// - returns: true iff point is contained in the interval.
     func fastContains(point: Double) -> Bool {
-        if isInverted() {
-            return (point >= low || point <= high) && !isEmpty()
+        if isInverted {
+            return (point >= low || point <= high) && !isEmpty
         }
 
         return point >= low && point <= high
     }
 
-    // Distance realized by either two high endpoints or two low endpoints, whichever is farther apart.
+    /// - returns: the distance realized by either two high endpoints or two low endpoints, whichever is farther apart.
     func directedHausdorffDistance(with other: S1Interval) -> Double {
         // Also includes the case is interval is empty
         if other.contains(interval: self) {
             return 0
-        } else if other.isEmpty() {
+        } else if other.isEmpty {
             return .pi // Maximum possible distance on S1
         }
 

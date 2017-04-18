@@ -28,8 +28,8 @@ func ==~<T: AlmostEquatable & EquatableWithinEpsilon>(lhs: T, rhs: T) -> Bool {
 
 extension Double: EquatableWithinEpsilon {
 
-    // epsilon is a small number that represents a reasonable level of noise
-    // between two values that can be considered to be equal.
+    /// epsilon is a small number that represents a reasonable level of noise
+    /// between two values that can be considered to be equal.
     public static let epsilon: Double.Stride = ulpOfOne // 2.22044604925031e-16
 }
 

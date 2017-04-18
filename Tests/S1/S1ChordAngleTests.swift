@@ -9,8 +9,6 @@
 import XCTest
 @testable import S2Geometry
 
-// swiftlint:disable nesting
-
 class S1ChordAngleTests: XCTestCase {
 
     let zero: S1ChordAngle = 0
@@ -21,27 +19,22 @@ class S1ChordAngleTests: XCTestCase {
     let degree180: S1ChordAngle = .straight
 
     func testBasics() {
-        struct Test {
-            let a: S1ChordAngle
-            let b: S1ChordAngle
-            let lessThan: Bool
-            let equal: Bool
-        }
+        typealias Test = (a: S1ChordAngle, b: S1ChordAngle, lessThan: Bool, equal: Bool)
 
         let tests = [Test(a: .negative, b: .negative, lessThan: false, equal: true),
                      Test(a: .negative, b: zero, lessThan: true, equal: false),
                      Test(a: .negative, b: .straight, lessThan: true, equal: false),
-                     Test(a: .negative, b: .infinite, lessThan: true, equal: false),
+                     Test(a: .negative, b: .infinity, lessThan: true, equal: false),
 
                      Test(a: zero, b: zero, lessThan: false, equal: true),
                      Test(a: zero, b: .straight, lessThan: true, equal: false),
-                     Test(a: zero, b: .infinite, lessThan: true, equal: false),
+                     Test(a: zero, b: .infinity, lessThan: true, equal: false),
 
                      Test(a: .straight, b: .straight, lessThan: false, equal: true),
-                     Test(a: .straight, b: .infinite, lessThan: true, equal: false),
+                     Test(a: .straight, b: .infinity, lessThan: true, equal: false),
 
-                     Test(a: .infinite, b: .infinite, lessThan: false, equal: true),
-                     Test(a: .infinite, b: .straight, lessThan: false, equal: false)]
+                     Test(a: .infinity, b: .infinity, lessThan: false, equal: true),
+                     Test(a: .infinity, b: .straight, lessThan: false, equal: false)]
 
         for test in tests {
             XCTAssertEqual(test.a < test.b, test.lessThan, "with \(test.a) and \(test.b)")
@@ -50,14 +43,8 @@ class S1ChordAngleTests: XCTestCase {
     }
 
     func testIsFunction() {
-        struct Test {
-            let angle: S1ChordAngle
-            let isNegative: Bool
-            let isZero: Bool
-            let isInfinite: Bool
-            let isSpecial: Bool
-            let isValid: Bool
-        }
+        typealias Test = (angle: S1ChordAngle, isNegative: Bool, isZero: Bool,
+            isInfinite: Bool, isSpecial: Bool, isValid: Bool)
 
         let tests = [Test(angle: zero, isNegative: false, isZero: true,
                           isInfinite: false, isSpecial: false, isValid: true),
@@ -65,15 +52,15 @@ class S1ChordAngleTests: XCTestCase {
                           isInfinite: false, isSpecial: true, isValid: true),
                      Test(angle: .straight, isNegative: false, isZero: false,
                           isInfinite: false, isSpecial: false, isValid: true),
-                     Test(angle: .infinite, isNegative: false, isZero: false,
+                     Test(angle: .infinity, isNegative: false, isZero: false,
                           isInfinite: true, isSpecial: true, isValid: true)]
 
         for test in tests {
             XCTAssertEqual(test.angle < 0, test.isNegative, "with \(test.angle)")
             XCTAssertEqual(test.angle == 0, test.isZero, "with \(test.angle)")
-            XCTAssertEqual(test.angle.isInfinite(), test.isInfinite, "with \(test.angle)")
-            XCTAssertEqual(test.angle.isSpecial(), test.isSpecial, "with \(test.angle)")
-            XCTAssertEqual(test.angle.isValid(), test.isValid, "with \(test.angle)")
+            XCTAssertEqual(test.angle.isInfinite, test.isInfinite, "with \(test.angle)")
+            XCTAssertEqual(test.angle.isSpecial, test.isSpecial, "with \(test.angle)")
+            XCTAssertEqual(test.angle.isValid, test.isValid, "with \(test.angle)")
         }
     }
 
@@ -83,15 +70,11 @@ class S1ChordAngleTests: XCTestCase {
         }
 
         XCTAssertEqual(S1ChordAngle.angle(.pi), .straight)
-        XCTAssertEqual(S1ChordAngle.angle(.infinite).angle, S1ChordAngle.infinite)
+        XCTAssertEqual(S1ChordAngle.angle(.infinity).angle, S1ChordAngle.infinity)
     }
 
     func testArithmetic() {
-        struct Test {
-            let a: S1ChordAngle
-            let b: S1ChordAngle
-            let expected: S1ChordAngle
-        }
+        typealias Test = (a: S1ChordAngle, b: S1ChordAngle, expected: S1ChordAngle)
 
         let addTests = [Test(a: zero, b: zero, expected: zero),
                         Test(a: degree60, b: zero, expected: degree60),
@@ -107,7 +90,7 @@ class S1ChordAngleTests: XCTestCase {
                         Test(a: degree180, b: degree180, expected: degree180)]
 
         for test in addTests {
-            XCTAssertTrue(test.a.add(test.b) ==~ test.expected, "with \(test.a) and \(test.b)")
+            XCTAssert(test.a.add(test.b) ==~ test.expected, "with \(test.a) and \(test.b)")
         }
 
         let subTests = [Test(a: zero, b: zero, expected: zero),
@@ -120,7 +103,7 @@ class S1ChordAngleTests: XCTestCase {
                         Test(a: degree180, b: zero, expected: degree180)]
 
         for test in subTests {
-            XCTAssertTrue(test.a.substract(test.b) ==~ test.expected, "with \(test.a) and \(test.b)")
+            XCTAssert(test.a.substract(test.b) ==~ test.expected, "with \(test.a) and \(test.b)")
         }
     }
 
@@ -132,34 +115,30 @@ class S1ChordAngleTests: XCTestCase {
             let radians = .pi * Double(iter) / Double(iters)
             let angle = S1ChordAngle.angle(radians)
 
-            XCTAssertTrue(abs(sin(radians) - angle.sinus) <= epsilon, "with \(iter)")
-            XCTAssertTrue(abs(cos(radians) - angle.cosinus) <= epsilon, "with \(iter)")
+            XCTAssert(abs(sin(radians) - angle.sinus) <= epsilon, "with \(iter)")
+            XCTAssert(abs(cos(radians) - angle.cosinus) <= epsilon, "with \(iter)")
 
             // Since tan(x) is unbounded near pi/4, we map the result back to an
             // angle before comparing. The assertion is that the result is equal to
             // the tangent of a nearby angle.
-            XCTAssertTrue(abs(atan(tan(radians)) - atan(angle.tangent)) <= epsilon, "with \(iter)")
+            XCTAssert(abs(atan(tan(radians)) - atan(angle.tangent)) <= epsilon, "with \(iter)")
         }
 
         let angle90 = S1ChordAngle.squareLength(2)
         let angle180 = S1ChordAngle.squareLength(4)
 
-        XCTAssertTrue(1.0 ==~ angle90.sinus)
-        XCTAssertTrue(0.0 ==~ angle90.cosinus)
-        XCTAssertTrue(angle90.tangent.isInfinite())
-        XCTAssertTrue(0.0 ==~ angle180.sinus)
-        XCTAssertTrue(-1.0 ==~ angle180.cosinus)
-        XCTAssertTrue(0.0 ==~ angle180.tangent)
+        XCTAssert(1.0 ==~ angle90.sinus)
+        XCTAssert(0.0 ==~ angle90.cosinus)
+        XCTAssert(angle90.tangent.isInfinite)
+        XCTAssert(0.0 ==~ angle180.sinus)
+        XCTAssert(-1.0 ==~ angle180.cosinus)
+        XCTAssert(0.0 ==~ angle180.tangent)
     }
 
     func testExpanded() {
-        struct Test {
-            let angle: S1ChordAngle
-            let add: Double
-            let expected: S1ChordAngle
-        }
+        typealias Test = (angle: S1ChordAngle, add: Double, expected: S1ChordAngle)
 
-        let tests = [Test(angle: .infinite, add: -5, expected: .infinite),
+        let tests = [Test(angle: .infinity, add: -5, expected: .infinity),
                      Test(angle: .straight, add: 5, expected: S1ChordAngle.angle(4)),
                      Test(angle: S1ChordAngle.squareLength(42), add: 5, expected: S1ChordAngle.angle(4)),
                      Test(angle: zero, add: -5, expected: zero),
@@ -173,7 +152,22 @@ class S1ChordAngleTests: XCTestCase {
                            test.expected, "with \(test.angle) and \(test.add)")
         }
 
-        XCTAssertTrue(zero.expanded(errorBound: zero.maxAngleError) ==~ zero)
-        XCTAssertTrue(zero.expanded(errorBound: zero.maxPointError) ==~ zero)
+        XCTAssert(zero.expanded(errorBound: zero.maxAngleError) ==~ zero)
+        XCTAssert(zero.expanded(errorBound: zero.maxPointError) ==~ zero)
+    }
+
+    func testBetweenPoints() {
+        for _ in 0..<100 {
+            let m = RandomHelper.frame()
+            let x = m.column(0)
+            let y = m.column(1)
+            let z = m.column(2)
+            let w = (y + z).normalized
+
+            XCTAssertEqual(S1ChordAngle.betweenPoints(x: z, y: z), 0)
+            XCTAssertLessThan(S1ChordAngle.betweenPoints(x: z * -1.0, y: z).angle.radians - .pi, 1e-7)
+            XCTAssertLessThan(S1ChordAngle.betweenPoints(x: x, y: z).angle.radians - .pi / 2, 1e-15)
+            XCTAssertLessThan(S1ChordAngle.betweenPoints(x: w, y: z).angle.radians - .pi / 4, 1e-15)
+        }
     }
 }

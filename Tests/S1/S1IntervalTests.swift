@@ -9,7 +9,7 @@
 import XCTest
 @testable import S2Geometry
 
-// swiftlint:disable nesting line_length function_body_length type_body_length file_length
+// swiftlint:disable line_length function_body_length type_body_length file_length
 
 class S1IntervalTests: XCTestCase {
 
@@ -49,12 +49,9 @@ class S1IntervalTests: XCTestCase {
     let mid41 = S1Interval(low: -0.01, high: 0.02)
 
     func testStringConversion() {
-        struct Test {
-            let interval: S1Interval
-            let expected: String
-        }
+        typealias Test = (interval: S1Interval, expected: String)
 
-        let tests = [Test(interval: S1Interval(low: 42, high: -4.5), expected: "[42.0,-4.5]")]
+        let tests = [Test(interval: S1Interval(low: 42, high: -4.5), expected: "[low:42.0, high:-4.5]")]
 
         for test in tests {
             let got = test.interval.description
@@ -69,13 +66,9 @@ class S1IntervalTests: XCTestCase {
 
         let interval = S1Interval(point: 0)
 
-        XCTAssertTrue(interval.isValid(), "zero value Interval is not valid")
+        XCTAssert(interval.isValid, "zero value Interval is not valid")
 
-        struct Test {
-            let pointA: Double
-            let pointB: Double
-            let expected: S1Interval
-        }
+        typealias Test = (pointA: Double, pointB: Double, expected: S1Interval)
 
         let tests = [Test(pointA: -.pi, pointB: .pi, expected: pi),
                      Test(pointA: .pi, pointB: -.pi, expected: pi),
@@ -90,12 +83,12 @@ class S1IntervalTests: XCTestCase {
     }
 
     func testSimplePredicates() {
-        XCTAssertTrue(zero.isValid() && !zero.isEmpty() && !zero.isFull(), "zero interval is invalid or empty or full")
-        XCTAssertTrue(empty.isValid() && empty.isEmpty() && !empty.isFull(), "empty interval is invalid or not empty or full")
-        XCTAssertTrue(empty.isInverted(), "empty interval is not inverted")
-        XCTAssertTrue(full.isValid() && !full.isEmpty() && full.isFull(), "full interval is invalid or empty or not full")
-        XCTAssertTrue(pi.isValid() && !pi.isEmpty() && !pi.isInverted(), "pi is invalid or empty or inverted")
-        XCTAssertTrue(miPi.isValid() && !miPi.isEmpty() && !miPi.isInverted(), "miPi is invalid or empty or inverted")
+        XCTAssert(zero.isValid && !zero.isEmpty && !zero.isFull, "zero interval is invalid or empty or full")
+        XCTAssert(empty.isValid && empty.isEmpty && !empty.isFull, "empty interval is invalid or not empty or full")
+        XCTAssert(empty.isInverted, "empty interval is not inverted")
+        XCTAssert(full.isValid && !full.isEmpty && full.isFull, "full interval is invalid or empty or not full")
+        XCTAssert(pi.isValid && !pi.isEmpty && !pi.isInverted, "pi is invalid or empty or inverted")
+        XCTAssert(miPi.isValid && !miPi.isEmpty && !miPi.isInverted, "miPi is invalid or empty or inverted")
     }
 
     func testAlmostFullOrEmpty() {
@@ -104,17 +97,14 @@ class S1IntervalTests: XCTestCase {
         // The following value is the greatest representable value less than Pi.
         let almostPi = .pi - 2 * .epsilon
 
-        XCTAssertFalse(S1Interval(low: -almostPi, high: .pi).isFull(), "should not be full")
-        XCTAssertFalse(S1Interval(low: -.pi, high: almostPi).isFull(), "should not be full")
-        XCTAssertFalse(S1Interval(low: .pi, high: -almostPi).isEmpty(), "should not be empty")
-        XCTAssertFalse(S1Interval(low: almostPi, high: -.pi).isEmpty(), "should not be empty")
+        XCTAssertFalse(S1Interval(low: -almostPi, high: .pi).isFull, "should not be full")
+        XCTAssertFalse(S1Interval(low: -.pi, high: almostPi).isFull, "should not be full")
+        XCTAssertFalse(S1Interval(low: .pi, high: -almostPi).isEmpty, "should not be empty")
+        XCTAssertFalse(S1Interval(low: almostPi, high: -.pi).isEmpty, "should not be empty")
     }
 
     func testCenter() {
-        struct Test {
-            let interval: S1Interval
-            let expected: Double
-        }
+        typealias Test = (interval: S1Interval, expected: Double)
 
         let tests = [Test(interval: quad12, expected: .pi / 2),
                      Test(interval: S1Interval(low: 3.1, high: 2.9), expected: 3 - .pi),
@@ -128,15 +118,12 @@ class S1IntervalTests: XCTestCase {
         for test in tests {
             let got = test.interval.center
 
-            XCTAssertTrue(test.expected ==~ got, "with \(test.interval)")
+            XCTAssert(test.expected ==~ got, "with \(test.interval)")
         }
     }
 
     func testLength() {
-        struct Test {
-            let interval: S1Interval
-            let expected: Double
-        }
+        typealias Test = (interval: S1Interval, expected: Double)
 
         let tests = [Test(interval: empty, expected: -1),
                      Test(interval: quad12, expected: .pi),
@@ -149,18 +136,14 @@ class S1IntervalTests: XCTestCase {
         for test in tests {
             let got = test.interval.length
 
-            XCTAssertTrue(test.expected ==~ got, "with \(test.interval)")
+            XCTAssert(test.expected ==~ got, "with \(test.interval)")
         }
     }
 
     func testContainsPoint3() {
-        struct Test {
-            let interval: S1Interval
-            let insidePoints: [Double]
-            let outsidePoints: [Double]
-            let interiorInsidePoints: [Double]
-            let interiorOutsidePoints: [Double]
-        }
+
+        typealias Test = (interval: S1Interval, insidePoints: [Double], outsidePoints: [Double],
+            interiorInsidePoints: [Double], interiorOutsidePoints: [Double])
 
         let tests = [Test(interval: empty,
                           insidePoints: [], outsidePoints: [0, .pi, -.pi],
@@ -186,7 +169,7 @@ class S1IntervalTests: XCTestCase {
 
         for test in tests {
             for point in test.insidePoints {
-                XCTAssertTrue(test.interval.contains(point: point), "with \(point)")
+                XCTAssert(test.interval.contains(point: point), "with \(point)")
             }
 
             for point in test.outsidePoints {
@@ -194,7 +177,7 @@ class S1IntervalTests: XCTestCase {
             }
 
             for point in test.interiorInsidePoints {
-                XCTAssertTrue(test.interval.interiorContains(point: point), "with \(point)")
+                XCTAssert(test.interval.interiorContains(point: point), "with \(point)")
             }
 
             for point in test.interiorOutsidePoints {
@@ -215,16 +198,8 @@ class S1IntervalTests: XCTestCase {
         let quad23Eps = S1Interval(low: quad23.low, high: mid34.high)
         let quadEps123 = S1Interval(low: mid41.low, high: quad23.high)
 
-        struct Test {
-            let x: S1Interval
-            let y: S1Interval
-            let union: S1Interval
-            let intersection: S1Interval
-            let contains: Bool
-            let interiorContains: Bool
-            let intersects: Bool
-            let interiorIntersects: Bool
-        }
+        typealias Test = (x: S1Interval, y: S1Interval, union: S1Interval, intersection: S1Interval,
+            contains: Bool, interiorContains: Bool, intersects: Bool, interiorIntersects: Bool)
 
         let tests = [Test(x: empty, y: empty, union: empty, intersection: empty,
                           contains: true, interiorContains: true, intersects: false, interiorIntersects: false),
@@ -424,11 +399,7 @@ class S1IntervalTests: XCTestCase {
     }
 
     func testAddPoint() {
-        struct Test {
-            let interval: S1Interval
-            let points: [Double]
-            let expected: S1Interval
-        }
+        typealias Test = (interval: S1Interval, points: [Double], expected: S1Interval)
 
         let tests = [Test(interval: empty, points: [0], expected: zero),
                      Test(interval: empty, points: [1, 0], expected: S1Interval(low: 0, high: 1)),
@@ -453,17 +424,13 @@ class S1IntervalTests: XCTestCase {
                 i = i.add(point: point)
             }
 
-            XCTAssertTrue(i.low ==~ expected.low, "with \(test.interval) and \(test.points)")
-            XCTAssertTrue(i.high ==~ expected.high, "with \(test.interval) and \(test.points)")
+            XCTAssert(i.low ==~ expected.low, "with \(test.interval) and \(test.points)")
+            XCTAssert(i.high ==~ expected.high, "with \(test.interval) and \(test.points)")
         }
     }
 
     func testExpanded() {
-        struct Test {
-            let interval: S1Interval
-            let margin: Double
-            let expected: S1Interval
-        }
+        typealias Test = (interval: S1Interval, margin: Double, expected: S1Interval)
 
         let tests = [Test(interval: empty, margin: 1, expected: empty),
                      Test(interval: full, margin: 1, expected: full),
@@ -487,10 +454,7 @@ class S1IntervalTests: XCTestCase {
     }
 
     func testInverted() {
-        struct Test {
-            let interval: S1Interval
-            let expected: S1Interval
-        }
+        typealias Test = (interval: S1Interval, expected: S1Interval)
 
         let tests = [Test(interval: zero, expected: zero),
                      Test(interval: empty, expected: full),
@@ -503,14 +467,14 @@ class S1IntervalTests: XCTestCase {
     }
 
     func testComplement() {
-        XCTAssertTrue(empty.complement.isFull())
-        XCTAssertTrue(full.complement.isEmpty())
-        XCTAssertTrue(pi.complement.isFull())
-        XCTAssertTrue(miPi.complement.isFull())
-        XCTAssertTrue(zero.complement.isFull())
-        XCTAssertTrue(quad12.complement ==~ quad34)
-        XCTAssertTrue(quad34.complement ==~ quad12)
-        XCTAssertTrue(quad123.complement ==~ quad4)
+        XCTAssert(empty.complement.isFull)
+        XCTAssert(full.complement.isEmpty)
+        XCTAssert(pi.complement.isFull)
+        XCTAssert(miPi.complement.isFull)
+        XCTAssert(zero.complement.isFull)
+        XCTAssert(quad12.complement ==~ quad34)
+        XCTAssert(quad34.complement ==~ quad12)
+        XCTAssert(quad123.complement ==~ quad4)
     }
 
     func testComplementCenter() {

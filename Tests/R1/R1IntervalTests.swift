@@ -9,7 +9,7 @@
 import XCTest
 @testable import S2Geometry
 
-// swiftlint:disable nesting line_length function_body_length type_body_length
+// swiftlint:disable line_length function_body_length type_body_length
 
 class R1IntervalTests: XCTestCase {
 
@@ -19,12 +19,9 @@ class R1IntervalTests: XCTestCase {
     let empty: R1Interval = .empty
 
     func testStringConversion() {
-        struct Test {
-            let interval: R1Interval
-            let expected: String
-        }
+        typealias Test = (interval: R1Interval, expected: String)
 
-        let tests = [Test(interval: R1Interval(low: 2, high: 4.5), expected: "[2.0,4.5]")]
+        let tests = [Test(interval: R1Interval(low: 2, high: 4.5), expected: "[low:2.0, high:4.5]")]
 
         for test in tests {
             let got = test.interval.description
@@ -34,11 +31,7 @@ class R1IntervalTests: XCTestCase {
     }
 
     func testAlmostEqual() {
-        struct Test {
-            let interval: R1Interval
-            let other: R1Interval
-            let expected: Bool
-        }
+        typealias Test = (interval: R1Interval, other: R1Interval, expected: Bool)
 
         let tests = [Test(interval: empty, other: empty, expected: true),
                      Test(interval: R1Interval(point: 0), other: empty, expected: true),
@@ -71,17 +64,14 @@ class R1IntervalTests: XCTestCase {
     }
 
     func testIsEmpty() {
-        XCTAssertFalse(unit.isEmpty(), "\(unit) should not be empty")
-        XCTAssertFalse(negativeUnit.isEmpty(), "\(negativeUnit) should not be empty")
-        XCTAssertFalse(half.isEmpty(), "\(half) should not be empty")
-        XCTAssertTrue(empty.isEmpty(), "\(empty) should be empty")
+        XCTAssertFalse(unit.isEmpty, "\(unit) should not be empty")
+        XCTAssertFalse(negativeUnit.isEmpty, "\(negativeUnit) should not be empty")
+        XCTAssertFalse(half.isEmpty, "\(half) should not be empty")
+        XCTAssert(empty.isEmpty, "\(empty) should be empty")
     }
 
     func testCenter() {
-        struct Test {
-            let interval: R1Interval
-            let expects: Double
-        }
+        typealias Test = (interval: R1Interval, expects: Double)
 
         let tests = [Test(interval: unit, expects: 0.5),
                      Test(interval: negativeUnit, expects: -0.5),
@@ -95,10 +85,7 @@ class R1IntervalTests: XCTestCase {
     }
 
     func testLength() {
-        struct Test {
-            let interval: R1Interval
-            let expects: Double
-        }
+        typealias Test = (interval: R1Interval, expects: Double)
 
         let tests = [Test(interval: unit, expects: 1),
                      Test(interval: negativeUnit, expects: 1),
@@ -112,12 +99,7 @@ class R1IntervalTests: XCTestCase {
     }
 
     func testIntervalPointOperations() {
-        struct Test {
-            let interval: R1Interval
-            let point: Double
-            let contains: Bool
-            let interiorContains: Bool
-        }
+        typealias Test = (interval: R1Interval, point: Double, contains: Bool, interiorContains: Bool)
 
         let tests = [Test(interval: unit, point: 0.5, contains: true, interiorContains: true)]
 
@@ -131,14 +113,8 @@ class R1IntervalTests: XCTestCase {
     }
 
     func testIntervalsOperations() {
-        struct Test {
-            let interval: R1Interval
-            let other: R1Interval
-            let contains: Bool
-            let interiorContains: Bool
-            let intersects: Bool
-            let interiorIntersects: Bool
-        }
+        typealias Test = (interval: R1Interval, other: R1Interval, contains: Bool,
+            interiorContains: Bool, intersects: Bool, interiorIntersects: Bool)
 
         let tests = [Test(interval: empty, other: empty,
                           contains: true, interiorContains: true,
@@ -183,11 +159,7 @@ class R1IntervalTests: XCTestCase {
     }
 
     func testIntersection() {
-        struct Test {
-            let x: R1Interval
-            let y: R1Interval
-            let expected: R1Interval
-        }
+        typealias Test = (x: R1Interval, y: R1Interval, expected: R1Interval)
 
         let tests = [Test(x: unit, y: half, expected: half),
                      Test(x: unit, y: negativeUnit, expected: R1Interval(low: 0, high: 0)),
@@ -203,11 +175,7 @@ class R1IntervalTests: XCTestCase {
     }
 
     func testUnion() {
-        struct Test {
-            let x: R1Interval
-            let y: R1Interval
-            let expected: R1Interval
-        }
+        typealias Test = (x: R1Interval, y: R1Interval, expected: R1Interval)
 
         let tests = [Test(x: R1Interval(low: 99, high: 100), y: empty, expected: R1Interval(low: 99, high: 100)),
                      Test(x: empty, y: R1Interval(low: 99, high: 100), expected: R1Interval(low: 99, high: 100)),
@@ -232,11 +200,7 @@ class R1IntervalTests: XCTestCase {
     }
 
     func testAddPoint() {
-        struct Test {
-            let interval: R1Interval
-            let point: Double
-            let expected: R1Interval
-        }
+        typealias Test = (interval: R1Interval, point: Double, expected: R1Interval)
 
         let tests = [Test(interval: .empty, point: 5, expected: R1Interval(low: 5, high: 5)),
                      Test(interval: R1Interval(point: 5), point: -1, expected: R1Interval(low: -1, high: 5)),
@@ -251,11 +215,7 @@ class R1IntervalTests: XCTestCase {
     }
 
     func testClampPoint() {
-        struct Test {
-            let interval: R1Interval
-            let point: Double
-            let expected: Double
-        }
+        typealias Test = (interval: R1Interval, point: Double, expected: Double)
 
         let tests = [Test(interval: R1Interval(low: 0.1, high: 0.4), point: 0.3, expected: 0.3),
                      Test(interval: R1Interval(low: 0.1, high: 0.4), point: -7, expected: 0.1),
@@ -269,11 +229,7 @@ class R1IntervalTests: XCTestCase {
     }
 
     func testExpand() {
-        struct Test {
-            let interval: R1Interval
-            let margin: Double
-            let expected: R1Interval
-        }
+        typealias Test = (interval: R1Interval, margin: Double, expected: R1Interval)
 
         let tests = [Test(interval: empty, margin: 0.45, expected: empty),
                      Test(interval: unit, margin: 0.5, expected: R1Interval(low: -0.5, high: 1.5)),

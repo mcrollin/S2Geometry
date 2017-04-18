@@ -9,7 +9,7 @@
 import XCTest
 @testable import S2Geometry
 
-// swiftlint:disable nesting line_length
+// swiftlint:disable line_length
 
 class S1AngleTests: XCTestCase {
 
@@ -25,7 +25,7 @@ class S1AngleTests: XCTestCase {
 
     func testEpsilon() {
         // For unknown reasons the first test gives a variance in the 16th decimal place.
-        XCTAssertTrue(S1Angle.degrees(-45) ==~ S1Angle.degrees(-4500000, epsilon: .e5), "-4500000 e6")
+        XCTAssert(S1Angle.degrees(-45) ==~ S1Angle.degrees(-4500000, epsilon: .e5), "-4500000 e6")
         XCTAssertEqual(S1Angle.degrees(-60), S1Angle.degrees(-60000000, epsilon: .e6), "-60000000 e6")
         XCTAssertEqual(S1Angle.degrees(75), S1Angle.degrees(750000000, epsilon: .e7), "750000000 e7")
 
@@ -34,10 +34,7 @@ class S1AngleTests: XCTestCase {
         XCTAssertEqual(S1Angle.degrees(-12.3456789).epsilon7, -123456789, "-12.3456789 epsilon7")
 
         // Rounding tests
-        struct Test {
-            let degrees: Double
-            let expected: Int
-        }
+        typealias Test = (degrees: Double, expected: Int)
 
         let tests = [Test(degrees: 0.500000001, expected: 1),
                      Test(degrees: -0.500000001, expected: -1),
@@ -52,10 +49,7 @@ class S1AngleTests: XCTestCase {
     }
 
     func testNormalizeCorrectlyCannonicalizesAngles() {
-        struct Test {
-            let degrees: Double
-            let expects: Double
-        }
+        typealias Test = (degrees: Double, expects: Double)
 
         let tests = [Test(degrees: 360, expects: 0),
                      Test(degrees: -180, expects: 180),
@@ -78,10 +72,7 @@ class S1AngleTests: XCTestCase {
             XCTAssertEqual(S1Angle.degrees(k45).degrees, k45, "with \(k)")
         }
 
-        struct Test {
-            let degrees: Double
-            let radians: Double
-        }
+        typealias Test = (degrees: Double, radians: Double)
 
         let tests = [Test(degrees: 180, radians: 1),
                      Test(degrees: 60, radians: 3),
@@ -108,15 +99,12 @@ class S1AngleTests: XCTestCase {
     }
 
     func testIsInfinite() {
-        XCTAssertTrue(S1Angle.degrees(.infinity).isInfinite())
-        XCTAssertTrue(S1Angle.infinite.isInfinite())
+        XCTAssert(S1Angle.degrees(.infinity).isInfinite)
+        XCTAssert(S1Angle.infinity.isInfinite)
     }
 
     func testAbsolute() {
-        struct Test {
-            let angle: S1Angle
-            let expected: Double
-        }
+        typealias Test = (angle: S1Angle, expected: Double)
 
         let tests = [Test(angle: S1Angle.radians(0), expected: 0),
                      Test(angle: S1Angle.radians(.pi / 2), expected: .pi / 2),
