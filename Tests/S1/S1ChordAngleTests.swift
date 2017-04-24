@@ -6,8 +6,8 @@
 //  Copyright © 2017 Marc Rollin. All rights reserved.
 //
 
-import XCTest
 @testable import S2Geometry
+import XCTest
 
 class S1ChordAngleTests: XCTestCase {
 
@@ -21,20 +21,22 @@ class S1ChordAngleTests: XCTestCase {
     func testBasics() {
         typealias Test = (a: S1ChordAngle, b: S1ChordAngle, lessThan: Bool, equal: Bool)
 
-        let tests = [Test(a: .negative, b: .negative, lessThan: false, equal: true),
-                     Test(a: .negative, b: zero, lessThan: true, equal: false),
-                     Test(a: .negative, b: .straight, lessThan: true, equal: false),
-                     Test(a: .negative, b: .infinity, lessThan: true, equal: false),
+        let tests = [
+            Test(a: .negative, b: .negative, lessThan: false, equal: true),
+            Test(a: .negative, b: zero, lessThan: true, equal: false),
+            Test(a: .negative, b: .straight, lessThan: true, equal: false),
+            Test(a: .negative, b: .infinity, lessThan: true, equal: false),
 
-                     Test(a: zero, b: zero, lessThan: false, equal: true),
-                     Test(a: zero, b: .straight, lessThan: true, equal: false),
-                     Test(a: zero, b: .infinity, lessThan: true, equal: false),
+            Test(a: zero, b: zero, lessThan: false, equal: true),
+            Test(a: zero, b: .straight, lessThan: true, equal: false),
+            Test(a: zero, b: .infinity, lessThan: true, equal: false),
 
-                     Test(a: .straight, b: .straight, lessThan: false, equal: true),
-                     Test(a: .straight, b: .infinity, lessThan: true, equal: false),
+            Test(a: .straight, b: .straight, lessThan: false, equal: true),
+            Test(a: .straight, b: .infinity, lessThan: true, equal: false),
 
-                     Test(a: .infinity, b: .infinity, lessThan: false, equal: true),
-                     Test(a: .infinity, b: .straight, lessThan: false, equal: false)]
+            Test(a: .infinity, b: .infinity, lessThan: false, equal: true),
+            Test(a: .infinity, b: .straight, lessThan: false, equal: false)
+        ]
 
         for test in tests {
             XCTAssertEqual(test.a < test.b, test.lessThan, "with \(test.a) and \(test.b)")
@@ -44,16 +46,18 @@ class S1ChordAngleTests: XCTestCase {
 
     func testIsFunction() {
         typealias Test = (angle: S1ChordAngle, isNegative: Bool, isZero: Bool,
-            isInfinite: Bool, isSpecial: Bool, isValid: Bool)
+                          isInfinite: Bool, isSpecial: Bool, isValid: Bool)
 
-        let tests = [Test(angle: zero, isNegative: false, isZero: true,
-                          isInfinite: false, isSpecial: false, isValid: true),
-                     Test(angle: .negative, isNegative: true, isZero: false,
-                          isInfinite: false, isSpecial: true, isValid: true),
-                     Test(angle: .straight, isNegative: false, isZero: false,
-                          isInfinite: false, isSpecial: false, isValid: true),
-                     Test(angle: .infinity, isNegative: false, isZero: false,
-                          isInfinite: true, isSpecial: true, isValid: true)]
+        let tests = [
+            Test(angle: zero, isNegative: false, isZero: true,
+                 isInfinite: false, isSpecial: false, isValid: true),
+            Test(angle: .negative, isNegative: true, isZero: false,
+                 isInfinite: false, isSpecial: true, isValid: true),
+            Test(angle: .straight, isNegative: false, isZero: false,
+                 isInfinite: false, isSpecial: false, isValid: true),
+            Test(angle: .infinity, isNegative: false, isZero: false,
+                 isInfinite: true, isSpecial: true, isValid: true)
+        ]
 
         for test in tests {
             XCTAssertEqual(test.angle < 0, test.isNegative, "with \(test.angle)")
@@ -76,31 +80,35 @@ class S1ChordAngleTests: XCTestCase {
     func testArithmetic() {
         typealias Test = (a: S1ChordAngle, b: S1ChordAngle, expected: S1ChordAngle)
 
-        let addTests = [Test(a: zero, b: zero, expected: zero),
-                        Test(a: degree60, b: zero, expected: degree60),
-                        Test(a: zero, b: degree60, expected: degree60),
-                        Test(a: degree30, b: degree60, expected: degree90),
-                        Test(a: degree60, b: degree30, expected: degree90),
-                        Test(a: degree180, b: zero, expected: degree180),
-                        Test(a: degree60, b: degree30, expected: degree90),
-                        Test(a: degree90, b: degree90, expected: degree180),
-                        Test(a: degree120, b: degree90, expected: degree180),
-                        Test(a: degree120, b: degree120, expected: degree180),
-                        Test(a: degree30, b: degree180, expected: degree180),
-                        Test(a: degree180, b: degree180, expected: degree180)]
+        let addTests = [
+            Test(a: zero, b: zero, expected: zero),
+            Test(a: degree60, b: zero, expected: degree60),
+            Test(a: zero, b: degree60, expected: degree60),
+            Test(a: degree30, b: degree60, expected: degree90),
+            Test(a: degree60, b: degree30, expected: degree90),
+            Test(a: degree180, b: zero, expected: degree180),
+            Test(a: degree60, b: degree30, expected: degree90),
+            Test(a: degree90, b: degree90, expected: degree180),
+            Test(a: degree120, b: degree90, expected: degree180),
+            Test(a: degree120, b: degree120, expected: degree180),
+            Test(a: degree30, b: degree180, expected: degree180),
+            Test(a: degree180, b: degree180, expected: degree180)
+        ]
 
         for test in addTests {
             XCTAssert(test.a.add(test.b) ==~ test.expected, "with \(test.a) and \(test.b)")
         }
 
-        let subTests = [Test(a: zero, b: zero, expected: zero),
-                        Test(a: degree60, b: degree60, expected: zero),
-                        Test(a: degree180, b: degree180, expected: zero),
-                        Test(a: zero, b: degree60, expected: zero),
-                        Test(a: degree30, b: degree90, expected: zero),
-                        Test(a: degree90, b: degree30, expected: degree60),
-                        Test(a: degree90, b: degree60, expected: degree30),
-                        Test(a: degree180, b: zero, expected: degree180)]
+        let subTests = [
+            Test(a: zero, b: zero, expected: zero),
+            Test(a: degree60, b: degree60, expected: zero),
+            Test(a: degree180, b: degree180, expected: zero),
+            Test(a: zero, b: degree60, expected: zero),
+            Test(a: degree30, b: degree90, expected: zero),
+            Test(a: degree90, b: degree30, expected: degree60),
+            Test(a: degree90, b: degree60, expected: degree30),
+            Test(a: degree180, b: zero, expected: degree180)
+        ]
 
         for test in subTests {
             XCTAssert(test.a.substract(test.b) ==~ test.expected, "with \(test.a) and \(test.b)")
@@ -111,7 +119,7 @@ class S1ChordAngleTests: XCTestCase {
         let epsilon = 1e-14
         let iters = 40
 
-        for iter in 0...iters {
+        for iter in 0 ... iters {
             let radians = .pi * Double(iter) / Double(iters)
             let angle = S1ChordAngle.angle(radians)
 
@@ -138,14 +146,16 @@ class S1ChordAngleTests: XCTestCase {
     func testExpanded() {
         typealias Test = (angle: S1ChordAngle, add: Double, expected: S1ChordAngle)
 
-        let tests = [Test(angle: .infinity, add: -5, expected: .infinity),
-                     Test(angle: .straight, add: 5, expected: S1ChordAngle.angle(4)),
-                     Test(angle: S1ChordAngle.squareLength(42), add: 5, expected: S1ChordAngle.angle(4)),
-                     Test(angle: zero, add: -5, expected: zero),
-                     Test(angle: S1ChordAngle.squareLength(1.25), add: 0.25,
-                          expected: S1ChordAngle.squareLength(1.5)),
-                     Test(angle: S1ChordAngle.squareLength(0.75), add: 0.25,
-                          expected: S1ChordAngle.squareLength(1))]
+        let tests = [
+            Test(angle: .infinity, add: -5, expected: .infinity),
+            Test(angle: .straight, add: 5, expected: S1ChordAngle.angle(4)),
+            Test(angle: S1ChordAngle.squareLength(42), add: 5, expected: S1ChordAngle.angle(4)),
+            Test(angle: zero, add: -5, expected: zero),
+            Test(angle: S1ChordAngle.squareLength(1.25), add: 0.25,
+                 expected: S1ChordAngle.squareLength(1.5)),
+            Test(angle: S1ChordAngle.squareLength(0.75), add: 0.25,
+                 expected: S1ChordAngle.squareLength(1))
+        ]
 
         for test in tests {
             XCTAssertEqual(test.angle.expanded(errorBound: test.add),
@@ -157,7 +167,7 @@ class S1ChordAngleTests: XCTestCase {
     }
 
     func testBetweenPoints() {
-        for _ in 0..<100 {
+        for _ in 0 ..< 100 {
             let m = RandomHelper.frame()
             let x = m.column(0)
             let y = m.column(1)
@@ -166,7 +176,7 @@ class S1ChordAngleTests: XCTestCase {
 
             XCTAssertEqual(S1ChordAngle.betweenPoints(x: z, y: z), 0)
             XCTAssertLessThan(S1ChordAngle.betweenPoints(x: z * -1.0, y: z).angle.radians - .pi, 1e-7)
-            XCTAssertLessThan(S1ChordAngle.betweenPoints(x: x, y: z).angle.radians - .pi / 2, 1e-15)
+            XCTAssertLessThan(S1ChordAngle.betweenPoints(x: x, y: z).angle.radians - .pi / 2, 2e-15)
             XCTAssertLessThan(S1ChordAngle.betweenPoints(x: w, y: z).angle.radians - .pi / 4, 1e-15)
         }
     }

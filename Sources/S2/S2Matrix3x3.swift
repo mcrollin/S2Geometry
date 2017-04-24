@@ -12,9 +12,9 @@ import Foundation
 /// This is not a full fledged matrix.
 /// It only contains the pieces needed to satisfy the computations done within S2.
 struct S2Matrix3x3 {
-    static fileprivate let rowsCount = 3
-    static fileprivate let columnsCount = 3
-    static fileprivate let elementsCount = S2Matrix3x3.rowsCount * S2Matrix3x3.columnsCount
+    fileprivate static let rowsCount = 3
+    fileprivate static let columnsCount = 3
+    fileprivate static let elementsCount = S2Matrix3x3.rowsCount * S2Matrix3x3.columnsCount
     fileprivate var elements: [Double]
 
     init(_ elements: [Double] = [Double](repeating: 0, count: S2Matrix3x3.elementsCount)) {
@@ -58,7 +58,7 @@ extension S2Matrix3x3 {
     /// Converts the resulting 1x3 matrix into a S2Point.
     ///
     /// - returns: The multiplication of the matrix by a point.
-    static func * (lhs: S2Matrix3x3, rhs: S2Point) -> S2Point {
+    static func * (lhs: S2Matrix3x3, rhs: XYZPositionable) -> S2Point {
         let xx = lhs[0, 0] * rhs.x + lhs[0, 1] * rhs.y + lhs[0, 2] * rhs.z
         let yy = lhs[1, 0] * rhs.x + lhs[1, 1] * rhs.y + lhs[1, 2] * rhs.z
         let zz = lhs[2, 0] * rhs.x + lhs[2, 1] * rhs.y + lhs[2, 2] * rhs.z
@@ -66,7 +66,7 @@ extension S2Matrix3x3 {
         return S2Point(x: xx, y: yy, z: zz)
     }
 
-    static func * (lhs: S2Point, rhs: S2Matrix3x3) -> S2Point {
+    static func * (lhs: XYZPositionable, rhs: S2Matrix3x3) -> S2Point {
         return rhs * lhs
     }
 }

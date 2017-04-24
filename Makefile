@@ -1,3 +1,4 @@
+SHELL=/bin/bash -o pipefail
 PRODUCT_NAME=S2Geometry
 PROJECT_OPTION="$(PRODUCT_NAME).xcodeproj"
 XCBUILD=xcodebuild -project $(PROJECT_OPTION)
@@ -16,6 +17,14 @@ re: clean build
 
 lint:
 	./Support/Scripts/swiftlint.sh
+
+lint_autocorrect:
+	./Support/Scripts/swiftlint.sh autocorrect
+
+format:
+	./Support/Scripts/swiftformat.sh ./
+
+format_lint: format lint_autocorrect
 
 test: clean test_macOS test_iOS_10.3
 

@@ -24,18 +24,29 @@ Full parity with C++.
 Full parity with C++ with the exception of:
 
  * S1Interval - Missing clampPoint.
- * S1Angle - Missing conversion to/from S2Point and S2LatLng.
+ * S1Angle - Missing conversion to/from S2Point and S2Coordinate.
 
 ### S²: Spherical Geometry
 
 **Complete**
 
  * S2Matrix3x3
+ * S2Projections
 
 **In Progress**
 
- * S2Point - Missing orderedCounterClockwise, capBound, rectBound, containsCell, intersectsCell, rotate, angle, turnAngle and signedArea.
- * S2Projections - Missing faceUvToXyz, validFaceXyzToUv, xyzToFace, faceXyzToUv, getUNorm, getVNorm, getNorm, getUAxis, getVAxis.
+ * S2Point - missing methods:
+    * orderedCounterClockwise(a: S2Point, b: S2Point, c: S2Point, o: S2Point) -> Bool
+    * capBound() -> S2Cap
+    * rectBound() -> S2Rectangle
+    * contains(cell: S2Cell) -> Bool
+    * intersects(cell: S2Cell) -> Bool
+    * angle(a: S2Point, b: S2Point, c: S2Point) -> Double
+    * turnAngle(a: S2Point, b: S2Point, c: S2Point) -> Double
+    * signedArea(a: S2Point, b: S2Point, c: S2Point) -> Double
+ * S2LatitudeLongitude
+ * S2Cell
+ * S2CellIdentifier (with S2CellLookupTable)
 
 ## Cell Precision Levels
 

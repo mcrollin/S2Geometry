@@ -1,2 +1,53 @@
-disabled_rules: # rule identifiers to exclude from running
- - identifier_name
+opt_in_rules: # some rules are only opt-in
+  - attributes
+  - closure_end_indentation
+  - closure_spacing
+  - conditional_returns_on_newline
+  - empty_count
+  - explicit_init
+  - fatal_error_message
+  - file_header
+  - first_where
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+  - nimble_operator
+  - object_literal
+  - operator_usage_whitespace
+  - overridden_super_call
+  - private_outlet
+  - prohibited_super_call
+  - redundant_nil_coalescing
+  - sorted_imports
+  - switch_case_on_newline
+identifier_name:
+  excluded: # excluded via string array
+    - a
+    - b
+    - c
+    - i
+    - ij
+    - j
+    - ll
+    - p
+    - q
+    - si
+    - st
+    - ti
+    - u
+    - uv
+    - v
+    - x
+    - y
+    - z
+    - e5
+    - e6
+    - e7
+file_header:
+  required_pattern: |
+                    \/\/
+                    \/\/  .*?\.swift
+                    \/\/  S2Geometry
+                    \/\/
+                    \/\/  Created by .*? on \d{1,2}\/\d{1,2}\/\d{2}\.
+                    \/\/  Copyright © \d{4} Marc Rollin\. All rights reserved\.
+                    \/\/

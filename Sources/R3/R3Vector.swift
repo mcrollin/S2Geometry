@@ -6,10 +6,12 @@
 //  Copyright © 2017 Marc Rollin. All rights reserved.
 //
 
+// swiftlint:disable shorthand_operator
+
 import Foundation
 
 /// R3Vector represents a point in ℝ³.
-struct R3Vector {
+struct R3Vector: XYZPositionable, Equatable, Comparable {
     let x: Double
     let y: Double
     let z: Double
@@ -25,17 +27,6 @@ extension R3Vector: CustomStringConvertible {
     }
 }
 
-// MARK: Equatable compliance
-extension R3Vector: Equatable {
-
-    /// - returns: true iff both vectors have similar x, y and z.
-    static func == (lhs: R3Vector, rhs: R3Vector) -> Bool {
-        return lhs.x == rhs.x
-            && lhs.y == rhs.y
-            && lhs.z == rhs.z
-    }
-}
-
 // MARK: AlmostEquatable compliance
 extension R3Vector: AlmostEquatable {
 
@@ -47,41 +38,16 @@ extension R3Vector: AlmostEquatable {
     }
 }
 
-// MARK: Comparable compliance
-// Two entities are compared element by element with the given operator.
-// The first mismatch defines which is less (or greater) than the other.
-// If both have equivalent values they are lexicographically equal.
-extension R3Vector: Comparable {
-
-    static func < (lhs: R3Vector, rhs: R3Vector) -> Bool {
-        if lhs.x != rhs.x {
-            return lhs.x < rhs.x
-        } else if lhs.y != rhs.y {
-            return lhs.y < rhs.y
-        }
-
-        return lhs.z < rhs.z
-    }
-
-    static func <= (lhs: R3Vector, rhs: R3Vector) -> Bool {
-        return lhs == rhs || lhs < rhs
-    }
-
-    static func > (lhs: R3Vector, rhs: R3Vector) -> Bool {
-        return !(lhs == rhs || lhs < rhs)
-    }
-
-    static func >= (lhs: R3Vector, rhs: R3Vector) -> Bool {
-        return lhs == rhs || lhs > rhs
-    }
-}
-
 // MARK: Arithmetic operators
 extension R3Vector {
 
     /// - returns: the standard sum of two vectors.
     static func + (lhs: R3Vector, rhs: R3Vector) -> R3Vector {
         return R3Vector(x: lhs.x + rhs.x, y: lhs.y + rhs.y, z: lhs.z + rhs.z)
+    }
+
+    static func += (lhs: inout R3Vector, rhs: R3Vector) {
+        lhs = lhs + rhs
     }
 
     /// - returns: the standard difference of two vectors.

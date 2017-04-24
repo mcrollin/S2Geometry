@@ -11,24 +11,20 @@ import Foundation
 /// Point represents a point on the unit sphere as a normalized 3D vector.
 ///
 /// - todo: Missing methods
-///     - orderedCounterClockwise
-///     - capBound, rectBound
-///     - containsCell, intersectsCell
-///     - rotate, angle, turnAngle
-///     - signedArea
-struct S2Point {
+///     - orderedCounterClockwise(a: S2Point, b: S2Point, c: S2Point, o: S2Point) -> Bool
+///     - capBound() -> S2Cap
+///     - rectBound() -> S2Rectangle
+///     - contains(cell: S2Cell) -> Bool
+///     - intersects(cell: S2Cell) -> Bool
+///     - angle(a: S2Point, b: S2Point, c: S2Point) -> Double
+///     - turnAngle(a: S2Point, b: S2Point, c: S2Point) -> Double
+///     - signedArea(a: S2Point, b: S2Point, c: S2Point) -> Double
+struct S2Point: XYZPositionable, Equatable, Comparable {
     let vector: R3Vector
-}
 
-// MARK: Equatable compliance
-extension S2Point: Equatable {
-
-    /// - returns: True iff both points have similar x, y and z.
-    static func == (lhs: S2Point, rhs: S2Point) -> Bool {
-        return lhs.x == rhs.x
-            && lhs.y == rhs.y
-            && lhs.z == rhs.z
-    }
+    var x: Double { return vector.x }
+    var y: Double { return vector.y }
+    var z: Double { return vector.z }
 }
 
 // MARK: AlmostEquatable compliance
@@ -225,7 +221,7 @@ extension S2Point {
 
         var vertices = [S2Point]()
 
-        for index in 0..<verticesCount {
+        for index in 0 ..< verticesCount {
             let angle = Double(index) * radianStep
             let point = S2Point(x: r * cos(angle), y: r * sin(angle), z: z)
             let vertex = S2Point.from(frame: frame, point: point)
@@ -274,11 +270,13 @@ extension S2Point {
 // MARK: Instance methods and computed properties
 extension S2Point {
 
-    var x: Double { return vector.x }
-    var y: Double { return vector.y }
-    var z: Double { return vector.z }
     var isUnit: Bool { return vector.isUnit }
     var normal: Double { return vector.normal }
+
+    /// S2Point with nonnegative components.
+    var absolute: S2Point {
+        return S2Point(vector: vector.absolute)
+    }
 
     var orthogonalized: S2Point {
         return S2Point(vector: vector.orthogonalized)
@@ -302,8 +300,31 @@ extension S2Point {
         return matrix.set(column: 0, to: matrix.column(1).crossProduct(with: self))
     }
 
+    var latitude: S1Angle {
+        return atan2(z, sqrt(x * x + y * y)).radians
+    }
+
+    var longitude: S1Angle {
+        return atan2(y, x).radians
+    }
+
+    var latitudeLongitude: S2LatitudeLongitude {
+        return S2LatitudeLongitude(latitude: latitude, longitude: longitude)
+    }
+
     init(x: Double, y: Double, z: Double) {
         vector = R3Vector(x: x, y: y, z: z)
+    }
+
+    /// Constructs the point corresponding to the latitude and longitude.
+    /// The maximum error in the result is 1.5 * dblEpsilon.
+    /// (This does not include the error of converting degrees, E5, E6, or E7 into radians.)
+    init(latitudeLongitude: S2LatitudeLongitude) {
+        let phi = latitudeLongitude.latitude.radians
+        let theta = latitudeLongitude.longitude.radians
+        let cosphi = cos(phi)
+
+        self.init(x: cos(theta) * cosphi, y: sin(theta) * cosphi, z: sin(phi))
     }
 
     /// - parameter other: The other point used to compute the distance.

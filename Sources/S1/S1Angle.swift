@@ -1,5 +1,5 @@
 //
-//  Angle.swift
+//  S1Angle.swift
 //  S2Geometry
 //
 //  Created by Marc Rollin on 4/9/17.

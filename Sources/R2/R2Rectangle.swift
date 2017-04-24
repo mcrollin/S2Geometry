@@ -85,10 +85,12 @@ extension R2Rectangle {
     /// Four vertices of the rectangle.
     /// Vertices are returned in CCW direction starting with the lower left corner.
     var vertices: [R2Point] {
-        return [R2Point(x: x.low, y: y.low),
-                R2Point(x: x.high, y: y.low),
-                R2Point(x: x.high, y: y.high),
-                R2Point(x: x.low, y: y.high)]
+        return [
+            R2Point(x: x.low, y: y.low),
+            R2Point(x: x.high, y: y.low),
+            R2Point(x: x.high, y: y.high),
+            R2Point(x: x.low, y: y.high)
+        ]
     }
 
     /// Whether the rectangle is empty.
@@ -104,7 +106,7 @@ extension R2Rectangle {
 
     /// Constructs a rectangle that contains the given points.
     init(points: R2Point...) {
-        guard points.count > 0 else {
+        guard !points.isEmpty else {
             self.x = R1Interval(point: 0.0)
             self.y = R1Interval(point: 0.0)
 

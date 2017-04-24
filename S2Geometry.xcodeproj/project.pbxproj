@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490475351EB797AA00DB8C9B /* S2Projection+SiTi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490475341EB797AA00DB8C9B /* S2Projection+SiTi.swift */; };
+		490475371EB7991900DB8C9B /* S2Projection+IJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490475361EB7991900DB8C9B /* S2Projection+IJ.swift */; };
+		490475381EB7E72800DB8C9B /* S2Projection+SiTi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490475341EB797AA00DB8C9B /* S2Projection+SiTi.swift */; };
+		490475391EB7E72800DB8C9B /* S2Projection+IJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490475361EB7991900DB8C9B /* S2Projection+IJ.swift */; };
+		496DF0C11EC07DA500D53D0A /* S2Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496DF0C01EC07DA500D53D0A /* S2Metric.swift */; };
+		496DF0C21EC07DA900D53D0A /* S2Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496DF0C01EC07DA500D53D0A /* S2Metric.swift */; };
 		49803A191EAB605B0066B884 /* S2Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49803A101EAB605A0066B884 /* S2Geometry.framework */; };
 		49803A351EAB60720066B884 /* S2Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49803A2C1EAB60720066B884 /* S2Geometry.framework */; };
 		49803A431EAB61760066B884 /* RandomHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498039511EA890880066B884 /* RandomHelper.swift */; };
@@ -45,7 +51,7 @@
 		49803A641EAB61AE0066B884 /* S1Interval+Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B8B1EA50C230063FB98 /* S1Interval+Interval.swift */; };
 		49803A651EAB61AE0066B884 /* S2Matrix3x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B931EA5F6670063FB98 /* S2Matrix3x3.swift */; };
 		49803A661EAB61AE0066B884 /* S2Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B951EA5FC4E0063FB98 /* S2Point.swift */; };
-		49803A671EAB61AE0066B884 /* S2Projections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C192491EA73857004BD3FE /* S2Projections.swift */; };
+		49803A671EAB61AE0066B884 /* S2Projection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C192491EA73857004BD3FE /* S2Projection.swift */; };
 		49803A681EAB61AF0066B884 /* AlmostEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49707BB11E9A252200A995E0 /* AlmostEquatable.swift */; };
 		49803A691EAB61AF0066B884 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965E3591EA35E34002F7642 /* Interval.swift */; };
 		49803A6A1EAB61AF0066B884 /* R1Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498321F11E98B7330037769D /* R1Interval.swift */; };
@@ -60,7 +66,25 @@
 		49803A731EAB61AF0066B884 /* S1Interval+Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B8B1EA50C230063FB98 /* S1Interval+Interval.swift */; };
 		49803A741EAB61AF0066B884 /* S2Matrix3x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B931EA5F6670063FB98 /* S2Matrix3x3.swift */; };
 		49803A751EAB61AF0066B884 /* S2Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F67B951EA5FC4E0063FB98 /* S2Point.swift */; };
-		49803A761EAB61AF0066B884 /* S2Projections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C192491EA73857004BD3FE /* S2Projections.swift */; };
+		49803A761EAB61AF0066B884 /* S2Projection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C192491EA73857004BD3FE /* S2Projection.swift */; };
+		49803A8C1EADE3770066B884 /* S2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49803A8B1EADE3770066B884 /* S2Cell.swift */; };
+		49803A8E1EADE4A00066B884 /* S2CellIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49803A8D1EADE4A00066B884 /* S2CellIdentifier.swift */; };
+		49803A951EADE86C0066B884 /* S2CellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49803A941EADE86C0066B884 /* S2CellTests.swift */; };
+		49803A961EADE86C0066B884 /* S2CellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49803A941EADE86C0066B884 /* S2CellTests.swift */; };
+		49803A981EAE543E0066B884 /* S2CellIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49803A971EAE543E0066B884 /* S2CellIdentifierTests.swift */; };
+		49803A991EAE543E0066B884 /* S2CellIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49803A971EAE543E0066B884 /* S2CellIdentifierTests.swift */; };
+		49803A9C1EAEB75F0066B884 /* String+PaddingLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49803A9B1EAEB75F0066B884 /* String+PaddingLeft.swift */; };
+		49803A9D1EAEB7620066B884 /* String+PaddingLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49803A9B1EAEB75F0066B884 /* String+PaddingLeft.swift */; };
+		49803A9E1EAF21C00066B884 /* S2CellIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49803A8D1EADE4A00066B884 /* S2CellIdentifier.swift */; };
+		49803AA01EAF24770066B884 /* S2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49803A8B1EADE3770066B884 /* S2Cell.swift */; };
+		49F3839A1EB2A01C0002C0CE /* S2LatitudeLongitude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F383991EB2A01C0002C0CE /* S2LatitudeLongitude.swift */; };
+		49F3839C1EB2A7080002C0CE /* S2LatitudeLongitudeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F3839B1EB2A7080002C0CE /* S2LatitudeLongitudeTests.swift */; };
+		49F3839D1EB2A7080002C0CE /* S2LatitudeLongitudeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F3839B1EB2A7080002C0CE /* S2LatitudeLongitudeTests.swift */; };
+		49F3839E1EB2A7110002C0CE /* S2LatitudeLongitude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F383991EB2A01C0002C0CE /* S2LatitudeLongitude.swift */; };
+		49F383A21EB31C470002C0CE /* S2CellLookupTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F383A11EB31C470002C0CE /* S2CellLookupTable.swift */; };
+		49F383A31EB31C4B0002C0CE /* S2CellLookupTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F383A11EB31C470002C0CE /* S2CellLookupTable.swift */; };
+		49F383A51EB47D430002C0CE /* XYZPositionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F383A41EB47D430002C0CE /* XYZPositionable.swift */; };
+		49F383A61EB5CF6F0002C0CE /* XYZPositionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F383A41EB47D430002C0CE /* XYZPositionable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +105,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		490475341EB797AA00DB8C9B /* S2Projection+SiTi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "S2Projection+SiTi.swift"; sourceTree = "<group>"; };
+		490475361EB7991900DB8C9B /* S2Projection+IJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "S2Projection+IJ.swift"; sourceTree = "<group>"; };
 		4965E3591EA35E34002F7642 /* Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
+		496DF0C01EC07DA500D53D0A /* S2Metric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2Metric.swift; sourceTree = "<group>"; };
 		49707BB11E9A252200A995E0 /* AlmostEquatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlmostEquatable.swift; sourceTree = "<group>"; };
 		49707BB41E9A280E00A995E0 /* R2Rectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R2Rectangle.swift; sourceTree = "<group>"; };
 		49707BB61E9A39DD00A995E0 /* R2Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R2Point.swift; sourceTree = "<group>"; };
@@ -99,12 +126,21 @@
 		49803A181EAB605A0066B884 /* S2Geometry macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "S2Geometry macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49803A2C1EAB60720066B884 /* S2Geometry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = S2Geometry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49803A341EAB60720066B884 /* S2Geometry iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "S2Geometry iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49803A8B1EADE3770066B884 /* S2Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2Cell.swift; sourceTree = "<group>"; };
+		49803A8D1EADE4A00066B884 /* S2CellIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2CellIdentifier.swift; sourceTree = "<group>"; };
+		49803A941EADE86C0066B884 /* S2CellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2CellTests.swift; sourceTree = "<group>"; };
+		49803A971EAE543E0066B884 /* S2CellIdentifierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2CellIdentifierTests.swift; sourceTree = "<group>"; };
+		49803A9B1EAEB75F0066B884 /* String+PaddingLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+PaddingLeft.swift"; sourceTree = "<group>"; };
 		498321D71E98B6E60037769D /* S2Geometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = S2Geometry.h; sourceTree = "<group>"; };
 		498321F11E98B7330037769D /* R1Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R1Interval.swift; sourceTree = "<group>"; };
 		498321F71E98B7A10037769D /* R1IntervalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R1IntervalTests.swift; sourceTree = "<group>"; };
 		49C192471EA6C1A1004BD3FE /* S2PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2PointTests.swift; sourceTree = "<group>"; };
-		49C192491EA73857004BD3FE /* S2Projections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2Projections.swift; sourceTree = "<group>"; };
+		49C192491EA73857004BD3FE /* S2Projection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2Projection.swift; sourceTree = "<group>"; };
 		49C1924B1EA80664004BD3FE /* S2ProjectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2ProjectionTests.swift; sourceTree = "<group>"; };
+		49F383991EB2A01C0002C0CE /* S2LatitudeLongitude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2LatitudeLongitude.swift; sourceTree = "<group>"; };
+		49F3839B1EB2A7080002C0CE /* S2LatitudeLongitudeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2LatitudeLongitudeTests.swift; sourceTree = "<group>"; };
+		49F383A11EB31C470002C0CE /* S2CellLookupTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S2CellLookupTable.swift; sourceTree = "<group>"; };
+		49F383A41EB47D430002C0CE /* XYZPositionable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYZPositionable.swift; sourceTree = "<group>"; };
 		49F67B891EA508050063FB98 /* S1ChordAngle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S1ChordAngle.swift; sourceTree = "<group>"; };
 		49F67B8B1EA50C230063FB98 /* S1Interval+Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "S1Interval+Interval.swift"; sourceTree = "<group>"; };
 		49F67B8D1EA50C900063FB98 /* R1Interval+Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "R1Interval+Interval.swift"; sourceTree = "<group>"; };
@@ -153,6 +189,7 @@
 			children = (
 				49707BB11E9A252200A995E0 /* AlmostEquatable.swift */,
 				4965E3591EA35E34002F7642 /* Interval.swift */,
+				49F383A41EB47D430002C0CE /* XYZPositionable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -206,9 +243,16 @@
 		49707BD11E9B5EE700A995E0 /* S2 */ = {
 			isa = PBXGroup;
 			children = (
+				49803A8B1EADE3770066B884 /* S2Cell.swift */,
+				49803A8D1EADE4A00066B884 /* S2CellIdentifier.swift */,
+				49F383A11EB31C470002C0CE /* S2CellLookupTable.swift */,
+				49F383991EB2A01C0002C0CE /* S2LatitudeLongitude.swift */,
 				49F67B931EA5F6670063FB98 /* S2Matrix3x3.swift */,
+				496DF0C01EC07DA500D53D0A /* S2Metric.swift */,
 				49F67B951EA5FC4E0063FB98 /* S2Point.swift */,
-				49C192491EA73857004BD3FE /* S2Projections.swift */,
+				49C192491EA73857004BD3FE /* S2Projection.swift */,
+				490475361EB7991900DB8C9B /* S2Projection+IJ.swift */,
+				490475341EB797AA00DB8C9B /* S2Projection+SiTi.swift */,
 			);
 			path = S2;
 			sourceTree = "<group>";
@@ -226,6 +270,9 @@
 		49707BD31E9B5EF800A995E0 /* S2 */ = {
 			isa = PBXGroup;
 			children = (
+				49803A971EAE543E0066B884 /* S2CellIdentifierTests.swift */,
+				49803A941EADE86C0066B884 /* S2CellTests.swift */,
+				49F3839B1EB2A7080002C0CE /* S2LatitudeLongitudeTests.swift */,
 				49F67B971EA650A20063FB98 /* S2Matrix3x3Tests.swift */,
 				49C192471EA6C1A1004BD3FE /* S2PointTests.swift */,
 				49C1924B1EA80664004BD3FE /* S2ProjectionTests.swift */,
@@ -233,12 +280,20 @@
 			path = S2;
 			sourceTree = "<group>";
 		};
-		498039501EA8905C0066B884 /* Common */ = {
+		498039501EA8905C0066B884 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				498039511EA890880066B884 /* RandomHelper.swift */,
 			);
-			path = Common;
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		49803A9A1EAEB7480066B884 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				49803A9B1EAEB75F0066B884 /* String+PaddingLeft.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		498321CA1E98B6E60037769D = {
@@ -265,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				498321D71E98B6E60037769D /* S2Geometry.h */,
+				49803A9A1EAEB7480066B884 /* Extensions */,
 				49707BB01E9A251600A995E0 /* Protocols */,
 				498321F01E98B7180037769D /* R1 */,
 				49707BB31E9A27F100A995E0 /* R2 */,
@@ -278,7 +334,7 @@
 		498321E11E98B6E60037769D /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				498039501EA8905C0066B884 /* Common */,
+				498039501EA8905C0066B884 /* Helpers */,
 				498321F61E98B7830037769D /* R1 */,
 				49707BB91E9A86B000A995E0 /* R2 */,
 				49707BBA1E9A86B000A995E0 /* R3 */,
@@ -330,7 +386,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49803A211EAB605B0066B884 /* Build configuration list for PBXNativeTarget "S2Geometry macOS" */;
 			buildPhases = (
-				49803A781EAB62D80066B884 /* Swiftlint */,
+				49803A781EAB62D80066B884 /* Lint Format */,
 				49803A0B1EAB605A0066B884 /* Sources */,
 				49803A0C1EAB605A0066B884 /* Frameworks */,
 				49803A0D1EAB605A0066B884 /* Headers */,
@@ -367,7 +423,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49803A3D1EAB60730066B884 /* Build configuration list for PBXNativeTarget "S2Geometry iOS" */;
 			buildPhases = (
-				49803A771EAB62A10066B884 /* Swiftlint */,
+				49803A771EAB62A10066B884 /* Lint Format */,
 				49803A271EAB60720066B884 /* Sources */,
 				49803A281EAB60720066B884 /* Frameworks */,
 				49803A291EAB60720066B884 /* Headers */,
@@ -484,33 +540,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		49803A771EAB62A10066B884 /* Swiftlint */ = {
+		49803A771EAB62A10066B884 /* Lint Format */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = Swiftlint;
+			name = "Lint Format";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "make lint";
+			shellScript = "make format_lint\nmake lint";
 		};
-		49803A781EAB62D80066B884 /* Swiftlint */ = {
+		49803A781EAB62D80066B884 /* Lint Format */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = Swiftlint;
+			name = "Lint Format";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "make lint";
+			shellScript = "make format_lint\nmake lint";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -520,17 +576,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				49803A701EAB61AF0066B884 /* S1Angle.swift in Sources */,
+				49F383A21EB31C470002C0CE /* S2CellLookupTable.swift in Sources */,
 				49803A741EAB61AF0066B884 /* S2Matrix3x3.swift in Sources */,
 				49803A6E1EAB61AF0066B884 /* R3Axis.swift in Sources */,
+				49803A8E1EADE4A00066B884 /* S2CellIdentifier.swift in Sources */,
 				49803A751EAB61AF0066B884 /* S2Point.swift in Sources */,
+				49F3839A1EB2A01C0002C0CE /* S2LatitudeLongitude.swift in Sources */,
 				49803A6F1EAB61AF0066B884 /* R3Vector.swift in Sources */,
+				490475371EB7991900DB8C9B /* S2Projection+IJ.swift in Sources */,
 				49803A6B1EAB61AF0066B884 /* R1Interval+Interval.swift in Sources */,
+				496DF0C11EC07DA500D53D0A /* S2Metric.swift in Sources */,
 				49803A6D1EAB61AF0066B884 /* R2Rectangle.swift in Sources */,
 				49803A691EAB61AF0066B884 /* Interval.swift in Sources */,
-				49803A761EAB61AF0066B884 /* S2Projections.swift in Sources */,
+				49803A761EAB61AF0066B884 /* S2Projection.swift in Sources */,
 				49803A711EAB61AF0066B884 /* S1ChordAngle.swift in Sources */,
+				49803A9C1EAEB75F0066B884 /* String+PaddingLeft.swift in Sources */,
 				49803A721EAB61AF0066B884 /* S1Interval.swift in Sources */,
 				49803A681EAB61AF0066B884 /* AlmostEquatable.swift in Sources */,
+				490475351EB797AA00DB8C9B /* S2Projection+SiTi.swift in Sources */,
+				49F383A51EB47D430002C0CE /* XYZPositionable.swift in Sources */,
+				49803A8C1EADE3770066B884 /* S2Cell.swift in Sources */,
 				49803A731EAB61AF0066B884 /* S1Interval+Interval.swift in Sources */,
 				49803A6A1EAB61AF0066B884 /* R1Interval.swift in Sources */,
 				49803A6C1EAB61AF0066B884 /* R2Point.swift in Sources */,
@@ -549,8 +614,11 @@
 				49803A551EAB61960066B884 /* S1IntervalTests.swift in Sources */,
 				49803A541EAB61960066B884 /* S1ChordAngleTests.swift in Sources */,
 				49803A571EAB61960066B884 /* S2PointTests.swift in Sources */,
+				49803A951EADE86C0066B884 /* S2CellTests.swift in Sources */,
 				49803A491EAB618B0066B884 /* R2PointTests.swift in Sources */,
 				49803A461EAB61860066B884 /* R1IntervalTests.swift in Sources */,
+				49803A981EAE543E0066B884 /* S2CellIdentifierTests.swift in Sources */,
+				49F3839C1EB2A7080002C0CE /* S2LatitudeLongitudeTests.swift in Sources */,
 				49803A581EAB61960066B884 /* S2ProjectionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,16 +628,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				49803A611EAB61AE0066B884 /* S1Angle.swift in Sources */,
+				49F383A31EB31C4B0002C0CE /* S2CellLookupTable.swift in Sources */,
 				49803A651EAB61AE0066B884 /* S2Matrix3x3.swift in Sources */,
 				49803A5F1EAB61AE0066B884 /* R3Axis.swift in Sources */,
+				49803A9E1EAF21C00066B884 /* S2CellIdentifier.swift in Sources */,
 				49803A661EAB61AE0066B884 /* S2Point.swift in Sources */,
+				49F3839E1EB2A7110002C0CE /* S2LatitudeLongitude.swift in Sources */,
 				49803A601EAB61AE0066B884 /* R3Vector.swift in Sources */,
+				490475391EB7E72800DB8C9B /* S2Projection+IJ.swift in Sources */,
+				49803AA01EAF24770066B884 /* S2Cell.swift in Sources */,
+				496DF0C21EC07DA900D53D0A /* S2Metric.swift in Sources */,
 				49803A5C1EAB61AE0066B884 /* R1Interval+Interval.swift in Sources */,
 				49803A5E1EAB61AE0066B884 /* R2Rectangle.swift in Sources */,
+				49803A9D1EAEB7620066B884 /* String+PaddingLeft.swift in Sources */,
 				49803A5A1EAB61AE0066B884 /* Interval.swift in Sources */,
-				49803A671EAB61AE0066B884 /* S2Projections.swift in Sources */,
+				49803A671EAB61AE0066B884 /* S2Projection.swift in Sources */,
+				490475381EB7E72800DB8C9B /* S2Projection+SiTi.swift in Sources */,
 				49803A621EAB61AE0066B884 /* S1ChordAngle.swift in Sources */,
 				49803A631EAB61AE0066B884 /* S1Interval.swift in Sources */,
+				49F383A61EB5CF6F0002C0CE /* XYZPositionable.swift in Sources */,
 				49803A591EAB61AE0066B884 /* AlmostEquatable.swift in Sources */,
 				49803A641EAB61AE0066B884 /* S1Interval+Interval.swift in Sources */,
 				49803A5B1EAB61AE0066B884 /* R1Interval.swift in Sources */,
@@ -589,8 +666,11 @@
 				49803A4E1EAB61960066B884 /* S1IntervalTests.swift in Sources */,
 				49803A4D1EAB61960066B884 /* S1ChordAngleTests.swift in Sources */,
 				49803A501EAB61960066B884 /* S2PointTests.swift in Sources */,
+				49803A961EADE86C0066B884 /* S2CellTests.swift in Sources */,
 				49803A471EAB618A0066B884 /* R2PointTests.swift in Sources */,
 				49803A451EAB61860066B884 /* R1IntervalTests.swift in Sources */,
+				49803A991EAE543E0066B884 /* S2CellIdentifierTests.swift in Sources */,
+				49F3839D1EB2A7080002C0CE /* S2LatitudeLongitudeTests.swift in Sources */,
 				49803A511EAB61960066B884 /* S2ProjectionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -879,6 +959,7 @@
 				49803A231EAB605B0066B884 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49803A241EAB605B0066B884 /* Build configuration list for PBXNativeTarget "S2Geometry macOS Tests" */ = {
 			isa = XCConfigurationList;
@@ -887,6 +968,7 @@
 				49803A261EAB605B0066B884 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49803A3D1EAB60730066B884 /* Build configuration list for PBXNativeTarget "S2Geometry iOS" */ = {
 			isa = XCConfigurationList;
@@ -895,6 +977,7 @@
 				49803A3F1EAB60730066B884 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49803A401EAB60730066B884 /* Build configuration list for PBXNativeTarget "S2Geometry iOS Tests" */ = {
 			isa = XCConfigurationList;
@@ -903,6 +986,7 @@
 				49803A421EAB60730066B884 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		498321CE1E98B6E60037769D /* Build configuration list for PBXProject "S2Geometry" */ = {
 			isa = XCConfigurationList;

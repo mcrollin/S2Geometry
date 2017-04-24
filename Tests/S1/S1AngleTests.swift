@@ -6,10 +6,10 @@
 //  Copyright © 2017 Marc Rollin. All rights reserved.
 //
 
-import XCTest
-@testable import S2Geometry
-
 // swiftlint:disable line_length
+
+@testable import S2Geometry
+import XCTest
 
 class S1AngleTests: XCTestCase {
 
@@ -25,21 +25,23 @@ class S1AngleTests: XCTestCase {
 
     func testEpsilon() {
         // For unknown reasons the first test gives a variance in the 16th decimal place.
-        XCTAssert(S1Angle.degrees(-45) ==~ S1Angle.degrees(-4500000, epsilon: .e5), "-4500000 e6")
-        XCTAssertEqual(S1Angle.degrees(-60), S1Angle.degrees(-60000000, epsilon: .e6), "-60000000 e6")
-        XCTAssertEqual(S1Angle.degrees(75), S1Angle.degrees(750000000, epsilon: .e7), "750000000 e7")
+        XCTAssert(S1Angle.degrees(-45) ==~ S1Angle.degrees(-4_500_000, epsilon: .e5), "-4500000 e6")
+        XCTAssertEqual(S1Angle.degrees(-60), S1Angle.degrees(-60_000_000, epsilon: .e6), "-60000000 e6")
+        XCTAssertEqual(S1Angle.degrees(75), S1Angle.degrees(750_000_000, epsilon: .e7), "750000000 e7")
 
-        XCTAssertEqual(S1Angle.degrees(-172.56123).epsilon5, -17256123, "-172.56123 epsilon5")
-        XCTAssertEqual(S1Angle.degrees(12.345678).epsilon6, 12345678, "-172.56123 epsilon6")
-        XCTAssertEqual(S1Angle.degrees(-12.3456789).epsilon7, -123456789, "-12.3456789 epsilon7")
+        XCTAssertEqual(S1Angle.degrees(-172.56123).epsilon5, -17_256_123, "-172.56123 epsilon5")
+        XCTAssertEqual(S1Angle.degrees(12.345678).epsilon6, 12_345_678, "-172.56123 epsilon6")
+        XCTAssertEqual(S1Angle.degrees(-12.3456789).epsilon7, -123_456_789, "-12.3456789 epsilon7")
 
         // Rounding tests
         typealias Test = (degrees: Double, expected: Int)
 
-        let tests = [Test(degrees: 0.500000001, expected: 1),
-                     Test(degrees: -0.500000001, expected: -1),
-                     Test(degrees: 0.499999999, expected: 0),
-                     Test(degrees: -0.499999999, expected: 0)]
+        let tests = [
+            Test(degrees: 0.500000001, expected: 1),
+            Test(degrees: -0.500000001, expected: -1),
+            Test(degrees: 0.499999999, expected: 0),
+            Test(degrees: -0.499999999, expected: 0)
+        ]
 
         for test in tests {
             XCTAssertEqual(S1Angle.degrees(test.degrees, epsilon: .e5).epsilon5, test.expected, "with \(test.degrees) in e5")
@@ -49,22 +51,24 @@ class S1AngleTests: XCTestCase {
     }
 
     func testNormalizeCorrectlyCannonicalizesAngles() {
-        typealias Test = (degrees: Double, expects: Double)
+        typealias Test = (degrees: Double, expected: Double)
 
-        let tests = [Test(degrees: 360, expects: 0),
-                     Test(degrees: -180, expects: 180),
-                     Test(degrees: 180, expects: 180),
-                     Test(degrees: 540, expects: 180),
-                     Test(degrees: -270, expects: 90)]
+        let tests = [
+            Test(degrees: 360, expected: 0),
+            Test(degrees: -180, expected: 180),
+            Test(degrees: 180, expected: 180),
+            Test(degrees: 540, expected: 180),
+            Test(degrees: -270, expected: 90)
+        ]
 
         for test in tests {
-            XCTAssertEqual(S1Angle.degrees(test.degrees).normalized.degrees, test.expects, "with \(test.degrees)")
+            XCTAssertEqual(S1Angle.degrees(test.degrees).normalized.degrees, test.expected, "with \(test.degrees)")
         }
     }
 
     func testDegreesVsRadians() {
         // This test tests the exactness of specific values between degrees and radians.
-        for k in -8...8 {
+        for k in -8 ... 8 {
             let k = Double(k)
             let k45 = k * 45
 
@@ -74,13 +78,15 @@ class S1AngleTests: XCTestCase {
 
         typealias Test = (degrees: Double, radians: Double)
 
-        let tests = [Test(degrees: 180, radians: 1),
-                     Test(degrees: 60, radians: 3),
-                     Test(degrees: 36, radians: 5),
-                     Test(degrees: 20, radians: 9),
-                     Test(degrees: 4, radians: 45)]
+        let tests = [
+            Test(degrees: 180, radians: 1),
+            Test(degrees: 60, radians: 3),
+            Test(degrees: 36, radians: 5),
+            Test(degrees: 20, radians: 9),
+            Test(degrees: 4, radians: 45)
+        ]
 
-        for k in 0...30 {
+        for k in 0 ... 30 {
             let n = Double(1 << k)
 
             for test in tests {
@@ -106,9 +112,11 @@ class S1AngleTests: XCTestCase {
     func testAbsolute() {
         typealias Test = (angle: S1Angle, expected: Double)
 
-        let tests = [Test(angle: S1Angle.radians(0), expected: 0),
-                     Test(angle: S1Angle.radians(.pi / 2), expected: .pi / 2),
-                     Test(angle: S1Angle.radians(-.pi / 2), expected: .pi / 2)]
+        let tests = [
+            Test(angle: S1Angle.radians(0), expected: 0),
+            Test(angle: S1Angle.radians(.pi / 2), expected: .pi / 2),
+            Test(angle: S1Angle.radians(-.pi / 2), expected: .pi / 2)
+        ]
 
         for test in tests {
             XCTAssertEqual(test.angle.absolute, test.expected, "with \(test.angle)")

@@ -137,11 +137,11 @@ extension S1Interval {
         }
 
         if S1Interval.positiveDistance(from: a, to: b) <= .pi {
-            self.low = a
-            self.high = b
+            low = a
+            high = b
         } else {
-            self.low = b
-            self.high = a
+            low = b
+            high = a
         }
     }
 

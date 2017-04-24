@@ -10,11 +10,11 @@ osx_image: xcode8.3
 branches:
   only:
     - master
-
 notifications:
   email: true
-
-env:
+before_install:
+  - brew update
+  - brew install swiftlint swiftformat
 script:
   - set -o pipefail
   - xcodebuild -version

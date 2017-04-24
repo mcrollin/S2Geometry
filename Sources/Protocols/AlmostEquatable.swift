@@ -8,7 +8,7 @@
 
 import Foundation
 
-infix operator ==~ : ComparisonPrecedence
+infix operator ==~: ComparisonPrecedence
 
 protocol AlmostEquatable {
     static func ==~ (lhs: Self, rhs: Self) -> Bool
